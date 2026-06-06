@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write # Permite que o bot comite as atualizações no repositório
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +23,7 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v4
       with:
-        node-size: '18' # Node.js 18+ possui fetch nativo integrado
+        node-version: '24' # Node.js 24+ com suporte nativo total e moderno
 
     - name: Executar Compilador de Editais
       run: node compilador.js
