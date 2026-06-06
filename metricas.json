@@ -1,26 +1,26 @@
 {
-  "geradoEm": "2026-06-06T17:15:07.845Z",
-  "totalGeral": 107,
+  "geradoEm": "2026-06-06T17:22:12.369Z",
+  "totalGeral": 111,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 18,
-    "Mestrado Profissional": 14,
-    "Doutorado Acadêmico": 10,
+    "Mestrado Acadêmico": 19,
+    "Mestrado Profissional": 11,
+    "Doutorado Acadêmico": 11,
     "Doutorado Profissional": 0,
-    "Aluno Especial": 65
+    "Aluno Especial": 70
   },
   "totaisAreas": {
-    "Educação": 22,
-    "Tecnologia e Informática": 16,
-    "Gestão e Negócios": 2,
-    "Saúde e Biológicas": 18,
-    "Humanas e Sociais": 8,
-    "Comunicação e Artes": 5,
-    "Engenharias e Exatas": 10,
+    "Educação": 27,
+    "Tecnologia e Informática": 17,
+    "Gestão e Negócios": 1,
+    "Saúde e Biológicas": 17,
+    "Humanas e Sociais": 7,
+    "Comunicação e Artes": 7,
+    "Engenharias e Exatas": 9,
     "Agrárias e Ambientais": 24
   },
   "status": {
-    "Aberto": 8,
-    "Encerrado": 99,
+    "Aberto": 10,
+    "Encerrado": 101,
     "Em andamento": 0
   },
   "porInstituicao": [
@@ -46,31 +46,19 @@
     },
     {
       "nome": "UFRB",
-      "total": 9
-    },
-    {
-      "nome": "UFOB",
-      "total": 6
+      "total": 10
     },
     {
       "nome": "UFBA",
-      "total": 3
+      "total": 8
+    },
+    {
+      "nome": "UFOB",
+      "total": 5
     },
     {
       "nome": "UNEB",
-      "total": 3
-    },
-    {
-      "nome": "UESB",
-      "total": 1
-    },
-    {
-      "nome": "Unijorge",
-      "total": 1
-    },
-    {
-      "nome": "UNIVASF",
-      "total": 1
+      "total": 5
     }
   ]
 }
