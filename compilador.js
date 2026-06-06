@@ -535,7 +535,24 @@ function salvarHistoricoEdital(tema, editais, dataEspecifica = null) {
   }
 
   editais.forEach(e => {
-    if (!historicoDia.some(h => h.url === e.url && h.titulo === e.titulo)) {
+    const index = historicoDia.findIndex(h => h.url === e.url && h.titulo === e.titulo);
+    if (index !== -1) {
+      const existente = historicoDia[index];
+      // Se a data de fim de inscrição mudou (ex: prorrogação), nós atualizamos os campos relevantes
+      if (new Date(e.inscricoesFim) > new Date(existente.inscricoesFim)) {
+        console.log(`[Prorrogação] Edital prorrogado detectado! Atualizando prazo do edital: "${e.titulo}" de ${existente.inscricoesFim} para ${e.inscricoesFim}`);
+        historicoDia[index] = {
+          ...existente,
+          resumo: e.resumo,
+          vagas: e.vagas,
+          inscricoesInicio: e.inscricoesInicio,
+          inscricoesFim: e.inscricoesFim,
+          status: e.status,
+          dataPublicacao: e.dataPublicacao,
+          fonte: e.fonte
+        };
+      }
+    } else {
       historicoDia.push({
         dataColeta,
         titulo: e.titulo,
@@ -717,7 +734,11 @@ const SITES_INSTITUICOES = {
   'UFSB': 'https://ufsb.edu.br',
   'UNIFACS': 'https://www.unifacs.br',
   'UCSal': 'http://www.ucsal.br',
-  'UNIFTC': 'https://www.uniftc.edu.br'
+  'UNIFTC': 'https://www.uniftc.edu.br',
+  'UFOB': 'https://ufob.edu.br',
+  'UESB': 'https://www.uesb.br',
+  'UNIVASF': 'https://www.univasf.edu.br',
+  'Unijorge': 'https://www.unijorge.edu.br'
 };
 
 // Sementador histórico retroativo de 2 anos (Junho 2024 a Junho 2026)
@@ -919,11 +940,11 @@ async function buscarNovosEditais() {
     'aluno-especial': []
   };
 
-  // Queries direcionadas para universidades baianas
+  // Queries agrupadas e otimizadas cobrindo as 15 universidades públicas e privadas da Bahia
   const queries = [
-    'site:uneb.br "aluno especial" 2026',
-    'site:ufba.br "aluno especial" 2026',
-    'edital pos-graduacao mestrado doutorado bahia 2026'
+    'site:ufba.br OR site:ufrb.edu.br OR site:ufsb.edu.br OR site:ufob.edu.br OR site:univasf.edu.br "mestrado" OR "doutorado" OR "aluno especial" 2026',
+    'site:uneb.br OR site:uefs.br OR site:uesc.br OR site:uesb.br OR site:ifba.edu.br OR site:ifbaiano.edu.br "mestrado" OR "doutorado" OR "aluno especial" 2026',
+    'site:unifacs.br OR site:ucsal.br OR site:unijorge.edu.br OR site:uniftc.edu.br "mestrado" OR "doutorado" OR "aluno especial" 2026'
   ];
 
   const linksProcessados = new Set();
@@ -1078,6 +1099,26 @@ async function buscarNovosEditais() {
     }
   }
 
+  // Sempre tenta raspar o SIGAA UFBA diretamente para ter editais reais garantidos
+  try {
+    const ufbaEditais = await rasparSigaaUfbaDirect();
+    console.log(`[SIGAA UFBA] Encontrados ${ufbaEditais.length} editais reais.`);
+    ufbaEditais.forEach(ed => {
+      let pasta = "mestrado";
+      if (ed.nivel === "Aluno Especial") {
+        pasta = "aluno-especial";
+      } else if (ed.nivel.startsWith("Doutorado")) {
+        pasta = "doutorado";
+      }
+      const jaExiste = resultados[pasta].some(x => x.titulo === ed.titulo);
+      if (!jaExiste) {
+        resultados[pasta].push(ed);
+      }
+    });
+  } catch (err) {
+    console.error("Erro ao raspar SIGAA UFBA diretamente:", err.message);
+  }
+
   // Se a busca falhou ou retornou vazia (ex: cota estourada), usa fallbacks simulados
   const totalObtido = resultados.mestrado.length + resultados.doutorado.length + resultados['aluno-especial'].length;
   if (totalObtido === 0) {
@@ -1125,7 +1166,207 @@ async function buscarNovosEditaisSimulados() {
     });
   });
 
+  // Além dos simulados, tenta raspar os editais reais do SIGAA UFBA
+  try {
+    const ufbaEditais = await rasparSigaaUfbaDirect();
+    console.log(`[SIGAA UFBA] Encontrados ${ufbaEditais.length} editais reais em modo simulação.`);
+    ufbaEditais.forEach(ed => {
+      let pasta = "mestrado";
+      if (ed.nivel === "Aluno Especial") {
+        pasta = "aluno-especial";
+      } else if (ed.nivel.startsWith("Doutorado")) {
+        pasta = "doutorado";
+      }
+      const jaExiste = resultados[pasta].some(x => x.titulo === ed.titulo);
+      if (!jaExiste) {
+        resultados[pasta].push(ed);
+      }
+    });
+  } catch (err) {
+    console.error("Erro ao raspar SIGAA UFBA no modo simulação:", err.message);
+  }
+
   return resultados;
+}
+
+// ══ RASPADOR DIRETO E INTEGRADO DO SIGAA UFBA ══
+async function rasparSigaaUfbaDirect() {
+  const url = 'https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S';
+  console.log(`[SIGAA UFBA] Buscando processos seletivos diretamente de: ${url}`);
+  
+  const editaisEncontrados = [];
+  const hoje = new Date();
+  
+  try {
+    const response = await httpRequest({
+      url: url,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      }
+    });
+
+    if (response.statusCode !== 200) {
+      console.log(`[SIGAA UFBA] Erro ao acessar. Status: ${response.statusCode}`);
+      return [];
+    }
+
+    const html = response.data;
+    const trRegex = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
+    let trMatch;
+    let currentEdital = '';
+    
+    while ((trMatch = trRegex.exec(html)) !== null) {
+      const trContent = trMatch[1];
+      const agrupadorMatch = trContent.match(/class=["']agrupador["']/i) || trContent.match(/colspan=["'](?:4|5)["']/i);
+      if (agrupadorMatch) {
+        let cleanText = trContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        cleanText = decodeEntities(cleanText);
+        if (cleanText) {
+          currentEdital = cleanText;
+        }
+        continue;
+      }
+      
+      const tdRegex = /<td\b[^>]*>([\s\S]*?)<\/td>/gi;
+      let tdMatch;
+      const tds = [];
+      while ((tdMatch = tdRegex.exec(trContent)) !== null) {
+        tds.push(tdMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
+      }
+      
+      if (tds.length >= 3) {
+        const hasDateRange = tds.some(td => /\d{2}\/\d{2}\/\d{4}/.test(td));
+        if (hasDateRange) {
+          const course = decodeEntities(tds[0]);
+          const vacanciesRaw = tds[1];
+          const periodRaw = tds[2];
+          
+          const editalNome = currentEdital ? currentEdital : "Processo Seletivo UFBA";
+          const is2026 = periodRaw.includes('2026') || course.includes('2026') || editalNome.includes('2026');
+          
+          if (!is2026) continue;
+          
+          const vagas = parseInt(vacanciesRaw, 10) || 10;
+          const { start, end } = parsePeriodo(periodRaw);
+          const status = end >= hoje ? "Aberto" : "Encerrado";
+          
+          let nivel = "Mestrado Acadêmico";
+          let pastaTema = "mestrado";
+          const combinedLower = (editalNome + " " + course).toLowerCase();
+          
+          if (combinedLower.includes("aluno especial") || combinedLower.includes("matricula especial") || combinedLower.includes("estudante especial") || combinedLower.includes("disciplina isolada")) {
+            nivel = "Aluno Especial";
+            pastaTema = "aluno-especial";
+          } else if (combinedLower.includes("doutorado")) {
+            nivel = combinedLower.includes("profissional") ? "Doutorado Profissional" : "Doutorado Acadêmico";
+            pastaTema = "doutorado";
+          } else if (combinedLower.includes("mestrado")) {
+            nivel = combinedLower.includes("profissional") ? "Mestrado Profissional" : "Mestrado Acadêmico";
+            pastaTema = "mestrado";
+          }
+          
+          let area = "Saúde e Biológicas";
+          let maxContagem = 0;
+          for (const [temaNome, keywords] of Object.entries(TEMAS_INTERESSE)) {
+            let contagem = 0;
+            keywords.forEach(kw => {
+              const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+              const matches = combinedLower.match(regex);
+              if (matches) contagem += matches.length;
+            });
+            if (contagem > maxContagem) {
+              maxContagem = contagem;
+              area = temaNome;
+            }
+          }
+          
+          const tituloEdital = `${editalNome} - ${course}`;
+          const resumoEdital = `Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: ${course}. Vagas ofertadas: ${vagas}. Período de inscrições de ${periodRaw}. Consulte o edital completo no portal oficial da instituição.`;
+          
+          editaisEncontrados.push({
+            titulo: tituloEdital.substring(0, 150),
+            resumo: resumoEdital.substring(0, 350),
+            instituicao: "UFBA",
+            nivel: nivel,
+            area: area,
+            vagas: vagas,
+            inscricoesInicio: start.toISOString(),
+            inscricoesFim: end.toISOString(),
+            url: url,
+            status: status,
+            dataPublicacao: start.toISOString(),
+            fonte: "UFBA SIGAA"
+          });
+        }
+      }
+    }
+  } catch (err) {
+    console.error("[SIGAA UFBA] Falha na raspagem direta:", err.message);
+  }
+  
+  return editaisEncontrados;
+}
+
+function parsePeriodo(periodoStr) {
+  const parts = periodoStr.split(/\s+a\s+/i);
+  let start = new Date();
+  let end = new Date();
+  
+  const parseDate = (dStr) => {
+    const matches = dStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+    if (matches) {
+      const day = parseInt(matches[1], 10);
+      const month = parseInt(matches[2], 10) - 1;
+      const year = parseInt(matches[3], 10);
+      return new Date(year, month, day, 12, 0, 0);
+    }
+    return new Date();
+  };
+  
+  if (parts.length >= 2) {
+    start = parseDate(parts[0]);
+    end = parseDate(parts[1]);
+  } else if (parts.length === 1) {
+    start = parseDate(parts[0]);
+    end = start;
+  }
+  return { start, end };
+}
+
+function decodeEntities(str) {
+  if (!str) return '';
+  return str
+    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
+    .replace(/&#x([0-9a-f]+);/gi, (match, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&aacute;/g, 'á')
+    .replace(/&eacute;/g, 'é')
+    .replace(/&iacute;/g, 'í')
+    .replace(/&oacute;/g, 'ó')
+    .replace(/&uacute;/g, 'ú')
+    .replace(/&atilde;/g, 'ã')
+    .replace(/&otilde;/g, 'õ')
+    .replace(/&acirc;/g, 'â')
+    .replace(/&ecirc;/g, 'ê')
+    .replace(/&icirc;/g, 'î')
+    .replace(/&ocirc;/g, 'ô')
+    .replace(/&ucirc;/g, 'û')
+    .replace(/&ccedil;/g, 'ç')
+    .replace(/&Aacute;/g, 'Á')
+    .replace(/&Eacute;/g, 'É')
+    .replace(/&Iacute;/g, 'Í')
+    .replace(/&Oacute;/g, 'Ó')
+    .replace(/&Uacute;/g, 'Ú')
+    .replace(/&Atilde;/g, 'Ã')
+    .replace(/&Otilde;/g, 'Õ')
+    .replace(/&Acirc;/g, 'Â')
+    .replace(/&Ecirc;/g, 'Ê')
+    .replace(/&Icirc;/g, 'Î')
+    .replace(/&Ocirc;/g, 'Ô')
+    .replace(/&Ucirc;/g, 'Û')
+    .replace(/&Ccedil;/g, 'Ç');
 }
 
 // Consolda arquivos de um determinado ano
@@ -1152,24 +1393,29 @@ function consolidarAno(ano) {
       }
     }
     
-    // Deduplicar e ordenar
-    const chavesUnicas = new Set();
-    const editaisUnicos = [];
+    // Deduplicar mantendo o edital com maior prazo (caso de prorrogação)
+    const mapaEditais = new Map();
     todosTema.forEach(e => {
       const chave = `${e.titulo}-${e.url}`;
-      if (!chavesUnicas.has(chave)) {
-        chavesUnicas.add(chave);
-        
-        // Atualizar status conforme data limite dinamicamente no compilador
-        const hoje = new Date();
-        const prazoFim = new Date(e.inscricoesFim);
-        if (prazoFim < hoje) {
-          e.status = 'Encerrado';
-        } else {
-          e.status = 'Aberto';
+      if (!mapaEditais.has(chave)) {
+        mapaEditais.set(chave, e);
+      } else {
+        const existente = mapaEditais.get(chave);
+        if (new Date(e.inscricoesFim) > new Date(existente.inscricoesFim)) {
+          mapaEditais.set(chave, e);
         }
-        
-        editaisUnicos.push(e);
+      }
+    });
+
+    const editaisUnicos = Array.from(mapaEditais.values());
+    editaisUnicos.forEach(e => {
+      // Atualizar status conforme data limite dinamicamente no compilador
+      const hoje = new Date();
+      const prazoFim = new Date(e.inscricoesFim);
+      if (prazoFim < hoje) {
+        e.status = 'Encerrado';
+      } else {
+        e.status = 'Aberto';
       }
     });
     
@@ -1221,16 +1467,21 @@ function gerarUltimosEditais() {
     }
   });
 
-  // Deduplicar
-  const chavesUnicas = new Set();
-  const editaisUnicos = [];
+  // Deduplicar mantendo o de maior prazo (caso de prorrogação)
+  const mapaEditais = new Map();
   todosEditais.forEach(e => {
     const chave = `${e.titulo}-${e.url}`;
-    if (!chavesUnicas.has(chave)) {
-      chavesUnicas.add(chave);
-      editaisUnicos.push(e);
+    if (!mapaEditais.has(chave)) {
+      mapaEditais.set(chave, e);
+    } else {
+      const existente = mapaEditais.get(chave);
+      if (new Date(e.inscricoesFim) > new Date(existente.inscricoesFim)) {
+        mapaEditais.set(chave, e);
+      }
     }
   });
+
+  const editaisUnicos = Array.from(mapaEditais.values());
 
   // Filtrar para conter apenas os abertos (inscrições no futuro ou em andamento)
   const hoje = new Date();
@@ -1261,8 +1512,8 @@ function gerarUltimosEditais() {
 async function executarCompilador() {
   console.log(`--- Iniciando Compilador de Editais da Bahia (${new Date().toLocaleString()}) ---`);
 
-  // 1. Sementa o histórico de 2 anos se estiver vazio
-  verificarEGerarHistoricoRetroativo();
+  // 1. Sementa o histórico de 2 anos se estiver vazio (Desativado conforme solicitação - foco de Junho 2026 em diante)
+  // verificarEGerarHistoricoRetroativo();
 
   // 2. Coleta novos editais
   const editaisNovos = await buscarNovosEditais();
