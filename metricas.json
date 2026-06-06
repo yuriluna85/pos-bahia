@@ -1,75 +1,79 @@
 {
-  "geradoEm": "2026-06-06T15:37:59.045Z",
-  "totalGeral": 105,
+  "geradoEm": "2026-06-06T15:40:59.168Z",
+  "totalGeral": 107,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 11,
-    "Mestrado Profissional": 10,
+    "Mestrado Acadêmico": 13,
+    "Mestrado Profissional": 32,
     "Doutorado Acadêmico": 10,
     "Doutorado Profissional": 0,
-    "Aluno Especial": 74
+    "Aluno Especial": 52
   },
   "totaisAreas": {
-    "Educação": 17,
-    "Tecnologia e Informática": 14,
+    "Educação": 30,
+    "Tecnologia e Informática": 0,
     "Gestão e Negócios": 2,
-    "Saúde e Biológicas": 28,
-    "Humanas e Sociais": 8,
-    "Comunicação e Artes": 1,
-    "Engenharias e Exatas": 6,
-    "Agrárias e Ambientais": 27
+    "Saúde e Biológicas": 2,
+    "Humanas e Sociais": 0,
+    "Comunicação e Artes": 0,
+    "Engenharias e Exatas": 1,
+    "Agrárias e Ambientais": 0
   },
   "status": {
-    "Aberto": 6,
-    "Encerrado": 99,
+    "Aberto": 10,
+    "Encerrado": 97,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
-      "nome": "UEFS",
-      "total": 20
-    },
-    {
-      "nome": "UESC",
-      "total": 19
-    },
-    {
-      "nome": "IF Baiano",
-      "total": 16
-    },
-    {
-      "nome": "UFSB",
-      "total": 16
-    },
-    {
-      "nome": "UFOB",
-      "total": 13
-    },
-    {
-      "nome": "IFBA",
-      "total": 8
-    },
-    {
-      "nome": "UESB",
-      "total": 6
-    },
-    {
       "nome": "UFBA",
-      "total": 3
+      "total": 23
     },
     {
       "nome": "UFRB",
-      "total": 1
+      "total": 21
     },
     {
       "nome": "UNEB",
+      "total": 21
+    },
+    {
+      "nome": "IFBA",
+      "total": 9
+    },
+    {
+      "nome": "IF Baiano",
+      "total": 8
+    },
+    {
+      "nome": "UEFS",
+      "total": 7
+    },
+    {
+      "nome": "UESC",
+      "total": 5
+    },
+    {
+      "nome": "UCSal",
+      "total": 5
+    },
+    {
+      "nome": "UNIFACS",
+      "total": 4
+    },
+    {
+      "nome": "UNIVASF",
+      "total": 1
+    },
+    {
+      "nome": "UFOB",
+      "total": 1
+    },
+    {
+      "nome": "UESB",
       "total": 1
     },
     {
       "nome": "Unijorge",
-      "total": 1
-    },
-    {
-      "nome": "UNIVASF",
       "total": 1
     }
   ]
