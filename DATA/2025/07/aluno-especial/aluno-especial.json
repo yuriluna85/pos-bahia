@@ -1,0 +1,32 @@
+[
+  {
+    "dataColeta": "2025-07-15T00:00:00.000Z",
+    "titulo": "Edital UESC 09/2025 - Seleção de Candidatos para Aluno Especial - Mestrado em Ciência da Computação (PPGCOMP)",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado em Ciência da Computação (PPGCOMP) da UESC. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Tecnologia e Informática.",
+    "instituicao": "UESC",
+    "nivel": "Aluno Especial",
+    "area": "Tecnologia e Informática",
+    "vagas": 16,
+    "inscricoesInicio": "2025-07-03T09:00:00.000Z",
+    "inscricoesFim": "2025-07-19T23:59:59.000Z",
+    "url": "http://www.uesc.br/noticias/selecao-aluno-especial-2025-7-1",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-06-30T10:00:00.000Z",
+    "fonte": "UESC Ingresso"
+  },
+  {
+    "dataColeta": "2025-07-15T00:00:00.000Z",
+    "titulo": "Edital UESC 10/2025 - Seleção de Candidatos para Aluno Especial - Programa de Pós-Graduação em Produção Vegetal",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Programa de Pós-Graduação em Produção Vegetal da UESC. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Agrárias e Ambientais.",
+    "instituicao": "UESC",
+    "nivel": "Aluno Especial",
+    "area": "Agrárias e Ambientais",
+    "vagas": 17,
+    "inscricoesInicio": "2025-07-04T09:00:00.000Z",
+    "inscricoesFim": "2025-07-21T23:59:59.000Z",
+    "url": "http://www.uesc.br/noticias/selecao-aluno-especial-2025-7-2",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-07-01T10:00:00.000Z",
+    "fonte": "UESC Ingresso"
+  }
+]

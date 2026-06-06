@@ -1,0 +1,62 @@
+[
+  {
+    "dataColeta": "2025-02-15T00:00:00.000Z",
+    "titulo": "Edital IFBA 03/2025 - Seleção de Candidatos para Aluno Especial - Mestrado Profissional em Tecnologias Aplicadas a Processos de Ensino e Aprendizagem",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado Profissional em Tecnologias Aplicadas a Processos de Ensino e Aprendizagem da IFBA. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Tecnologia e Informática.",
+    "instituicao": "IFBA",
+    "nivel": "Aluno Especial",
+    "area": "Tecnologia e Informática",
+    "vagas": 10,
+    "inscricoesInicio": "2025-02-02T09:00:00.000Z",
+    "inscricoesFim": "2025-02-17T23:59:59.000Z",
+    "url": "https://portal.ifba.edu.br/noticias/selecao-aluno-especial-2025-2-0",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-01-30T10:00:00.000Z",
+    "fonte": "IFBA Ingresso"
+  },
+  {
+    "dataColeta": "2025-02-15T00:00:00.000Z",
+    "titulo": "Edital IFBA 04/2025 - Seleção de Candidatos para Aluno Especial - Mestrado em Engenharia de Sistemas e Automação",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado em Engenharia de Sistemas e Automação da IFBA. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Engenharias e Exatas.",
+    "instituicao": "IFBA",
+    "nivel": "Aluno Especial",
+    "area": "Engenharias e Exatas",
+    "vagas": 11,
+    "inscricoesInicio": "2025-02-03T09:00:00.000Z",
+    "inscricoesFim": "2025-02-19T23:59:59.000Z",
+    "url": "https://portal.ifba.edu.br/noticias/selecao-aluno-especial-2025-2-1",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-01-31T10:00:00.000Z",
+    "fonte": "IFBA Ingresso"
+  },
+  {
+    "dataColeta": "2025-02-15T00:00:00.000Z",
+    "titulo": "Edital IF Baiano 06/2025 - Seleção de Candidatos para Aluno Especial - Mestrado Profissional em Produção Vegetal no Semiárido",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado Profissional em Produção Vegetal no Semiárido da IF Baiano. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Agrárias e Ambientais.",
+    "instituicao": "IF Baiano",
+    "nivel": "Aluno Especial",
+    "area": "Agrárias e Ambientais",
+    "vagas": 13,
+    "inscricoesInicio": "2025-02-02T09:00:00.000Z",
+    "inscricoesFim": "2025-02-20T23:59:59.000Z",
+    "url": "https://ifbaiano.edu.br/noticias/selecao-aluno-especial-2025-2-3",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-01-30T10:00:00.000Z",
+    "fonte": "IF Baiano Ingresso"
+  },
+  {
+    "dataColeta": "2025-02-15T00:00:00.000Z",
+    "titulo": "Edital UEFS 07/2025 - Seleção de Candidatos para Aluno Especial - Programa de Pós-Graduação em Educação (PPGEdu)",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Programa de Pós-Graduação em Educação (PPGEdu) da UEFS. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Educação.",
+    "instituicao": "UEFS",
+    "nivel": "Aluno Especial",
+    "area": "Educação",
+    "vagas": 14,
+    "inscricoesInicio": "2025-02-03T09:00:00.000Z",
+    "inscricoesFim": "2025-02-22T23:59:59.000Z",
+    "url": "http://www.uefs.br/noticias/selecao-aluno-especial-2025-2-4",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-01-31T10:00:00.000Z",
+    "fonte": "UEFS Ingresso"
+  }
+]
