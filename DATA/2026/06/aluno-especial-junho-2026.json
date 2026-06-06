@@ -1,0 +1,62 @@
+[
+  {
+    "dataColeta": "2026-06-06T17:14:01.592Z",
+    "titulo": "Edital UNEB 050/2026 - Seleção de Aluno Especial - PPGEduC (Semestre 2026.2)",
+    "resumo": "Processo Seletivo para aluno de matrícula especial em disciplinas dos cursos de Mestrado e Doutorado do Programa de Pós-Graduação em Educação e Contemporaneidade (PPGEduC) da UNEB, ofertado pelo Departamento de Educação (DEDC), Campus I.",
+    "instituicao": "UNEB",
+    "nivel": "Aluno Especial",
+    "area": "Educação",
+    "vagas": 15,
+    "inscricoesInicio": "2026-06-15T09:00:00.000Z",
+    "inscricoesFim": "2026-07-06T23:59:59.000Z",
+    "url": "https://editais.uneb.br/edital_050_2026",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-06T10:00:00.000Z",
+    "fonte": "PPGEduC UNEB"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.592Z",
+    "titulo": "Edital UNEB 048/2026 - Seleção de Aluno Especial - PPGEL (Semestre 2026.2)",
+    "resumo": "Processo seletivo para aluno de matrícula especial do Programa de Pós-Graduação em Estudo de Linguagens (PPGEL) da UNEB para o segundo semestre de 2026. Oferece 70 vagas distribuídas entre disciplinas das linhas de pesquisa de Leitura, Literatura e Cultura e Linguagens, Discurso e Sociedade.",
+    "instituicao": "UNEB",
+    "nivel": "Aluno Especial",
+    "area": "Humanas e Sociais",
+    "vagas": 70,
+    "inscricoesInicio": "2026-06-29T09:00:00.000Z",
+    "inscricoesFim": "2026-07-10T23:59:59.000Z",
+    "url": "https://ppgel.uneb.br/mestrado-aluno-especial/",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-05T10:00:00.000Z",
+    "fonte": "PPGEL UNEB"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.592Z",
+    "titulo": "Edital UFBA 02/2026 - Seleção de Aluno Especial - PGCOMP (Semestre 2026.2)",
+    "resumo": "O Programa de Pós-Graduação em Ciência da Computação da UFBA abre vagas para inscrição em disciplinas isoladas. Oportunidade para profissionais de TI cursarem matérias de Inteligência Artificial e Engenharia de Software no mestrado/doutorado.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Tecnologia e Informática",
+    "vagas": 18,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "UFBA Ingresso"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.592Z",
+    "titulo": "Chamada UNIVASF 05/2026 - Seleção para Aluno Especial - Engenharia Agrícola",
+    "resumo": "Estão abertas as inscrições para aluno especial nas disciplinas de pós-graduação stricto sensu em Engenharia Agrícola da UNIVASF no campus de Juazeiro-BA. Foco em tecnologia de irrigação.",
+    "instituicao": "UNIVASF",
+    "nivel": "Aluno Especial",
+    "area": "Engenharias e Exatas",
+    "vagas": 8,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://portais.univasf.edu.br/pos-graduacao",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "UNIVASF Ingresso"
+  }
+]

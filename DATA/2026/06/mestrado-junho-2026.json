@@ -1,0 +1,62 @@
+[
+  {
+    "dataColeta": "2026-06-06T17:14:01.591Z",
+    "titulo": "Processo Seletivo UNEB 12/2026 - Mestrado Profissional em Gestão Educacional (GESTEC)",
+    "resumo": "Abertas as inscrições para o Programa de Pós-Graduação em Gestão e Tecnologias Aplicadas à Educação (GESTEC) da UNEB. O curso capacita gestores e educadores para inovação pedagógica e desenvolvimento de materiais multimídia.",
+    "instituicao": "UNEB",
+    "nivel": "Mestrado Profissional",
+    "area": "Gestão e Negócios",
+    "vagas": 20,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://portal.uneb.br/pos-graduacao/",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "UNEB Ingresso"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.591Z",
+    "titulo": "Edital UFOB 03/2026 - Mestrado Profissional em Saúde da Família",
+    "resumo": "O Programa de Pós-Graduação em Saúde da Família da UFOB abre inscrições para o processo seletivo de novos alunos. Focado na atenção básica de saúde coletiva, abrangendo atuação em Barreiras e região oeste.",
+    "instituicao": "UFOB",
+    "nivel": "Mestrado Profissional",
+    "area": "Saúde e Biológicas",
+    "vagas": 12,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://ufob.edu.br/pos-graduacao",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "UFOB Ingresso"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.591Z",
+    "titulo": "Processo Seletivo UESB 04/2026 - Doutorado e Mestrado em Enfermagem e Saúde",
+    "resumo": "Estão abertas as inscrições de candidatos para o Programa de Pós-Graduação em Enfermagem e Saúde da UESB, campus de Vitória da Conquista. Linhas de pesquisa em epidemiologia e cuidado humanizado.",
+    "instituicao": "UESB",
+    "nivel": "Mestrado Acadêmico",
+    "area": "Saúde e Biológicas",
+    "vagas": 15,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://www.uesb.br/pos-graduacao",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "UESB Ingresso"
+  },
+  {
+    "dataColeta": "2026-06-06T17:14:01.591Z",
+    "titulo": "Processo Seletivo Unijorge 01/2026 - Mestrado Profissional em Gestão e Negócios",
+    "resumo": "O Centro Universitário Jorge Amado abre inscrições para o Mestrado Profissional em Gestão e Negócios em Salvador. Linhas de pesquisa voltadas para de metodologias ágeis, inovação de mercado e finanças corporativas.",
+    "instituicao": "Unijorge",
+    "nivel": "Mestrado Profissional",
+    "area": "Gestão e Negócios",
+    "vagas": 25,
+    "inscricoesInicio": "2026-06-05T17:14:01.591Z",
+    "inscricoesFim": "2026-06-21T17:14:01.591Z",
+    "url": "https://www.unijorge.edu.br/pos-graduacao/",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-03T17:14:01.591Z",
+    "fonte": "Unijorge Ingresso"
+  }
+]

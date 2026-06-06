@@ -1,0 +1,47 @@
+[
+  {
+    "dataColeta": "2026-04-15T00:00:00.000Z",
+    "titulo": "Edital IF Baiano 08/2026 - Seleção de Candidatos para Aluno Especial - Mestrado Profissional em Produção Vegetal no Semiárido",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado Profissional em Produção Vegetal no Semiárido da IF Baiano. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Agrárias e Ambientais.",
+    "instituicao": "IF Baiano",
+    "nivel": "Aluno Especial",
+    "area": "Agrárias e Ambientais",
+    "vagas": 15,
+    "inscricoesInicio": "2026-04-04T09:00:00.000Z",
+    "inscricoesFim": "2026-04-21T23:59:59.000Z",
+    "url": "https://ifbaiano.edu.br/noticias/selecao-aluno-especial-2026-4-2",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-04-01T10:00:00.000Z",
+    "fonte": "IF Baiano Ingresso"
+  },
+  {
+    "dataColeta": "2026-04-15T00:00:00.000Z",
+    "titulo": "Edital UEFS 09/2026 - Seleção de Candidatos para Aluno Especial - Programa de Pós-Graduação em Educação (PPGEdu)",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Programa de Pós-Graduação em Educação (PPGEdu) da UEFS. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Educação.",
+    "instituicao": "UEFS",
+    "nivel": "Aluno Especial",
+    "area": "Educação",
+    "vagas": 16,
+    "inscricoesInicio": "2026-04-02T09:00:00.000Z",
+    "inscricoesFim": "2026-04-20T23:59:59.000Z",
+    "url": "http://www.uefs.br/noticias/selecao-aluno-especial-2026-4-3",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-03-30T10:00:00.000Z",
+    "fonte": "UEFS Ingresso"
+  },
+  {
+    "dataColeta": "2026-04-15T00:00:00.000Z",
+    "titulo": "Edital UEFS 10/2026 - Seleção de Candidatos para Aluno Especial - Mestrado em Biotecnologia",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Mestrado em Biotecnologia da UEFS. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Saúde e Biológicas.",
+    "instituicao": "UEFS",
+    "nivel": "Aluno Especial",
+    "area": "Saúde e Biológicas",
+    "vagas": 17,
+    "inscricoesInicio": "2026-04-03T09:00:00.000Z",
+    "inscricoesFim": "2026-04-22T23:59:59.000Z",
+    "url": "http://www.uefs.br/noticias/selecao-aluno-especial-2026-4-4",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-03-31T10:00:00.000Z",
+    "fonte": "UEFS Ingresso"
+  }
+]
