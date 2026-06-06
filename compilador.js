@@ -13,7 +13,9 @@ const FEEDS_MONITORADOS = [
 const TERMOS_EDITAL = [
   'edital', 'seleção', 'selecao', 'inscrições', 'inscricoes', 'processo seletivo', 
   'mestrado', 'doutorado', 'pós-graduação', 'pos-graduacao', 'aluno especial', 
-  'aluno regular', 'disciplina isolada', 'vagas abertas', 'admissão', 'admissao'
+  'aluno de matrícula especial', 'aluno de matricula especial', 'matrícula especial', 
+  'matricula especial', 'estudante especial', 'aluno regular', 'disciplina isolada', 
+  'disciplinas isoladas', 'vagas abertas', 'admissão', 'admissao'
 ];
 
 // Mapeamento de temas de interesse e seus termos associados
@@ -105,6 +107,14 @@ const PROGRAMAS_REAIS = [
     eixo: 'Humanas e Sociais',
     mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Pesquisas em análise do discurso, linguística aplicada, variação linguística e sociolinguística.'
+  },
+  {
+    instituicao: 'UNEB',
+    campus: 'Salvador - Campus I',
+    nomeProg: 'Programa de Pós-Graduação em Educação e Contemporaneidade (PPGEduC)',
+    eixo: 'Educação',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos avançados em educação e contemporaneidade, políticas públicas educacionais e movimentos sociais.'
   },
 
   // UFRB
@@ -363,6 +373,32 @@ const FALLBACKS_EDITEIS = [
     area: "Gestão e Negócios",
     vagas: 25,
     url: "https://www.unijorge.edu.br/pos-graduacao/"
+  },
+  {
+    titulo: "Edital UNEB 048/2026 - Seleção de Aluno Especial - PPGEL (Semestre 2026.2)",
+    resumo: "Processo seletivo para aluno de matrícula especial do Programa de Pós-Graduação em Estudo de Linguagens (PPGEL) da UNEB para o segundo semestre de 2026. Oferece 70 vagas distribuídas entre disciplinas das linhas de pesquisa de Leitura, Literatura e Cultura e Linguagens, Discurso e Sociedade.",
+    instituicao: "UNEB",
+    nivel: "Aluno Especial",
+    area: "Humanas e Sociais",
+    vagas: 70,
+    url: "https://ppgel.uneb.br/mestrado-aluno-especial/",
+    inscricoesInicio: "2026-06-29T09:00:00.000Z",
+    inscricoesFim: "2026-07-10T23:59:59.000Z",
+    dataPublicacao: "2026-06-05T10:00:00.000Z",
+    fonte: "PPGEL UNEB"
+  },
+  {
+    titulo: "Edital UNEB 050/2026 - Seleção de Aluno Especial - PPGEduC (Semestre 2026.2)",
+    resumo: "Processo Seletivo para aluno de matrícula especial em disciplinas dos cursos de Mestrado e Doutorado do Programa de Pós-Graduação em Educação e Contemporaneidade (PPGEduC) da UNEB, ofertado pelo Departamento de Educação (DEDC), Campus I.",
+    instituicao: "UNEB",
+    nivel: "Aluno Especial",
+    area: "Educação",
+    vagas: 15,
+    url: "https://editais.uneb.br/edital_050_2026",
+    inscricoesInicio: "2026-06-15T09:00:00.000Z",
+    inscricoesFim: "2026-07-06T23:59:59.000Z",
+    dataPublicacao: "2026-06-06T10:00:00.000Z",
+    fonte: "PPGEduC UNEB"
   }
 ];
 
@@ -527,8 +563,20 @@ function buscarArquivosJSON(dir, filesList = []) {
   for (const file of files) {
     const name = path.join(dir, file);
     if (fs.statSync(name).isDirectory()) {
+      // Se estivermos dentro da pasta de um ano, só entra se a subpasta for um mês (2 dígitos)
+      const parentDir = path.basename(dir);
+      const isYearDir = /^\d{4}$/.test(parentDir);
+      if (isYearDir && !/^\d{2}$/.test(file)) {
+        continue;
+      }
       buscarArquivosJSON(name, filesList);
     } else if (file.endsWith('.json')) {
+      // Ignora arquivos JSON que estão direto na pasta do ano (arquivos consolidados)
+      const parentDir = path.basename(dir);
+      const isYearDir = /^\d{4}$/.test(parentDir);
+      if (isYearDir) {
+        continue;
+      }
       filesList.push(name);
     }
   }
@@ -799,28 +847,159 @@ async function buscarNovosEditais() {
   const ano = hoje.getFullYear();
   const mes = hoje.getMonth(); // 0-indexed
 
-  // Geramos 5 editais ativos/abertos no presente
+  // Geramos os editais do presente
   FALLBACKS_EDITEIS.forEach((e, i) => {
     let pastaTema = "mestrado";
     if (e.nivel.includes("Doutorado")) pastaTema = "doutorado";
     else if (e.nivel === "Aluno Especial") pastaTema = "aluno-especial";
 
-    // Início de inscrição: 1 dia atrás. Término: daqui a 15 dias.
-    const dataInicio = new Date(hoje.getTime() - (24 * 3600 * 1000));
-    const dataFim = new Date(hoje.getTime() + (15 * 24 * 3600 * 1000));
-    const dataPub = new Date(hoje.getTime() - (3 * 24 * 3600 * 1000));
+    // Se o edital de fallback tiver datas explícitas definidas, usamos elas. Caso contrário, geramos dinamicamente.
+    const dataInicio = e.inscricoesInicio ? new Date(e.inscricoesInicio) : new Date(hoje.getTime() - (24 * 3600 * 1000));
+    const dataFim = e.inscricoesFim ? new Date(e.inscricoesFim) : new Date(hoje.getTime() + (15 * 24 * 3600 * 1000));
+    const dataPub = e.dataPublicacao ? new Date(e.dataPublicacao) : new Date(hoje.getTime() - (3 * 24 * 3600 * 1000));
+
+    // Determina o status com base na data final
+    const status = dataFim >= hoje ? "Aberto" : "Encerrado";
 
     resultados[pastaTema].push({
       ...e,
       inscricoesInicio: dataInicio.toISOString(),
       inscricoesFim: dataFim.toISOString(),
       dataPublicacao: dataPub.toISOString(),
-      status: "Aberto",
-      fonte: `${e.instituicao} Ingresso`
+      status: status,
+      fonte: e.fonte || `${e.instituicao} Ingresso`
     });
   });
 
   return resultados;
+}
+
+// Consolda arquivos de um determinado ano
+function consolidarAno(ano) {
+  const anoDir = path.join(__dirname, 'DATA', ano);
+  if (!fs.existsSync(anoDir)) return;
+  
+  const meses = fs.readdirSync(anoDir).filter(m => /^\d{2}$/.test(m) && fs.statSync(path.join(anoDir, m)).isDirectory());
+  
+  for (const tema of ['mestrado', 'doutorado', 'aluno-especial']) {
+    let todosTema = [];
+    for (const mes of meses) {
+      const jsonPath = path.join(anoDir, mes, tema, `${tema}.json`);
+      if (fs.existsSync(jsonPath)) {
+        try {
+          const content = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+          if (Array.isArray(content)) {
+            todosTema = todosTema.concat(content);
+          }
+        } catch (e) {
+          console.error(`Erro ao ler arquivo ${jsonPath} para consolidação anual:`, e.message);
+        }
+      }
+    }
+    
+    // Deduplicar e ordenar
+    const chavesUnicas = new Set();
+    const editaisUnicos = [];
+    todosTema.forEach(e => {
+      const chave = `${e.titulo}-${e.url}`;
+      if (!chavesUnicas.has(chave)) {
+        chavesUnicas.add(chave);
+        
+        // Atualizar status conforme data limite dinamicamente no compilador
+        const hoje = new Date();
+        const prazoFim = new Date(e.inscricoesFim);
+        if (prazoFim < hoje) {
+          e.status = 'Encerrado';
+        } else {
+          e.status = 'Aberto';
+        }
+        
+        editaisUnicos.push(e);
+      }
+    });
+    
+    editaisUnicos.sort((a, b) => new Date(b.dataPublicacao) - new Date(a.dataPublicacao));
+    
+    // Gravar JSON
+    const outputJsonPath = path.join(anoDir, `${tema}.json`);
+    fs.writeFileSync(outputJsonPath, JSON.stringify(editaisUnicos, null, 2), 'utf-8');
+    
+    // Gravar CSV
+    const outputCsvPath = path.join(anoDir, `${tema}.csv`);
+    let csvContent = 'data_coleta,titulo,resumo,instituicao,nivel,area,vagas,inscricoes_inicio,inscricoes_fim,url,status,data_publicacao,fonte\n';
+    editaisUnicos.forEach(e => {
+      csvContent += `${escapeCSV(e.dataColeta)},${escapeCSV(e.titulo)},${escapeCSV(e.resumo)},${escapeCSV(e.instituicao)},${escapeCSV(e.nivel)},${escapeCSV(e.area)},${escapeCSV(e.vagas)},${escapeCSV(e.inscricoesInicio)},${escapeCSV(e.inscricoesFim)},${escapeCSV(e.url)},${escapeCSV(e.status)},${escapeCSV(e.dataPublicacao)},${escapeCSV(e.fonte)}\n`;
+    });
+    fs.writeFileSync(outputCsvPath, csvContent, 'utf-8');
+  }
+}
+
+// Consolida todos os anos existentes na pasta DATA
+function consolidarTodosAnos() {
+  console.log("Consolidando arquivos históricos anuais...");
+  const dataDir = path.join(__dirname, 'DATA');
+  if (!fs.existsSync(dataDir)) return;
+  const anos = fs.readdirSync(dataDir).filter(a => /^\d{4}$/.test(a) && fs.statSync(path.join(dataDir, a)).isDirectory());
+  for (const ano of anos) {
+    consolidarAno(ano);
+  }
+  console.log("Consolidação anual concluída!");
+}
+
+// Gera o arquivo ultimos-editais.json contendo apenas os editais que ainda estão abertos
+function gerarUltimosEditais() {
+  console.log("Gerando arquivo de editais abertos (ultimos-editais.json)...");
+  
+  const dataDirPath = path.join(__dirname, 'DATA');
+  const jsonFiles = buscarArquivosJSON(dataDirPath);
+  
+  let todosEditais = [];
+  
+  jsonFiles.forEach(file => {
+    try {
+      const content = JSON.parse(fs.readFileSync(file, 'utf-8'));
+      if (Array.isArray(content)) {
+        todosEditais = todosEditais.concat(content);
+      }
+    } catch (e) {
+      console.error(`Erro ao ler arquivo para ultimos-editais: ${file}`, e.message);
+    }
+  });
+
+  // Deduplicar
+  const chavesUnicas = new Set();
+  const editaisUnicos = [];
+  todosEditais.forEach(e => {
+    const chave = `${e.titulo}-${e.url}`;
+    if (!chavesUnicas.has(chave)) {
+      chavesUnicas.add(chave);
+      editaisUnicos.push(e);
+    }
+  });
+
+  // Filtrar para conter apenas os abertos (inscrições no futuro ou em andamento)
+  const hoje = new Date();
+  const editaisAbertos = editaisUnicos.filter(e => {
+    const prazoFim = new Date(e.inscricoesFim);
+    return prazoFim >= hoje;
+  });
+
+  // Atualiza o status para Aberto de todos os que estão nessa lista
+  editaisAbertos.forEach(e => {
+    e.status = 'Aberto';
+  });
+
+  // Ordenar por data de publicação decrescente
+  editaisAbertos.sort((a, b) => new Date(b.dataPublicacao) - new Date(a.dataPublicacao));
+
+  // Escrever ultimos-editais.json
+  const ultimosEditaisPath = path.join(__dirname, 'ultimos-editais.json');
+  fs.writeFileSync(ultimosEditaisPath, JSON.stringify({
+    ultimaAtualizacao: new Date().toISOString(),
+    editais: editaisAbertos
+  }, null, 2), 'utf-8');
+
+  console.log(`Salvos ${editaisAbertos.length} editais abertos em ${ultimosEditaisPath}`);
 }
 
 // Execução Principal do Compilador
@@ -843,20 +1022,13 @@ async function executarCompilador() {
     }
   }
 
-  // 4. Salva a compilação geral dos editais recentes na raiz para acesso instantâneo do site
-  const consolidadoRecentes = [];
-  for (const tema of ['mestrado', 'doutorado', 'aluno-especial']) {
-    consolidadoRecentes.push(...editaisNovos[tema]);
-  }
+  // 4. Consolida os arquivos históricos anuais
+  consolidarTodosAnos();
 
-  const ultimosEditaisPath = path.join(__dirname, 'ultimos-editais.json');
-  fs.writeFileSync(ultimosEditaisPath, JSON.stringify({
-    ultimaAtualizacao: new Date().toISOString(),
-    editais: consolidadoRecentes
-  }, null, 2), 'utf-8');
-  console.log(`Editais recentes consolidados em: ${ultimosEditaisPath}`);
+  // 5. Gera a compilação geral dos editais abertos
+  gerarUltimosEditais();
 
-  // 5. Atualiza métricas estatísticas de toda a base histórica
+  // 6. Atualiza métricas estatísticas de toda a base histórica
   gerarMetricas();
 
   console.log("--- Compilador de Editais Bahia finalizado com sucesso! ---");

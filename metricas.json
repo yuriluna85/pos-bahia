@@ -1,25 +1,25 @@
 {
-  "geradoEm": "2026-06-06T15:56:06.704Z",
-  "totalGeral": 105,
+  "geradoEm": "2026-06-06T15:54:21.934Z",
+  "totalGeral": 107,
   "totaisNiveis": {
     "Mestrado Acadêmico": 11,
     "Mestrado Profissional": 10,
     "Doutorado Acadêmico": 10,
     "Doutorado Profissional": 0,
-    "Aluno Especial": 74
+    "Aluno Especial": 76
   },
   "totaisAreas": {
-    "Educação": 17,
+    "Educação": 18,
     "Tecnologia e Informática": 14,
     "Gestão e Negócios": 2,
     "Saúde e Biológicas": 28,
-    "Humanas e Sociais": 8,
+    "Humanas e Sociais": 9,
     "Comunicação e Artes": 1,
     "Engenharias e Exatas": 6,
     "Agrárias e Ambientais": 27
   },
   "status": {
-    "Aberto": 6,
+    "Aberto": 8,
     "Encerrado": 99,
     "Em andamento": 0
   },
@@ -57,19 +57,19 @@
       "total": 3
     },
     {
+      "nome": "UNEB",
+      "total": 3
+    },
+    {
       "nome": "UFRB",
       "total": 1
     },
     {
-      "nome": "UNIVASF",
-      "total": 1
-    },
-    {
-      "nome": "UNEB",
-      "total": 1
-    },
-    {
       "nome": "Unijorge",
+      "total": 1
+    },
+    {
+      "nome": "UNIVASF",
       "total": 1
     }
   ]

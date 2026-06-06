@@ -31,6 +31,7 @@
       --color-mestrado: #16a34a; /* Verde escuro nítido */
       --color-doutorado: #9a7407; /* Dourado escuro nítido */
       --color-especial: #ea580c; /* Laranja escuro nítido */
+      --color-fechados: #64748b; /* Cinza ardósia para fechados */
     }
 
     /* ══ MODO ALTO CONTRASTE (WCAG) ══ */
@@ -51,6 +52,7 @@
       --color-mestrado: #ffff00;
       --color-doutorado: #ffff00;
       --color-especial: #ffff00;
+      --color-fechados: #ffff00;
     }
 
     /* ══ RESET E BÁSICOS ══ */
@@ -461,6 +463,7 @@
     .tab-item.active-mestrado { color: var(--color-mestrado); border-bottom-color: var(--color-mestrado); }
     .tab-item.active-doutorado { color: var(--color-doutorado); border-bottom-color: var(--color-doutorado); }
     .tab-item.active-especial { color: var(--color-especial); border-bottom-color: var(--color-especial); }
+    .tab-item.active-fechados { color: var(--color-fechados); border-bottom-color: var(--color-fechados); }
     .tab-item.active-stats { color: var(--primary); border-bottom-color: var(--primary); }
     .tab-item.active-unis { color: var(--accent); border-bottom-color: var(--accent); }
 
@@ -1316,22 +1319,12 @@
     </div>
   </div>
 
-  <!-- BUSCA E HISTÓRICO -->
-  <div class="dashboard-wrap" role="search" aria-label="Buscar e navegar no histórico">
-    <div class="dashboard-inner">
-      <div class="search-box">
+  <!-- BUSCA E PESQUISA -->
+  <div class="dashboard-wrap" role="search" aria-label="Buscar editais">
+    <div class="dashboard-inner" style="justify-content: center;">
+      <div class="search-box" style="max-width: 600px; margin: 0 auto; width: 100%;">
         <span class="search-icon" aria-hidden="true">🔍</span>
         <input type="text" id="searchInput" oninput="executarFiltros()" placeholder="Buscar por instituição, curso, áreas ou palavras-chave..." aria-label="Digite termos para buscar editais"/>
-      </div>
-      
-      <!-- Seletor de Histórico Mensal -->
-      <div class="history-control" role="group" aria-label="Navegar no histórico de editais">
-        <span class="history-label">📅 Histórico:</span>
-        <div class="history-input-wrap">
-          <input type="month" id="historyDate" class="history-input" min="2024-06" aria-label="Escolher mês e ano para ver editais passados">
-          <button class="btn-action btn-primary-style" onclick="carregarHistorico()" aria-label="Carregar editais do período selecionado">Pesquisar</button>
-          <button class="btn-action btn-outline-style" id="btnClearHistory" onclick="restaurarRecentes()" style="display: none;" aria-label="Voltar para editais recentes">Ver Recentes</button>
-        </div>
       </div>
     </div>
   </div>
@@ -1342,6 +1335,7 @@
       <button class="tab-item active-mestrado" id="tab-mestrado" onclick="switchTab('mestrado')" aria-controls="panel-mestrado" aria-selected="true" role="tab">🎓 Mestrado</button>
       <button class="tab-item" id="tab-doutorado" onclick="switchTab('doutorado')" aria-controls="panel-doutorado" aria-selected="false" role="tab">🧬 Doutorado</button>
       <button class="tab-item" id="tab-especial" onclick="switchTab('especial')" aria-controls="panel-especial" aria-selected="false" role="tab">🌟 Aluno Especial</button>
+      <button class="tab-item" id="tab-fechados" onclick="switchTab('fechados')" aria-controls="panel-fechados" aria-selected="false" role="tab">🔒 Editais Fechados</button>
       <button class="tab-item" id="tab-stats" onclick="switchTab('stats')" aria-controls="panel-stats" aria-selected="false" role="tab">📊 Estatísticas</button>
       <button class="tab-item" id="tab-unis" onclick="switchTab('unis')" aria-controls="panel-unis" aria-selected="false" role="tab">🏫 Instituições Monitoradas</button>
     </div>
@@ -1386,6 +1380,34 @@
         <h2 class="section-title title-especial">Admissões de Aluno Especial na Bahia</h2>
         <div class="edital-grid" id="cards-especial">
           <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
+        </div>
+      </section>
+
+      <!-- ABA EDITAIS FECHADOS (HISTÓRICO) -->
+      <section class="tab-panel" id="panel-fechados" role="tabpanel" aria-labelledby="tab-fechados">
+        <div class="chips-container" id="filtros-areas-fechados" aria-label="Filtro rápido de eixos de editais fechados"></div>
+        
+        <div style="background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-soft);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem;">
+            <div>
+              <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Arquivo Histórico de Editais Encerrados</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted);">Consulte todos os editais que já finalizaram as inscrições nos anos anteriores.</p>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Ano de Referência:</span>
+              <select id="historyYear" onchange="carregarHistoricoAnual()" style="background: var(--bg-main); border: 1.5px solid var(--border-glow); color: var(--text-main); border-radius: 6px; padding: 0.45rem 1rem; font-family: inherit; font-size: 0.88rem; outline: none; font-weight: 700; cursor: pointer;">
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="border-left-color: var(--color-fechados);">Editais Encerrados</h2>
+        <div class="edital-grid" id="cards-fechados">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Selecione o ano para carregar...</div></div>
         </div>
       </section>
 
@@ -1548,6 +1570,7 @@
     let editaisRecentes = null;
     let modoHistorico = false;
     let dadosHistorico = { mestrado: [], doutorado: [], 'aluno-especial': [] };
+    let dadosFechadosAno = []; // Array consolidado de editais fechados para o ano selecionado
     let instituicoes = null;
     let metricas = null;
 
@@ -1557,16 +1580,15 @@
     let filtroAreaAtiva = {
       mestrado: 'Todas',
       doutorado: 'Todas',
-      'aluno-especial': 'Todas'
+      'aluno-especial': 'Todas',
+      fechados: 'Todas'
     };
     let activeTab = 'mestrado';
 
-    // Inicializa datas
+    // Inicializa ano
     const agora = new Date();
     const anoAtual = agora.getFullYear();
-    const mesAtual = String(agora.getMonth() + 1).padStart(2, '0');
-    document.getElementById('historyDate').value = `${anoAtual}-${mesAtual}`;
-    document.getElementById('historyDate').max = `${anoAtual}-${mesAtual}`;
+    document.getElementById('historyYear').value = String(anoAtual);
 
     // ══ REQUISIÇÃO DE DADOS ══
     async function fetchJSON(url) {
@@ -1684,64 +1706,82 @@
       }
     }
 
-    // Carrega dados de editais anteriores salvos em DATA/ANO/MES
-    async function carregarHistorico() {
-      const dateVal = document.getElementById('historyDate').value;
-      if (!dateVal) return;
+    // Carrega dados de editais anteriores consolidados por ano
+    async function carregarHistoricoAnual() {
+      const ano = document.getElementById('historyYear').value;
+      if (!ano) return;
 
-      const [ano, mes] = dateVal.split('-');
-      mostrarLoaders();
+      const container = document.getElementById('cards-fechados');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">Carregando histórico anual...</div></div>';
 
       try {
         const promessas = [
-          fetchJSON(`DATA/${ano}/${mes}/mestrado/mestrado.json`).catch(() => []),
-          fetchJSON(`DATA/${ano}/${mes}/doutorado/doutorado.json`).catch(() => []),
-          fetchJSON(`DATA/${ano}/${mes}/aluno-especial/aluno-especial.json`).catch(() => [])
+          fetchJSON(`DATA/${ano}/mestrado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/doutorado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => [])
         ];
 
         const [mest, dout, esp] = await Promise.all(promessas);
+        
+        const agora = new Date();
+        // Combina e filtra apenas os que já fecharam
+        dadosFechadosAno = [...mest, ...dout, ...esp]
+          .filter(e => new Date(e.inscricoesFim) < agora)
+          .map(e => ({
+            ...e,
+            status: 'Encerrado'
+          }));
 
-        if (mest.length === 0 && dout.length === 0 && esp.length === 0) {
-          mostrarEmptyState(ano, mes);
+        if (dadosFechadosAno.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">📅</div>
+              <div class="empty-title">Nenhum Registro Encontrado</div>
+              <div class="empty-desc">Não encontramos processos seletivos arquivados para o ano de ${ano}.</div>
+            </div>`;
           return;
         }
 
-        dadosHistorico = {
-          mestrado: mest,
-          doutorado: dout,
-          'aluno-especial': esp
-        };
-
-        modoHistorico = true;
-        document.getElementById('btnClearHistory').style.display = 'inline-block';
-        executarFiltros();
+        executarFiltrosFechados();
 
       } catch (err) {
-        console.error("Erro ao carregar arquivos do histórico:", err);
-        mostrarEmptyState(ano, mes);
+        console.error("Erro ao carregar histórico anual:", err);
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">⚠</div>
+            <div class="empty-title">Erro de Carregamento</div>
+            <div class="empty-desc">Não foi possível carregar os dados de histórico para o ano de ${ano}.</div>
+          </div>`;
       }
     }
 
-    // Restaura o feed de últimas novidades recentes
+    // Restaura o feed de últimas novidades recentes (mantido para compatibilidade se necessário)
     function restaurarRecentes() {
-      modoHistorico = false;
-      document.getElementById('btnClearHistory').style.display = 'none';
       executarFiltros();
     }
 
     // ══ FILTRAGEM E RENDERIZAÇÃO DE CARDS ══
     function executarFiltros() {
-      const db = modoHistorico ? dadosHistorico : editaisRecentes;
+      if (activeTab === 'fechados') {
+        executarFiltrosFechados();
+        return;
+      }
+
+      const db = editaisRecentes;
       if (!db) return;
 
-      // Executa a filtragem para a aba ativa
+      // Executa a filtragem para a aba ativa (apenas abertos/ativos na página inicial)
       const listaOriginal = db[activeTab] || [];
       const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
       
       const checkAcad = document.getElementById('check-acad').checked;
       const checkProf = document.getElementById('check-prof').checked;
+      const agora = new Date();
 
       let filtrados = listaOriginal.filter(e => {
+        // A página inicial deverá mostrar todos os abertos (ou seja, prazo final >= agora)
+        const matchesStatus = new Date(e.inscricoesFim) >= agora;
+
         // 1. Filtro de Busca por Texto
         const matchesSearch = !searchVal || 
           e.titulo.toLowerCase().includes(searchVal) || 
@@ -1749,29 +1789,63 @@
           e.instituicao.toLowerCase().includes(searchVal) || 
           e.area.toLowerCase().includes(searchVal);
 
-        // 2. Filtro de Status
-        const matchesStatus = filtroStatusAtivo === 'Todos' || e.status === filtroStatusAtivo;
-
-        // 3. Filtro de Instituição
+        // 2. Filtro de Instituição
         const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
 
-        // 4. Filtro por Eixo Temático (Chips)
+        // 3. Filtro por Eixo Temático (Chips)
         const activeAreaTab = filtroAreaAtiva[activeTab];
         const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
 
-        // 5. Filtro por Tipo de Programa (Acadêmico vs Profissional)
+        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
         let matchesTipo = true;
         const nivel = e.nivel.toLowerCase();
         if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
         if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
-        // Aluno Especial passa direto nesse filtro
         if (nivel === "aluno especial") matchesTipo = true;
 
-        return matchesSearch && matchesStatus && matchesUni && matchesArea && matchesTipo;
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo;
       });
 
       renderizarCardsList(filtrados);
-      atualizarContadoresSidebar(db);
+      atualizarContadoresSidebar();
+    }
+
+    function executarFiltrosFechados() {
+      const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+      
+      const checkAcad = document.getElementById('check-acad').checked;
+      const checkProf = document.getElementById('check-prof').checked;
+      const agora = new Date();
+
+      let filtrados = dadosFechadosAno.filter(e => {
+        // Filtra apenas os que já fecharam
+        const matchesStatus = new Date(e.inscricoesFim) < agora;
+
+        // 1. Filtro de Busca por Texto
+        const matchesSearch = !searchVal || 
+          e.titulo.toLowerCase().includes(searchVal) || 
+          e.resumo.toLowerCase().includes(searchVal) || 
+          e.instituicao.toLowerCase().includes(searchVal) || 
+          e.area.toLowerCase().includes(searchVal);
+
+        // 2. Filtro de Instituição
+        const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
+
+        // 3. Filtro por Eixo Temático (Chips)
+        const activeAreaTab = filtroAreaAtiva['fechados'];
+        const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
+
+        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
+        let matchesTipo = true;
+        const nivel = e.nivel.toLowerCase();
+        if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
+        if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
+        if (nivel === "aluno especial") matchesTipo = true;
+
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo;
+      });
+
+      renderizarCardsList(filtrados);
     }
 
     function renderizarCardsList(lista) {
@@ -1807,6 +1881,8 @@
         const metaUni = instituicoes ? instituicoes.find(u => u.sigla === e.instituicao) : null;
         const emojiUni = metaUni ? metaUni.icone : '🏛️';
 
+        const textoStatus = e.status === 'Aberto' ? 'Inscrições Abertas' : e.status === 'Em andamento' ? 'Inscrições em Andamento' : 'Inscrições Encerradas';
+
         return `
           <div class="edital-card">
             <div class="edital-card-header">
@@ -1814,7 +1890,7 @@
                 <span class="edital-badge-nivel ${classNivel}">${e.nivel}</span>
                 <span class="edital-badge-area">${e.area}</span>
               </div>
-              <span class="edital-badge-status ${classStatus}">Inscrições ${e.status}as</span>
+              <span class="edital-badge-status ${classStatus}">${textoStatus}</span>
             </div>
             
             <h3 class="edital-title">${e.titulo}</h3>
@@ -1836,20 +1912,37 @@
     }
 
     // Atualiza contadores numéricos na barra lateral de status
-    function atualizarContadoresSidebar(db) {
-      const listaGeral = [...(db.mestrado || []), ...(db.doutorado || []), ...(db['aluno-especial'] || [])];
-      
-      const totais = { todos: 0, aberto: 0, encerrado: 0 };
-      
-      listaGeral.forEach(e => {
-        totais.todos++;
-        if (e.status === 'Aberto') totais.aberto++;
-        else if (e.status === 'Encerrado') totais.encerrado++;
-      });
+    async function atualizarContadoresSidebar() {
+      const agora = new Date();
+      let abertos = 0;
+      let fechados = 0;
 
-      document.getElementById('count-status-all').textContent = totais.todos;
-      document.getElementById('count-status-aberto').textContent = totais.aberto;
-      document.getElementById('count-status-encerrado').textContent = totais.encerrado;
+      if (editaisRecentes) {
+        const listaGeralRecentes = [...(editaisRecentes.mestrado || []), ...(editaisRecentes.doutorado || []), ...(editaisRecentes['aluno-especial'] || [])];
+        listaGeralRecentes.forEach(e => {
+          if (new Date(e.inscricoesFim) >= agora) abertos++;
+        });
+      }
+
+      document.getElementById('count-status-all').textContent = abertos;
+      document.getElementById('count-status-aberto').textContent = abertos;
+
+      try {
+        const ano = new Date().getFullYear();
+        const promessas = [
+          fetchJSON(`DATA/${ano}/mestrado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/doutorado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => [])
+        ];
+        const [mest, dout, esp] = await Promise.all(promessas);
+        const todos = [...mest, ...dout, ...esp];
+        todos.forEach(e => {
+          if (new Date(e.inscricoesFim) < agora) fechados++;
+        });
+        document.getElementById('count-status-encerrado').textContent = fechados;
+      } catch (e) {
+        console.warn("Erro ao calcular contador de fechados para sidebar:", e);
+      }
     }
 
     // Renderiza a lista de instituições monitoradas na aba
@@ -1902,10 +1995,12 @@
       activeTab = tab;
       
       // Ajusta botões das abas
-      ['mestrado', 'doutorado', 'especial', 'stats', 'unis'].forEach(t => {
+      ['mestrado', 'doutorado', 'especial', 'fechados', 'stats', 'unis'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
-        btn.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-stats', 'active-unis');
-        btn.setAttribute('aria-selected', 'false');
+        if (btn) {
+          btn.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados', 'active-stats', 'active-unis');
+          btn.setAttribute('aria-selected', 'false');
+        }
         
         const panel = document.getElementById(`panel-${t === 'especial' ? 'especial' : t}`);
         if (panel) panel.classList.remove('active');
@@ -1913,10 +2008,16 @@
 
       // Ativa aba correspondente
       const activeBtn = document.getElementById(`tab-${tab === 'aluno-especial' ? 'especial' : tab}`);
-      const cActive = tab === 'mestrado' ? 'active-mestrado' : tab === 'doutorado' ? 'active-doutorado' : tab === 'aluno-especial' ? 'active-especial' : tab === 'stats' ? 'active-stats' : 'active-unis';
+      const cActive = tab === 'mestrado' ? 'active-mestrado' : 
+                      tab === 'doutorado' ? 'active-doutorado' : 
+                      tab === 'aluno-especial' || tab === 'especial' ? 'active-especial' : 
+                      tab === 'fechados' ? 'active-fechados' : 
+                      tab === 'stats' ? 'active-stats' : 'active-unis';
       
-      activeBtn.classList.add(cActive);
-      activeBtn.setAttribute('aria-selected', 'true');
+      if (activeBtn) {
+        activeBtn.classList.add(cActive);
+        activeBtn.setAttribute('aria-selected', 'true');
+      }
       
       const activePanel = document.getElementById(`panel-${tab}`);
       if (activePanel) activePanel.classList.add('active');
@@ -1925,6 +2026,8 @@
         carregarMetricas();
       } else if (tab === 'unis') {
         renderizarUniversidades();
+      } else if (tab === 'fechados') {
+        carregarHistoricoAnual();
       } else {
         executarFiltros();
       }
@@ -1932,12 +2035,14 @@
 
     // Cria chips rápidos de filtros de eixos/áreas para cada aba
     function montarFiltrosDeArea() {
-      ['mestrado', 'doutorado', 'especial'].forEach(tabKey => {
+      ['mestrado', 'doutorado', 'especial', 'fechados'].forEach(tabKey => {
         const divId = `filtros-areas-${tabKey}`;
         const container = document.getElementById(divId);
         if (!container) return;
 
-        const classActive = tabKey === 'mestrado' ? 'active-mestrado' : tabKey === 'doutorado' ? 'active-doutorado' : 'active-especial';
+        const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
+                            tabKey === 'doutorado' ? 'active-doutorado' : 
+                            tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
         const tabKeyFiltro = tabKey === 'especial' ? 'aluno-especial' : tabKey;
 
         container.innerHTML = `
@@ -1953,25 +2058,42 @@
       
       // Reseta classes nos chips daquela aba
       const container = document.getElementById(`filtros-areas-${tabKey === 'aluno-especial' ? 'especial' : tabKey}`);
-      const btns = container.querySelectorAll('.chip-btn');
-      btns.forEach(b => b.classList.remove('active-mestrado', 'active-doutorado', 'active-especial'));
+      if (container) {
+        const btns = container.querySelectorAll('.chip-btn');
+        btns.forEach(b => b.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados'));
+      }
 
-      const classActive = tabKey === 'mestrado' ? 'active-mestrado' : tabKey === 'doutorado' ? 'active-doutorado' : 'active-especial';
+      const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
+                          tabKey === 'doutorado' ? 'active-doutorado' : 
+                          tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
       const areaChaveId = area === 'Todas' ? 'Todas' : area.replace(/ /g, '_');
       
-      document.getElementById(`chip-${tabKey}-${areaChaveId}`).classList.add(classActive);
+      const targetBtn = document.getElementById(`chip-${tabKey}-${areaChaveId}`);
+      if (targetBtn) targetBtn.classList.add(classActive);
+      
       executarFiltros();
     }
 
     function filtrarStatus(status) {
+      if (status === 'Encerrado' && activeTab !== 'fechados') {
+        switchTab('fechados');
+        return;
+      }
+      if (status === 'Aberto' && activeTab === 'fechados') {
+        switchTab('mestrado');
+        return;
+      }
+
       filtroStatusAtivo = status;
       
       // Ajusta sidebar status
       ['all', 'aberto', 'encerrado'].forEach(s => {
-        document.getElementById(`status-${s}`).classList.remove('active-filter');
+        const el = document.getElementById(`status-${s}`);
+        if (el) el.classList.remove('active-filter');
       });
       const slugStatus = status === 'Todos' ? 'all' : status.toLowerCase();
-      document.getElementById(`status-${slugStatus}`).classList.add('active-filter');
+      const targetEl = document.getElementById(`status-${slugStatus}`);
+      if (targetEl) targetEl.classList.add('active-filter');
       
       executarFiltros();
     }
