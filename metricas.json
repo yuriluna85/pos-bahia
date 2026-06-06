@@ -1,39 +1,43 @@
 {
-  "geradoEm": "2026-06-06T21:48:30.839Z",
-  "totalGeral": 135,
+  "geradoEm": "2026-06-06T21:59:49.346Z",
+  "totalGeral": 12,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 59,
-    "Mestrado Profissional": 10,
-    "Doutorado Acadêmico": 52,
-    "Doutorado Profissional": 2,
-    "Aluno Especial": 12
+    "Mestrado Acadêmico": 1,
+    "Mestrado Profissional": 0,
+    "Doutorado Acadêmico": 4,
+    "Doutorado Profissional": 0,
+    "Aluno Especial": 7
   },
   "totaisAreas": {
-    "Educação": 3,
-    "Tecnologia e Informática": 7,
-    "Gestão e Negócios": 6,
-    "Saúde e Biológicas": 69,
-    "Humanas e Sociais": 8,
-    "Comunicação e Artes": 7,
-    "Engenharias e Exatas": 29,
-    "Agrárias e Ambientais": 6
+    "Educação": 8,
+    "Tecnologia e Informática": 1,
+    "Gestão e Negócios": 0,
+    "Saúde e Biológicas": 2,
+    "Humanas e Sociais": 0,
+    "Comunicação e Artes": 1,
+    "Engenharias e Exatas": 0,
+    "Agrárias e Ambientais": 0
   },
   "status": {
-    "Aberto": 31,
-    "Encerrado": 104,
+    "Aberto": 10,
+    "Encerrado": 2,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
-      "nome": "UFBA",
-      "total": 128
-    },
-    {
       "nome": "UNEB",
-      "total": 3
+      "total": 4
     },
     {
-      "nome": "UFOB",
+      "nome": "UFBA",
+      "total": 2
+    },
+    {
+      "nome": "UCSal",
+      "total": 2
+    },
+    {
+      "nome": "UNIVASF",
       "total": 1
     },
     {
@@ -41,11 +45,11 @@
       "total": 1
     },
     {
-      "nome": "Unijorge",
+      "nome": "UFRB",
       "total": 1
     },
     {
-      "nome": "UNIVASF",
+      "nome": "UNIFACS",
       "total": 1
     }
   ]
