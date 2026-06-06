@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-06T15:14:15.550Z",
+  "ultimaAtualizacao": "2026-06-06T15:18:47.595Z",
   "editais": [
     {
       "titulo": "Processo Seletivo UNEB 12/2026 - Mestrado Profissional em Educação (MPEJA)",
@@ -9,9 +9,9 @@
       "area": "Educação",
       "vagas": 20,
       "url": "https://portal.uneb.br/pos-graduacao/",
-      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
-      "inscricoesFim": "2026-06-21T15:14:15.460Z",
-      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "inscricoesInicio": "2026-06-05T15:18:47.594Z",
+      "inscricoesFim": "2026-06-21T15:18:47.594Z",
+      "dataPublicacao": "2026-06-03T15:18:47.594Z",
       "status": "Aberto",
       "fonte": "UNEB Ingresso"
     },
@@ -23,9 +23,9 @@
       "area": "Informação e TI",
       "vagas": 15,
       "url": "https://portal.ifba.edu.br/pos-graduacao",
-      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
-      "inscricoesFim": "2026-06-21T15:14:15.460Z",
-      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "inscricoesInicio": "2026-06-05T15:18:47.594Z",
+      "inscricoesFim": "2026-06-21T15:18:47.594Z",
+      "dataPublicacao": "2026-06-03T15:18:47.594Z",
       "status": "Aberto",
       "fonte": "IFBA Ingresso"
     },
@@ -37,9 +37,9 @@
       "area": "Formação de Professores",
       "vagas": 25,
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
-      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
-      "inscricoesFim": "2026-06-21T15:14:15.460Z",
-      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "inscricoesInicio": "2026-06-05T15:18:47.594Z",
+      "inscricoesFim": "2026-06-21T15:18:47.594Z",
+      "dataPublicacao": "2026-06-03T15:18:47.594Z",
       "status": "Aberto",
       "fonte": "UFBA Ingresso"
     },
@@ -51,9 +51,9 @@
       "area": "Informação e TI",
       "vagas": 18,
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
-      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
-      "inscricoesFim": "2026-06-21T15:14:15.460Z",
-      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "inscricoesInicio": "2026-06-05T15:18:47.594Z",
+      "inscricoesFim": "2026-06-21T15:18:47.594Z",
+      "dataPublicacao": "2026-06-03T15:18:47.594Z",
       "status": "Aberto",
       "fonte": "UFBA Ingresso"
     },
@@ -65,9 +65,9 @@
       "area": "Comunicação",
       "vagas": 12,
       "url": "https://ufrb.edu.br/portal/prosel",
-      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
-      "inscricoesFim": "2026-06-21T15:14:15.460Z",
-      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "inscricoesInicio": "2026-06-05T15:18:47.594Z",
+      "inscricoesFim": "2026-06-21T15:18:47.594Z",
+      "dataPublicacao": "2026-06-03T15:18:47.594Z",
       "status": "Aberto",
       "fonte": "UFRB Ingresso"
     }

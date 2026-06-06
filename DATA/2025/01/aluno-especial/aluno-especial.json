@@ -1,0 +1,47 @@
+[
+  {
+    "dataColeta": "2025-01-15T00:00:00.000Z",
+    "titulo": "Edital UNIFACS 02/2025 - Seleção de Candidatos para Aluno Especial - Doutorado e Mestrado em Desenvolvimento Regional e Urbano",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Doutorado e Mestrado em Desenvolvimento Regional e Urbano da UNIFACS. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Educação.",
+    "instituicao": "UNIFACS",
+    "nivel": "Aluno Especial",
+    "area": "Educação",
+    "vagas": 9,
+    "inscricoesInicio": "2025-01-02T09:00:00.000Z",
+    "inscricoesFim": "2025-01-17T23:59:59.000Z",
+    "url": "undefined/noticias/selecao-aluno-especial-2025-1-0",
+    "status": "Encerrado",
+    "dataPublicacao": "2024-12-30T10:00:00.000Z",
+    "fonte": "UNIFACS Ingresso"
+  },
+  {
+    "dataColeta": "2025-01-15T00:00:00.000Z",
+    "titulo": "Edital UFBA 04/2025 - Seleção de Candidatos para Aluno Especial - Programa de Pós-Graduação em Educação (PPGE)",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Programa de Pós-Graduação em Educação (PPGE) da UFBA. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Educação.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Educação",
+    "vagas": 11,
+    "inscricoesInicio": "2025-01-04T09:00:00.000Z",
+    "inscricoesFim": "2025-01-21T23:59:59.000Z",
+    "url": "undefined/noticias/selecao-aluno-especial-2025-1-2",
+    "status": "Encerrado",
+    "dataPublicacao": "2025-01-01T10:00:00.000Z",
+    "fonte": "UFBA Ingresso"
+  },
+  {
+    "dataColeta": "2025-01-15T00:00:00.000Z",
+    "titulo": "Edital UFBA 05/2025 - Seleção de Candidatos para Aluno Especial - Programa de Pós-Graduação em Ciência da Computação (PGCOMP)",
+    "resumo": "Estão abertas as inscrições para a seleção de Alunos Especiais (disciplinas isoladas) no Programa de Pós-Graduação em Ciência da Computação (PGCOMP) da UFBA. Vagas distribuídas em disciplinas teóricas e metodológicas vinculadas à área de Informação e TI.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Informação e TI",
+    "vagas": 12,
+    "inscricoesInicio": "2025-01-02T09:00:00.000Z",
+    "inscricoesFim": "2025-01-20T23:59:59.000Z",
+    "url": "undefined/noticias/selecao-aluno-especial-2025-1-3",
+    "status": "Encerrado",
+    "dataPublicacao": "2024-12-30T10:00:00.000Z",
+    "fonte": "UFBA Ingresso"
+  }
+]
