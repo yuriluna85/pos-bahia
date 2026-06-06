@@ -1849,7 +1849,7 @@
     }
 
     function renderizarCardsList(lista) {
-      const container = document.getElementById(`cards-${activeTab}`);
+      const container = document.getElementById(`cards-${activeTab === 'aluno-especial' ? 'especial' : activeTab}`);
       if (lista.length === 0) {
         container.innerHTML = `
           <div class="empty-state">
@@ -2019,7 +2019,7 @@
         activeBtn.setAttribute('aria-selected', 'true');
       }
       
-      const activePanel = document.getElementById(`panel-${tab}`);
+      const activePanel = document.getElementById(`panel-${tab === 'aluno-especial' ? 'especial' : tab}`);
       if (activePanel) activePanel.classList.add('active');
 
       if (tab === 'stats') {

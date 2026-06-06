@@ -681,16 +681,42 @@ const SITES_INSTITUICOES = {
 function verificarEGerarHistoricoRetroativo() {
   const dataDirPath = path.join(__dirname, 'DATA');
   
-  if (fs.existsSync(dataDirPath)) {
-    const anosExistentes = fs.readdirSync(dataDirPath).filter(file => {
-      const fullPath = path.join(dataDirPath, file);
-      return fs.statSync(fullPath).isDirectory() && /^\d{4}$/.test(file);
-    });
-    if (anosExistentes.length >= 2) {
-      console.log("Histórico retroativo de editais já existe. Pulando geração...");
-      return;
+  // Verifica se todos os anos (2024, 2025, 2026) possuem os arquivos JSON consolidados principais
+  let historicoCompleto = true;
+  const anosEsperados = ['2024', '2025', '2026'];
+  const temasEsperados = ['mestrado', 'doutorado', 'aluno-especial'];
+  
+  if (!fs.existsSync(dataDirPath)) {
+    historicoCompleto = false;
+  } else {
+    for (const ano of anosEsperados) {
+      for (const tema of temasEsperados) {
+        const jsonPath = path.join(dataDirPath, ano, `${tema}.json`);
+        if (!fs.existsSync(jsonPath)) {
+          historicoCompleto = false;
+          break;
+        }
+      }
+      if (!historicoCompleto) break;
     }
   }
+
+  if (historicoCompleto) {
+    console.log("Histórico retroativo de editais completo na pasta DATA. Pulando geração...");
+    return;
+  }
+
+  console.log("Histórico retroativo incompleto ou inexistente na pasta DATA. Iniciando geração de dados históricos dos últimos 2 anos (2024 a 2026)...");
+  
+  // Apaga e recria de forma limpa
+  if (fs.existsSync(dataDirPath)) {
+    try {
+      fs.rmSync(dataDirPath, { recursive: true, force: true });
+    } catch (e) {
+      console.warn("Aviso ao limpar diretório DATA:", e.message);
+    }
+  }
+  criarDiretorioRobustamente(dataDirPath);
 
   console.log("Iniciando geração de dados históricos retroativos dos últimos 2 anos de editais (2024 a 2026)...");
 
