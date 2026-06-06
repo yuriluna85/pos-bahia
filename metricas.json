@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-06-06T16:43:12.884Z",
+  "geradoEm": "2026-06-06T16:48:08.090Z",
   "totalGeral": 107,
   "totaisNiveis": {
     "Mestrado Acadêmico": 18,
@@ -61,15 +61,15 @@
       "total": 3
     },
     {
+      "nome": "UNIVASF",
+      "total": 1
+    },
+    {
       "nome": "UESB",
       "total": 1
     },
     {
       "nome": "Unijorge",
-      "total": 1
-    },
-    {
-      "nome": "UNIVASF",
       "total": 1
     }
   ]

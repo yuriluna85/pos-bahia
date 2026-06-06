@@ -1,0 +1,32 @@
+[
+  {
+    "dataColeta": "2026-04-15T00:00:00.000Z",
+    "titulo": "Edital IFBA 06/2026 - Seleção de Candidatos para Mestrado Acadêmico - Mestrado em Engenharia de Sistemas e Automação",
+    "resumo": "O Mestrado em Engenharia de Sistemas e Automação da IFBA torna público o edital de abertura de inscrições para o processo seletivo de alunos para o curso de Mestrado Acadêmico. Pesquisas em controle de processos, instrumentação, sistemas embarcados e automação industrial. Eixo temático concentrado em Engenharias e Exatas.",
+    "instituicao": "IFBA",
+    "nivel": "Mestrado Acadêmico",
+    "area": "Engenharias e Exatas",
+    "vagas": 13,
+    "inscricoesInicio": "2026-04-02T09:00:00.000Z",
+    "inscricoesFim": "2026-04-17T23:59:59.000Z",
+    "url": "https://portal.ifba.edu.br/noticias/selecao-mestrado-2026-4-0",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-03-30T10:00:00.000Z",
+    "fonte": "IFBA Ingresso"
+  },
+  {
+    "dataColeta": "2026-04-15T00:00:00.000Z",
+    "titulo": "Edital IF Baiano 07/2026 - Seleção de Candidatos para Mestrado Profissional - Mestrado Profissional em Educação Profissional e Tecnológica (ProfEPT)",
+    "resumo": "O Mestrado Profissional em Educação Profissional e Tecnológica (ProfEPT) da IF Baiano torna público o edital de abertura de inscrições para o processo seletivo de alunos para o curso de Mestrado Profissional. Ensino de EPT com foco em metodologias integradoras para institutos federais e escolas técnicas. Eixo temático concentrado em Educação.",
+    "instituicao": "IF Baiano",
+    "nivel": "Mestrado Profissional",
+    "area": "Educação",
+    "vagas": 14,
+    "inscricoesInicio": "2026-04-03T09:00:00.000Z",
+    "inscricoesFim": "2026-04-19T23:59:59.000Z",
+    "url": "https://ifbaiano.edu.br/noticias/selecao-mestrado-2026-4-1",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-03-31T10:00:00.000Z",
+    "fonte": "IF Baiano Ingresso"
+  }
+]
