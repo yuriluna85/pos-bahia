@@ -26,6 +26,9 @@ jobs:
         node-version: '24' # Node.js 24 com suporte nativo total e moderno
 
     - name: Executar Compilador de Editais
+      env:
+        SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+        SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
       run: node compilador.js
 
     - name: Comitar e Enviar Atualizacoes para o GitHub
