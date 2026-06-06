@@ -1,22 +1,22 @@
 {
-  "geradoEm": "2026-06-06T16:28:44.392Z",
+  "geradoEm": "2026-06-06T16:30:01.530Z",
   "totalGeral": 107,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 11,
-    "Mestrado Profissional": 10,
+    "Mestrado Acadêmico": 18,
+    "Mestrado Profissional": 14,
     "Doutorado Acadêmico": 10,
     "Doutorado Profissional": 0,
-    "Aluno Especial": 76
+    "Aluno Especial": 65
   },
   "totaisAreas": {
-    "Educação": 18,
-    "Tecnologia e Informática": 14,
+    "Educação": 22,
+    "Tecnologia e Informática": 16,
     "Gestão e Negócios": 2,
-    "Saúde e Biológicas": 28,
-    "Humanas e Sociais": 9,
-    "Comunicação e Artes": 1,
-    "Engenharias e Exatas": 6,
-    "Agrárias e Ambientais": 27
+    "Saúde e Biológicas": 18,
+    "Humanas e Sociais": 8,
+    "Comunicação e Artes": 5,
+    "Engenharias e Exatas": 10,
+    "Agrárias e Ambientais": 24
   },
   "status": {
     "Aberto": 8,
@@ -25,31 +25,31 @@
   },
   "porInstituicao": [
     {
-      "nome": "UEFS",
+      "nome": "IF Baiano",
       "total": 20
     },
     {
-      "nome": "UESC",
+      "nome": "UEFS",
       "total": 19
     },
     {
-      "nome": "IF Baiano",
+      "nome": "IFBA",
+      "total": 16
+    },
+    {
+      "nome": "UESC",
       "total": 16
     },
     {
       "nome": "UFSB",
-      "total": 16
+      "total": 12
+    },
+    {
+      "nome": "UFRB",
+      "total": 9
     },
     {
       "nome": "UFOB",
-      "total": 13
-    },
-    {
-      "nome": "IFBA",
-      "total": 8
-    },
-    {
-      "nome": "UESB",
       "total": 6
     },
     {
@@ -61,11 +61,11 @@
       "total": 3
     },
     {
-      "nome": "UFRB",
+      "nome": "UNIVASF",
       "total": 1
     },
     {
-      "nome": "UNIVASF",
+      "nome": "UESB",
       "total": 1
     },
     {
