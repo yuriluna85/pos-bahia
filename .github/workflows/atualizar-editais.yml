@@ -2,8 +2,8 @@ name: Atualizar Editais de Pós-Graduação Bahia
 
 on:
   schedule:
-    # Agenda a execução de 2 em 2 horas
-    - cron: '0 */2 * * *'
+    # Agenda a execução diária à meia-noite (00:00 UTC)
+    - cron: '0 0 * * *'
   workflow_dispatch: # Permite execução manual pelo botão do GitHub Actions
 
 permissions:
