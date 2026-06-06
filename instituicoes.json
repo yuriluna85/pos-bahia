@@ -1,0 +1,152 @@
+[
+  {
+    "sigla": "UFBA",
+    "nome": "Universidade Federal da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "🏛️",
+    "sede": "Salvador",
+    "site": "https://www.ufba.br",
+    "portalservico": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
+    "descricao": "Principal universidade pública do estado da Bahia, com ampla gama de programas de mestrado e doutorado acadêmicos e profissionais nos principais eixos de pesquisa."
+  },
+  {
+    "sigla": "UFRB",
+    "nome": "Universidade Federal do Recôncavo da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "🌾",
+    "sede": "Cruz das Almas",
+    "site": "https://ufrb.edu.br",
+    "portalservico": "https://ufrb.edu.br/portal/prosel",
+    "descricao": "Instituição federal de destaque no Recôncavo Baiano, com forte atuação em Educação do Campo, Ciências Agrárias, EPT e Formação de Professores."
+  },
+  {
+    "sigla": "UNEB",
+    "nome": "Universidade do Estado da Bahia",
+    "tipo": "Pública Estadual",
+    "icone": "🌴",
+    "sede": "Salvador",
+    "site": "https://www.uneb.br",
+    "portalservico": "https://portal.uneb.br/pos-graduacao/",
+    "descricao": "Maior universidade pública estadual multicampi da Bahia, com forte presença regional e programas de pós-graduação focados em Educação, Educação de Jovens e Adultos (EJA) e EPT."
+  },
+  {
+    "sigla": "UEFS",
+    "nome": "Universidade Estadual de Feira de Santana",
+    "tipo": "Pública Estadual",
+    "icone": "🌵",
+    "sede": "Feira de Santana",
+    "site": "http://www.uefs.br",
+    "portalservico": "http://www.uefs.br/modules/conteudo/conteudo.php?conteudo=16",
+    "descricao": "Instituição estadual de referência no portal do sertão baiano, oferecendo programas de alta qualidade em Educação e Tecnologia da Informação."
+  },
+  {
+    "sigla": "UESC",
+    "nome": "Universidade Estadual de Santa Cruz",
+    "tipo": "Pública Estadual",
+    "icone": "🍫",
+    "sede": "Ilhéus",
+    "site": "http://www.uesc.br",
+    "portalservico": "http://www.uesc.br/cursos/pos_graduacao/",
+    "descricao": "Localizada na região cacaueira, destaca-se em pesquisas tecnológicas, biotecnologia, educação e desenvolvimento regional."
+  },
+  {
+    "sigla": "UFSB",
+    "nome": "Universidade Federal do Sul da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "🌊",
+    "sede": "Itabuna",
+    "site": "https://ufsb.edu.br",
+    "portalservico": "https://ufsb.edu.br/prosis/processos-seletivos/pos-graduacao",
+    "descricao": "Universidade federal multicampi focada no Sul da Bahia, estruturada em colégios universitários com eixos interdisciplinares e pós-graduações inovadoras."
+  },
+  {
+    "sigla": "IFBA",
+    "nome": "Instituto Federal de Educação, Ciência e Tecnologia da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "⚙️",
+    "sede": "Salvador",
+    "site": "https://portal.ifba.edu.br",
+    "portalservico": "https://portal.ifba.edu.br/pos-graduacao",
+    "descricao": "Instituição federal focada no ensino tecnológico e profissional, com excelentes cursos de Mestrado Profissional em EPT, Informática Educativa e TI."
+  },
+  {
+    "sigla": "IF Baiano",
+    "nome": "Instituto Federal Baiano",
+    "tipo": "Pública Federal",
+    "icone": "🚜",
+    "sede": "Salvador (Reitoria)",
+    "site": "https://ifbaiano.edu.br",
+    "portalservico": "https://ifbaiano.edu.br/portal/ingresso-de-estudantes/pos-graduacao/",
+    "descricao": "Rede federal voltada para o desenvolvimento do interior do estado da Bahia, oferecendo pós-graduações e especializações em Educação, EPT e Ciências Agrárias."
+  },
+  {
+    "sigla": "UNIFACS",
+    "nome": "Universidade Salvador",
+    "tipo": "Particular",
+    "icone": "🎓",
+    "sede": "Salvador",
+    "site": "https://www.unifacs.br",
+    "portalservico": "https://www.unifacs.br/pos-graduacao/",
+    "descricao": "Uma das maiores instituições de ensino superior particular da Bahia, com mestrados e doutorados consolidados em Desenvolvimento Regional, TI e Administração."
+  },
+  {
+    "sigla": "UCSal",
+    "nome": "Universidade Católica do Salvador",
+    "tipo": "Particular",
+    "icone": "⛪",
+    "sede": "Salvador",
+    "site": "http://www.ucsal.br",
+    "portalservico": "http://www.ucsal.br/pos-graduacao",
+    "descricao": "Tradicional universidade particular confessional, com mestrados e doutorados em Políticas Sociais, Educação e Cidadania, e Planejamento Territorial."
+  },
+  {
+    "sigla": "UNIFTC",
+    "nome": "Centro Universitário UniFTC",
+    "tipo": "Particular",
+    "icone": "🔬",
+    "sede": "Salvador",
+    "site": "https://www.uniftc.edu.br",
+    "portalservico": "https://www.uniftc.edu.br/pos-graduacao",
+    "descricao": "Rede privada com foco em metodologias ativas de aprendizagem e pós-graduações profissionalizantes nas áreas de Saúde, Tecnologia e Educação."
+  },
+  {
+    "sigla": "UFOB",
+    "nome": "Universidade Federal do Oeste da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "⛰️",
+    "sede": "Barreiras",
+    "site": "https://ufob.edu.br",
+    "portalservico": "https://ufob.edu.br/pos-graduacao",
+    "descricao": "Sediada em Barreiras, atende a região oeste da Bahia com programas voltados ao desenvolvimento regional, ciências ambientais, saúde e educação."
+  },
+  {
+    "sigla": "UESB",
+    "nome": "Universidade Estadual do Sudoeste da Bahia",
+    "tipo": "Pública Estadual",
+    "icone": "☕",
+    "sede": "Vitória da Conquista",
+    "site": "https://www.uesb.br",
+    "portalservico": "https://www.uesb.br/pos-graduacao",
+    "descricao": "Universidade estadual de destaque no sudoeste baiano (Conquista, Jequié, Itapetinga), com programas consolidados em Saúde, Educação, Agrárias e Humanas."
+  },
+  {
+    "sigla": "UNIVASF",
+    "nome": "Universidade Federal do Vale do São Francisco",
+    "tipo": "Pública Federal",
+    "icone": "🌵",
+    "sede": "Juazeiro",
+    "site": "https://www.univasf.edu.br",
+    "portalservico": "https://portais.univasf.edu.br/pos-graduacao",
+    "descricao": "Instituição federal multicampi no Vale do São Francisco com forte atuação em Juazeiro e Senhor do Bonfim em pós-graduações tecnológicas, de irrigação e saúde."
+  },
+  {
+    "sigla": "Unijorge",
+    "nome": "Centro Universitário Jorge Amado",
+    "tipo": "Particular",
+    "icone": "✍️",
+    "sede": "Salvador",
+    "site": "https://www.unijorge.edu.br",
+    "portalservico": "https://www.unijorge.edu.br/pos-graduacao/",
+    "descricao": "Instituição privada reconhecida em Salvador, oferecendo mestrados e pós-graduações lato sensu em Gestão, TI, Comunicação, Saúde e Educação."
+  }
+]

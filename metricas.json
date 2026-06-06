@@ -1,0 +1,76 @@
+{
+  "geradoEm": "2026-06-06T16:57:15.782Z",
+  "totalGeral": 107,
+  "totaisNiveis": {
+    "Mestrado Acadêmico": 18,
+    "Mestrado Profissional": 14,
+    "Doutorado Acadêmico": 10,
+    "Doutorado Profissional": 0,
+    "Aluno Especial": 65
+  },
+  "totaisAreas": {
+    "Educação": 22,
+    "Tecnologia e Informática": 16,
+    "Gestão e Negócios": 2,
+    "Saúde e Biológicas": 18,
+    "Humanas e Sociais": 8,
+    "Comunicação e Artes": 5,
+    "Engenharias e Exatas": 10,
+    "Agrárias e Ambientais": 24
+  },
+  "status": {
+    "Aberto": 8,
+    "Encerrado": 99,
+    "Em andamento": 0
+  },
+  "porInstituicao": [
+    {
+      "nome": "IF Baiano",
+      "total": 20
+    },
+    {
+      "nome": "UEFS",
+      "total": 19
+    },
+    {
+      "nome": "IFBA",
+      "total": 16
+    },
+    {
+      "nome": "UESC",
+      "total": 16
+    },
+    {
+      "nome": "UFSB",
+      "total": 12
+    },
+    {
+      "nome": "UFRB",
+      "total": 9
+    },
+    {
+      "nome": "UFOB",
+      "total": 6
+    },
+    {
+      "nome": "UFBA",
+      "total": 3
+    },
+    {
+      "nome": "UNEB",
+      "total": 3
+    },
+    {
+      "nome": "UESB",
+      "total": 1
+    },
+    {
+      "nome": "Unijorge",
+      "total": 1
+    },
+    {
+      "nome": "UNIVASF",
+      "total": 1
+    }
+  ]
+}
