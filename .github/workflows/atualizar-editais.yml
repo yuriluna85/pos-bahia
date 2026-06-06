@@ -1,13 +1,13 @@
-name: Atualizar Editais de Pós-Graduação Bahia
+name: Atualizar Editais de Pos-Graduacao Bahia
 
 on:
   schedule:
-    # Agenda a execução diária à meia-noite (00:00 UTC)
+    # Agenda a execucao diaria a meia-noite (00:00 UTC)
     - cron: '0 0 * * *'
-  workflow_dispatch: # Permite execução manual pelo botão do GitHub Actions
+  workflow_dispatch: # Permite execucao manual pelo botao do GitHub Actions
 
 permissions:
-  contents: write # Permite que o bot comite as atualizações no repositório
+  contents: write # Permite que o bot comite as atualizacoes no repositorio
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
@@ -17,21 +17,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do Repositório
+    - name: Checkout do Repositorio
       uses: actions/checkout@v4
 
     - name: Configurar Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '24' # Node.js 24+ com suporte nativo total e moderno
+        node-version: '24' # Node.js 24 com suporte nativo total e moderno
 
     - name: Executar Compilador de Editais
       run: node compilador.js
 
-    - name: Comitar e Enviar Atualizações para o GitHub
+    - name: Comitar e Enviar Atualizacoes para o GitHub
       run: |
         git config --global user.name "GitHub Action Bot"
         git config --global user.email "actions@github.com"
         git add -A
-        # Comita apenas se houver alterações nos arquivos JSON/CSV gerados
-        git diff-index --quiet HEAD || git commit -m "chore: atualizacao
+        git diff-index --quiet HEAD || git commit -m "chore: atualizacao periodica de editais e metricas [skip ci]"
+        git push origin main
