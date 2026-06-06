@@ -1,0 +1,62 @@
+{
+  "geradoEm": "2026-06-06T15:14:15.891Z",
+  "totalGeral": 102,
+  "totaisNiveis": {
+    "Mestrado Acadêmico": 12,
+    "Mestrado Profissional": 29,
+    "Doutorado Acadêmico": 10,
+    "Doutorado Profissional": 0,
+    "Aluno Especial": 51
+  },
+  "totaisAreas": {
+    "Educação": 30,
+    "EPT": 17,
+    "Comunicação": 20,
+    "Informação e TI": 22,
+    "Estágio": 0,
+    "Formação de Professores": 13
+  },
+  "status": {
+    "Aberto": 5,
+    "Encerrado": 97,
+    "Em andamento": 0
+  },
+  "porInstituicao": [
+    {
+      "nome": "UFBA",
+      "total": 23
+    },
+    {
+      "nome": "UFRB",
+      "total": 21
+    },
+    {
+      "nome": "UNEB",
+      "total": 20
+    },
+    {
+      "nome": "IFBA",
+      "total": 9
+    },
+    {
+      "nome": "IF Baiano",
+      "total": 8
+    },
+    {
+      "nome": "UEFS",
+      "total": 7
+    },
+    {
+      "nome": "UESC",
+      "total": 5
+    },
+    {
+      "nome": "UCSal",
+      "total": 5
+    },
+    {
+      "nome": "UNIFACS",
+      "total": 4
+    }
+  ]
+}

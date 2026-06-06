@@ -1,0 +1,75 @@
+{
+  "ultimaAtualizacao": "2026-06-06T15:14:15.550Z",
+  "editais": [
+    {
+      "titulo": "Processo Seletivo UNEB 12/2026 - Mestrado Profissional em Educação (MPEJA)",
+      "resumo": "Abertas as inscrições para o Mestrado Profissional em Educação de Jovens e Adultos da UNEB. O curso visa capacitar professores e gestores para o desenvolvimento de soluções didáticas integradoras voltadas à EJA.",
+      "instituicao": "UNEB",
+      "nivel": "Mestrado Profissional",
+      "area": "Educação",
+      "vagas": 20,
+      "url": "https://portal.uneb.br/pos-graduacao/",
+      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
+      "inscricoesFim": "2026-06-21T15:14:15.460Z",
+      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "status": "Aberto",
+      "fonte": "UNEB Ingresso"
+    },
+    {
+      "titulo": "Edital IFBA 04/2026 - Mestrado Profissional em Tecnologias Educativas",
+      "resumo": "Seleção aberta de candidatos para o Mestrado Profissional em Tecnologias Aplicadas a Processos de Ensino e Aprendizagem do IFBA. Vagas destinadas a docentes e tecnólogos interessados em informática educativa.",
+      "instituicao": "IFBA",
+      "nivel": "Mestrado Profissional",
+      "area": "Informação e TI",
+      "vagas": 15,
+      "url": "https://portal.ifba.edu.br/pos-graduacao",
+      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
+      "inscricoesFim": "2026-06-21T15:14:15.460Z",
+      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "status": "Aberto",
+      "fonte": "IFBA Ingresso"
+    },
+    {
+      "titulo": "Edital UFBA 05/2026 - Mestrado e Doutorado Acadêmico em Educação (PPGE)",
+      "resumo": "O PPGE/UFBA convida interessados para a seleção de novos alunos de Mestrado e Doutorado Acadêmicos em Educação. Linhas de pesquisa em Política Educacional, Práxis Docente e Educação Especial.",
+      "instituicao": "UFBA",
+      "nivel": "Mestrado Acadêmico",
+      "area": "Formação de Professores",
+      "vagas": 25,
+      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
+      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
+      "inscricoesFim": "2026-06-21T15:14:15.460Z",
+      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "status": "Aberto",
+      "fonte": "UFBA Ingresso"
+    },
+    {
+      "titulo": "Edital UFBA 02/2026 - Seleção de Aluno Especial - PGCOMP (Semestre 2026.2)",
+      "resumo": "O Programa de Pós-Graduação em Ciência da Computação da UFBA abre vagas para inscrição em disciplinas isoladas. Oportunidade para profissionais de TI cursarem matérias de Inteligência Artificial e Engenharia de Software no mestrado/doutorado.",
+      "instituicao": "UFBA",
+      "nivel": "Aluno Especial",
+      "area": "Informação e TI",
+      "vagas": 18,
+      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
+      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
+      "inscricoesFim": "2026-06-21T15:14:15.460Z",
+      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "status": "Aberto",
+      "fonte": "UFBA Ingresso"
+    },
+    {
+      "titulo": "Chamada UFRB 03/2026 - Seleção para Aluno Especial em Comunicação e Interculturalidade",
+      "resumo": "Estão abertas as inscrições de alunos especiais para disciplinas do Mestrado Acadêmico em Comunicação e Interculturalidade da UFRB. Aulas ministradas no campus de Cruz das Almas.",
+      "instituicao": "UFRB",
+      "nivel": "Aluno Especial",
+      "area": "Comunicação",
+      "vagas": 12,
+      "url": "https://ufrb.edu.br/portal/prosel",
+      "inscricoesInicio": "2026-06-05T15:14:15.460Z",
+      "inscricoesFim": "2026-06-21T15:14:15.460Z",
+      "dataPublicacao": "2026-06-03T15:14:15.460Z",
+      "status": "Aberto",
+      "fonte": "UFRB Ingresso"
+    }
+  ]
+}
