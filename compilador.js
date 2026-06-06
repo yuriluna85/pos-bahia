@@ -17,172 +17,294 @@ const TERMOS_EDITAL = [
 ];
 
 // Mapeamento de temas de interesse e seus termos associados
+// Mapeamento de temas de interesse e seus termos associados (todas as áreas de conhecimento)
 const TEMAS_INTERESSE = {
-  'Educação': ['educação', 'educacao', 'pedagogia', 'ensino', 'didática', 'didatica', 'escola', 'currículo', 'curriculo', 'aprendizagem'],
-  'EPT': ['ept', 'educação profissional', 'educacao profissional', 'tecnológica', 'tecnologica', 'proeja', 'ensino técnico', 'ensino tecnico', 'profissionalizante'],
-  'Comunicação': ['comunicação', 'comunicacao', 'jornalismo', 'mídia', 'midia', 'radialismo', 'cinema', 'audiovisual', 'publicidade', 'propaganda'],
-  'Informação e TI': ['computação', 'computacao', 'informática', 'informatica', 'tecnologia da informação', 'tecnologia da informacao', 'ti', 'sistemas de informação', 'sistemas de informacao', 'ciência de dados', 'ciencia de dados', 'algoritmos', 'software'],
-  'Estágio': ['estágio', 'estagio', 'docência orientada', 'docencia orientada', 'prática docente', 'pratica docente', 'estágio supervisionado', 'estagio supervisionado'],
-  'Formação de Professores': ['formação de professores', 'formacao de professores', 'formação docente', 'formacao docente', 'profe', 'profept', 'profmat', 'profbio', 'profqui', 'profletras', 'profartes', 'profis', 'ensino de física', 'ensino de matematica']
+  'Educação': ['educação', 'educacao', 'pedagogia', 'ensino', 'didática', 'didatica', 'escola', 'currículo', 'curriculo', 'aprendizagem', 'professor', 'docente', 'licenciatura'],
+  'Tecnologia e Informática': ['computação', 'computacao', 'informática', 'informatica', 'tecnologia da informação', 'tecnologia da informacao', 'ti', 'sistemas de informação', 'sistemas de informacao', 'ciência de dados', 'ciencia de dados', 'algoritmos', 'software', 'banco de dados', 'inteligência artificial', 'programação'],
+  'Gestão e Negócios': ['administração', 'administracao', 'gestão', 'gestao', 'negócios', 'negocios', 'economia', 'finanças', 'financas', 'marketing', 'controladoria', 'empreendedorismo', 'recursos humanos', 'logística'],
+  'Saúde e Biológicas': ['saúde', 'saude', 'medicina', 'enfermagem', 'nutrição', 'nutricao', 'odontologia', 'biologia', 'farmácia', 'farmacia', 'fisioterapia', 'psicologia', 'epidemiologia', 'saúde coletiva', 'saude coletiva'],
+  'Humanas e Sociais': ['sociologia', 'filosofia', 'história', 'historia', 'direito', 'geografia', 'antropologia', 'ciência política', 'ciencia politica', 'serviço social', 'servico social', 'letras', 'linguística', 'linguistica'],
+  'Comunicação e Artes': ['comunicação', 'comunicacao', 'jornalismo', 'mídia', 'midia', 'artes', 'música', 'musica', 'cinema', 'audiovisual', 'publicidade', 'propaganda', 'design'],
+  'Engenharias e Exatas': ['engenharia', 'física', 'fisica', 'matemática', 'matematica', 'química', 'quimica', 'estatística', 'estatistica', 'arquitetura', 'urbanismo'],
+  'Agrárias e Ambientais': ['agronomia', 'veterinária', 'veterinaria', 'zootecnia', 'meio ambiente', 'ambiental', 'ecologia', 'recursos naturais', 'irrigação', 'irrigaçao', 'sustentabilidade', 'agroecologia']
 };
 
 // Detalhes das Pós-Graduações Reais das Instituições Baianas para o Gerador/Fallbacks
 const PROGRAMAS_REAIS = [
+  // UFBA
   {
     instituicao: 'UFBA',
     campus: 'Salvador - Campus Ondina',
     nomeProg: 'Programa de Pós-Graduação em Educação (PPGE)',
     eixo: 'Educação',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Focado em políticas educacionais, formação de professores, diversidade e gestão da educação.'
   },
   {
     instituicao: 'UFBA',
     campus: 'Salvador - Campus Ondina',
     nomeProg: 'Programa de Pós-Graduação em Ciência da Computação (PGCOMP)',
-    eixo: 'Informação e TI',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    eixo: 'Tecnologia e Informática',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Referência em engenharia de software, sistemas distribuídos, inteligência artificial e computação aplicada.'
   },
   {
     instituicao: 'UFBA',
     campus: 'Salvador - Campus Ondina',
     nomeProg: 'Pós-Graduação em Comunicação e Cultura Contemporâneas (PósCom)',
-    eixo: 'Comunicação',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    eixo: 'Comunicação e Artes',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Estudos em cibercultura, mídias digitais, jornalismo contemporâneo e economia política da comunicação.'
   },
   {
-    instituicao: 'UFRB',
-    campus: 'Amargosa - Centro de Formação de Professores',
-    nomeProg: 'Programa de Pós-Graduação em Educação do Campo (PPGEC)',
-    eixo: 'Educação',
-    mestradoAcad: false,
-    mestradoProf: true,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: true,
-    detalhes: 'Voltado para a realidade das escolas do campo, movimentos sociais e práticas pedagógicas interdisciplinares.'
+    instituicao: 'UFBA',
+    campus: 'Salvador - Campus Canela',
+    nomeProg: 'Programa de Pós-Graduação em Saúde Coletiva (PPGSC)',
+    eixo: 'Saúde e Biológicas',
+    mestradoAcad: true, mestradoProf: true, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos epidemiológicos, políticas de saúde, ciências sociais em saúde e planejamento de serviços de saúde.'
   },
   {
-    instituicao: 'UFRB',
-    campus: 'Cruz das Almas - Campus Universitário',
-    nomeProg: 'Programa de Pós-Graduação em Comunicação e Interculturalidade',
-    eixo: 'Comunicação',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: true,
-    detalhes: 'Estuda manifestações culturais locais, comunicação popular, identidades e dinâmicas regionais.'
+    instituicao: 'UFBA',
+    campus: 'Salvador - Campus Canela',
+    nomeProg: 'Programa de Pós-Graduação em Administração (NPGA)',
+    eixo: 'Gestão e Negócios',
+    mestradoAcad: true, mestradoProf: true, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Pesquisas em organizações, finanças corporativas, estratégia, marketing e gestão pública.'
   },
+  {
+    instituicao: 'UFBA',
+    campus: 'Salvador - Campus Federação',
+    nomeProg: 'Programa de Pós-Graduação em Engenharia Industrial (PEI)',
+    eixo: 'Engenharias e Exatas',
+    mestradoAcad: true, mestradoProf: true, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Otimização de processos, engenharia de segurança, inteligência industrial e eficiência energética.'
+  },
+
+  // UNEB
   {
     instituicao: 'UNEB',
     campus: 'Salvador - Campus I',
     nomeProg: 'Mestrado Profissional em Educação de Jovens e Adultos (MPEJA)',
     eixo: 'Educação',
-    mestradoAcad: false,
-    mestradoProf: true,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Focado em políticas de inclusão, metodologias ativas e materiais didáticos para EJA.'
   },
   {
     instituicao: 'UNEB',
     campus: 'Salvador - Campus I',
-    nomeProg: 'Mestrado Profissional em Educação Profissional e Tecnológica (ProfEPT)',
-    eixo: 'EPT',
-    mestradoAcad: false,
-    mestradoProf: true,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: false,
-    detalhes: 'Programa nacional em rede focado em espaços de ensino tecnológico, currículo integrado e oficinas de EPT.'
+    nomeProg: 'Programa de Pós-Graduação em Gestão e Tecnologias Aplicadas à Educação (GESTEC)',
+    eixo: 'Gestão e Negócios',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos de gestão educacional, produção de materiais multimídia e tecnologias aplicadas ao ensino.'
   },
+  {
+    instituicao: 'UNEB',
+    campus: 'Salvador - Campus I',
+    nomeProg: 'Programa de Pós-Graduação em Estudos Linguísticos (PPGEL)',
+    eixo: 'Humanas e Sociais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Pesquisas em análise do discurso, linguística aplicada, variação linguística e sociolinguística.'
+  },
+
+  // UFRB
+  {
+    instituicao: 'UFRB',
+    campus: 'Amargosa - Centro de Formação de Professores',
+    nomeProg: 'Programa de Pós-Graduação em Educação do Campo (PPGEC)',
+    eixo: 'Educação',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Voltado para a realidade das escolas do campo, movimentos sociais e práticas pedagógicas interdisciplinares.'
+  },
+  {
+    instituicao: 'UFRB',
+    campus: 'Cruz das Almas - Campus Universitário',
+    nomeProg: 'Programa de Pós-Graduação em Engenharia Agrícola (PPGEA)',
+    eixo: 'Agrárias e Ambientais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Foco em engenharia de água e solo, mecanização agrícola, processamento de produtos agrícolas e irrigação.'
+  },
+  {
+    instituicao: 'UFRB',
+    campus: 'Cruz das Almas - Campus Universitário',
+    nomeProg: 'Mestrado em Comunicação e Interculturalidade',
+    eixo: 'Comunicação e Artes',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos sobre manifestações populares, comunicação regional, fluxos identitários e interculturalidade.'
+  },
+
+  // IFBA
   {
     instituicao: 'IFBA',
     campus: 'Salvador - Campus Barbalho',
     nomeProg: 'Mestrado Profissional em Tecnologias Aplicadas a Processos de Ensino e Aprendizagem',
-    eixo: 'Informação e TI',
-    mestradoAcad: false,
-    mestradoProf: true,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    eixo: 'Tecnologia e Informática',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Desenvolvimento de softwares educativos, robótica pedagógica e formação docente com tecnologias digitais.'
   },
+  {
+    instituicao: 'IFBA',
+    campus: 'Salvador - Campus Barbalho',
+    nomeProg: 'Mestrado em Engenharia de Sistemas e Automação',
+    eixo: 'Engenharias e Exatas',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Pesquisas em controle de processos, instrumentação, sistemas embarcados e automação industrial.'
+  },
+
+  // IF Baiano
   {
     instituicao: 'IF Baiano',
     campus: 'Catu - Campus Catu',
     nomeProg: 'Mestrado Profissional em Educação Profissional e Tecnológica (ProfEPT)',
-    eixo: 'EPT',
-    mestradoAcad: false,
-    mestradoProf: true,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: false,
+    eixo: 'Educação',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: false,
     detalhes: 'Ensino de EPT com foco em metodologias integradoras para institutos federais e escolas técnicas.'
   },
+  {
+    instituicao: 'IF Baiano',
+    campus: 'Guanambi - Campus Guanambi',
+    nomeProg: 'Mestrado Profissional em Produção Vegetal no Semiárido',
+    eixo: 'Agrárias e Ambientais',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Desenvolvimento de tecnologias de cultivo adaptadas às condições de semiaridez, convivência com a seca e fitotecnia.'
+  },
+
+  // UEFS
   {
     instituicao: 'UEFS',
     campus: 'Feira de Santana - Campus Universitário',
     nomeProg: 'Programa de Pós-Graduação em Educação (PPGEdu)',
-    eixo: 'Formação de Professores',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
+    eixo: 'Educação',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
     detalhes: 'Foco na formação continuada de educadores, práticas escolares e sociologia da educação.'
+  },
+  {
+    instituicao: 'UEFS',
+    campus: 'Feira de Santana - Campus Universitário',
+    nomeProg: 'Mestrado em Biotecnologia',
+    eixo: 'Saúde e Biológicas',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Pesquisas aplicadas em recursos genéticos, caracterização molecular, bioativos vegetais e bioprocessos.'
+  },
+
+  // UESC
+  {
+    instituicao: 'UESC',
+    campus: 'Ilhéus - Campus Soane Nazaré de Alencar',
+    nomeProg: 'Mestrado em Ciência da Computação (PPGCOMP)',
+    eixo: 'Tecnologia e Informática',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Modelagem computacional, otimização de sistemas, inteligência artificial e internet das coisas.'
   },
   {
     instituicao: 'UESC',
     campus: 'Ilhéus - Campus Soane Nazaré de Alencar',
-    nomeProg: 'Mestrado em Ciência da Computação',
-    eixo: 'Informação e TI',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: false,
-    doutoradoProf: false,
-    alunoEspecial: true,
-    detalhes: 'Modelagem computacional, otimização de sistemas, inteligência artificial e internet das coisas.'
+    nomeProg: 'Programa de Pós-Graduação em Produção Vegetal',
+    eixo: 'Agrárias e Ambientais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos de fitotecnia, melhoramento de plantas tropicais (cacau), entomologia agrícola e solo.'
+  },
+
+  // UFSB
+  {
+    instituicao: 'UFSB',
+    campus: 'Porto Seguro - Campus Sosígenes Costa',
+    nomeProg: 'Programa de Pós-Graduação em Ciências Sociais',
+    eixo: 'Humanas e Sociais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Pesquisas em dinâmicas culturais, desigualdade social, direitos humanos e cidadania no sul da Bahia.'
+  },
+  {
+    instituicao: 'UFSB',
+    campus: 'Itabuna - Campus Jorge Amado',
+    nomeProg: 'Programa de Pós-Graduação em Biossistemas',
+    eixo: 'Saúde e Biológicas',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estudos de biodiversidade, interações ecológicas, fisiologia animal/vegetal e biologia integrativa.'
+  },
+
+  // UFOB
+  {
+    instituicao: 'UFOB',
+    campus: 'Barreiras - Campus Reitor Edgard Santos',
+    nomeProg: 'Programa de Pós-Graduação em Ciências Ambientais',
+    eixo: 'Agrárias e Ambientais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Políticas de conservação do Cerrado, recursos hídricos, impactos da expansão agrícola no oeste baiano.'
+  },
+  {
+    instituicao: 'UFOB',
+    campus: 'Barreiras - Campus Reitor Edgard Santos',
+    nomeProg: 'Mestrado Profissional em Saúde da Família',
+    eixo: 'Saúde e Biológicas',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Estratégia de Saúde da Família, atenção básica no SUS, saúde coletiva e intervenção comunitária.'
+  },
+
+  // UESB
+  {
+    instituicao: 'UESB',
+    campus: 'Vitória da Conquista - Campus Universitário',
+    nomeProg: 'Programa de Pós-Graduação em Enfermagem e Saúde',
+    eixo: 'Saúde e Biológicas',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Assistência de enfermagem, vigilância epidemiológica, políticas de saúde pública e cuidado humanizado.'
+  },
+  {
+    instituicao: 'UESB',
+    campus: 'Itapetinga - Campus Universitário',
+    nomeProg: 'Programa de Pós-Graduação em Zootecnia',
+    eixo: 'Agrárias e Ambientais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Produção e nutrição de ruminantes, forragicultura, melhoramento genético animal no semiárido.'
+  },
+
+  // UNIVASF
+  {
+    instituicao: 'UNIVASF',
+    campus: 'Juazeiro - Campus Juazeiro',
+    nomeProg: 'Programa de Pós-Graduação em Engenharia Agrícola',
+    eixo: 'Engenharias e Exatas',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Tecnologia de irrigação, recursos de água e solo, construções rurais no vale do submédio São Francisco.'
+  },
+
+  // UNIFACS
+  {
+    instituicao: 'UNIFACS',
+    campus: 'Salvador - Campus Tancredo Neves',
+    nomeProg: 'Programa de Pós-Graduação em Sistemas e Computação (PPGSC)',
+    eixo: 'Tecnologia e Informática',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Desenvolvimento de sistemas computacionais, redes de computadores, internet das coisas e IA aplicada.'
   },
   {
     instituicao: 'UNIFACS',
     campus: 'Salvador - Campus Tancredo Neves',
-    nomeProg: 'Doutorado e Mestrado em Desenvolvimento Regional e Urbano',
-    eixo: 'Educação',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
-    detalhes: 'Desenvolvimento territorial, políticas educacionais comunitárias, planejamento e sustentabilidade urbana.'
+    nomeProg: 'Programa de Pós-Graduação em Administração (PPGA)',
+    eixo: 'Gestão e Negócios',
+    mestradoAcad: true, mestradoProf: true, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Inovação e competitividade, finanças de mercado, gestão estratégica de pessoas e sustentabilidade organizacional.'
   },
+
+  // UCSal
   {
     instituicao: 'UCSal',
     campus: 'Salvador - Campus Pituaçu',
-    nomeProg: 'Mestrado e Doutorado em Família na Sociedade Contemporânea (Foco Educacional)',
-    eixo: 'Formação de Professores',
-    mestradoAcad: true,
-    mestradoProf: false,
-    doutoradoAcad: true,
-    doutoradoProf: false,
-    alunoEspecial: true,
-    detalhes: 'Práticas sócio-educativas, relações familiares, intervenção comunitária e processos escolares.'
+    nomeProg: 'Programa de Pós-Graduação em Políticas Sociais e Cidadania',
+    eixo: 'Humanas e Sociais',
+    mestradoAcad: true, mestradoProf: false, doutoradoAcad: true, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Direitos sociais, políticas públicas de combate à pobreza, movimentos comunitários e cidadania urbana.'
+  },
+
+  // Unijorge
+  {
+    instituicao: 'Unijorge',
+    campus: 'Salvador - Campus Paralela',
+    nomeProg: 'Mestrado Profissional em Gestão e Negócios',
+    eixo: 'Gestão e Negócios',
+    mestradoAcad: false, mestradoProf: true, doutoradoAcad: false, doutoradoProf: false, alunoEspecial: true,
+    detalhes: 'Metodologias ágeis, inovação corporativa, desenvolvimento local, finanças de negócios e mercado baiano.'
   }
 ];
 
@@ -193,45 +315,54 @@ const FALLBACKS_EDITEIS = [
     resumo: "O Programa de Pós-Graduação em Ciência da Computação da UFBA abre vagas para inscrição em disciplinas isoladas. Oportunidade para profissionais de TI cursarem matérias de Inteligência Artificial e Engenharia de Software no mestrado/doutorado.",
     instituicao: "UFBA",
     nivel: "Aluno Especial",
-    area: "Informação e TI",
+    area: "Tecnologia e Informática",
     vagas: 18,
     url: "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf"
   },
   {
-    titulo: "Processo Seletivo UNEB 12/2026 - Mestrado Profissional em Educação (MPEJA)",
-    resumo: "Abertas as inscrições para o Mestrado Profissional em Educação de Jovens e Adultos da UNEB. O curso visa capacitar professores e gestores para o desenvolvimento de soluções didáticas integradoras voltadas à EJA.",
+    titulo: "Processo Seletivo UNEB 12/2026 - Mestrado Profissional em Gestão Educacional (GESTEC)",
+    resumo: "Abertas as inscrições para o Programa de Pós-Graduação em Gestão e Tecnologias Aplicadas à Educação (GESTEC) da UNEB. O curso capacita gestores e educadores para inovação pedagógica e desenvolvimento de materiais multimídia.",
     instituicao: "UNEB",
     nivel: "Mestrado Profissional",
-    area: "Educação",
+    area: "Gestão e Negócios",
     vagas: 20,
     url: "https://portal.uneb.br/pos-graduacao/"
   },
   {
-    titulo: "Edital IFBA 04/2026 - Mestrado Profissional em Tecnologias Educativas",
-    resumo: "Seleção aberta de candidatos para o Mestrado Profissional em Tecnologias Aplicadas a Processos de Ensino e Aprendizagem do IFBA. Vagas destinadas a docentes e tecnólogos interessados em informática educativa.",
-    instituicao: "IFBA",
+    titulo: "Edital UFOB 03/2026 - Mestrado Profissional em Saúde da Família",
+    resumo: "O Programa de Pós-Graduação em Saúde da Família da UFOB abre inscrições para o processo seletivo de novos alunos. Focado na atenção básica de saúde coletiva, abrangendo atuação em Barreiras e região oeste.",
+    instituicao: "UFOB",
     nivel: "Mestrado Profissional",
-    area: "Informação e TI",
-    vagas: 15,
-    url: "https://portal.ifba.edu.br/pos-graduacao"
-  },
-  {
-    titulo: "Edital UFBA 05/2026 - Mestrado e Doutorado Acadêmico em Educação (PPGE)",
-    resumo: "O PPGE/UFBA convida interessados para a seleção de novos alunos de Mestrado e Doutorado Acadêmicos em Educação. Linhas de pesquisa em Política Educacional, Práxis Docente e Educação Especial.",
-    instituicao: "UFBA",
-    nivel: "Mestrado Acadêmico",
-    area: "Formação de Professores",
-    vagas: 25,
-    url: "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf"
-  },
-  {
-    titulo: "Chamada UFRB 03/2026 - Seleção para Aluno Especial em Comunicação e Interculturalidade",
-    resumo: "Estão abertas as inscrições de alunos especiais para disciplinas do Mestrado Acadêmico em Comunicação e Interculturalidade da UFRB. Aulas ministradas no campus de Cruz das Almas.",
-    instituicao: "UFRB",
-    nivel: "Aluno Especial",
-    area: "Comunicação",
+    area: "Saúde e Biológicas",
     vagas: 12,
-    url: "https://ufrb.edu.br/portal/prosel"
+    url: "https://ufob.edu.br/pos-graduacao"
+  },
+  {
+    titulo: "Processo Seletivo UESB 04/2026 - Doutorado e Mestrado em Enfermagem e Saúde",
+    resumo: "Estão abertas as inscrições de candidatos para o Programa de Pós-Graduação em Enfermagem e Saúde da UESB, campus de Vitória da Conquista. Linhas de pesquisa em epidemiologia e cuidado humanizado.",
+    instituicao: "UESB",
+    nivel: "Mestrado Acadêmico",
+    area: "Saúde e Biológicas",
+    vagas: 15,
+    url: "https://www.uesb.br/pos-graduacao"
+  },
+  {
+    titulo: "Chamada UNIVASF 05/2026 - Seleção para Aluno Especial - Engenharia Agrícola",
+    resumo: "Estão abertas as inscrições para aluno especial nas disciplinas de pós-graduação stricto sensu em Engenharia Agrícola da UNIVASF no campus de Juazeiro-BA. Foco em tecnologia de irrigação.",
+    instituicao: "UNIVASF",
+    nivel: "Aluno Especial",
+    area: "Engenharias e Exatas",
+    vagas: 8,
+    url: "https://portais.univasf.edu.br/pos-graduacao"
+  },
+  {
+    titulo: "Processo Seletivo Unijorge 01/2026 - Mestrado Profissional em Gestão e Negócios",
+    resumo: "O Centro Universitário Jorge Amado abre inscrições para o Mestrado Profissional em Gestão e Negócios em Salvador. Linhas de pesquisa voltadas para de metodologias ágeis, inovação de mercado e finanças corporativas.",
+    instituicao: "Unijorge",
+    nivel: "Mestrado Profissional",
+    area: "Gestão e Negócios",
+    vagas: 25,
+    url: "https://www.unijorge.edu.br/pos-graduacao/"
   }
 ];
 
@@ -445,15 +576,11 @@ function gerarMetricas() {
     'Aluno Especial': 0
   };
 
-  // 2. Por Área de Interesse
-  const totaisAreas = {
-    'Educação': 0,
-    'EPT': 0,
-    'Comunicação': 0,
-    'Informação e TI': 0,
-    'Estágio': 0,
-    'Formação de Professores': 0
-  };
+  // 2. Por Área de Interesse (Dinamicamente mapeado de TEMAS_INTERESSE)
+  const totaisAreas = {};
+  Object.keys(TEMAS_INTERESSE).forEach(a => {
+    totaisAreas[a] = 0;
+  });
 
   // 3. Por Instituição
   const contagemInstituicoes = {};
@@ -486,6 +613,21 @@ function gerarMetricas() {
   fs.writeFileSync(metricasPath, JSON.stringify(metricas, null, 2), 'utf-8');
   console.log(`Métricas consolidadas salvas em: ${metricasPath}`);
 }
+
+// Mapeamento de sites oficiais para correção de URLs geradas
+const SITES_INSTITUICOES = {
+  'UFBA': 'https://www.ufba.br',
+  'UFRB': 'https://ufrb.edu.br',
+  'UNEB': 'https://www.uneb.br',
+  'IFBA': 'https://portal.ifba.edu.br',
+  'IF Baiano': 'https://ifbaiano.edu.br',
+  'UEFS': 'http://www.uefs.br',
+  'UESC': 'http://www.uesc.br',
+  'UFSB': 'https://ufsb.edu.br',
+  'UNIFACS': 'https://www.unifacs.br',
+  'UCSal': 'http://www.ucsal.br',
+  'UNIFTC': 'https://www.uniftc.edu.br'
+};
 
 // Sementador histórico retroativo de 2 anos (Junho 2024 a Junho 2026)
 function verificarEGerarHistoricoRetroativo() {
@@ -579,6 +721,8 @@ function verificarEGerarHistoricoRetroativo() {
       // Editais do passado estão encerrados
       const status = "Encerrado";
 
+      const instSite = SITES_INSTITUICOES[prog.instituicao] || 'https://www.ufba.br';
+
       editaisAgrupados[pastaTema].push({
         titulo,
         resumo,
@@ -588,10 +732,43 @@ function verificarEGerarHistoricoRetroativo() {
         vagas: 8 + (seedVal % 15),
         inscricoesInicio: inscStart,
         inscricoesFim: inscEnd,
-        url: `${prog.site}/noticias/selecao-${pastaTema}-${ano}-${mes}-${i}`,
+        url: `${instSite}/noticias/selecao-${pastaTema}-${ano}-${mes}-${i}`,
         status,
         dataPublicacao: dataPub,
         fonte: `${prog.instituicao} Ingresso`
+      });
+    }
+
+    // Inserir os editais reais solicitados pelo usuário para Aluno Especial em Janeiro de 2026 (Semestre 2026.1)
+    if (ano === 2026 && mes === 1) {
+      editaisAgrupados['aluno-especial'].push({
+        titulo: "Edital FACOM/UFBA - Seleção de Aluno Especial - PósCom (Semestre 2026.1)",
+        resumo: "Processo seletivo para admissão de Aluno Especial no Programa de Pós-Graduação em Comunicação e Cultura Contemporâneas (PósCom) da Faculdade de Comunicação (FACOM/UFBA) para o semestre 2026.1. Oportunidade para cursar disciplinas isoladas no Mestrado ou Doutorado.",
+        instituicao: "UFBA",
+        nivel: "Aluno Especial",
+        area: "Comunicação",
+        vagas: 15,
+        inscricoesInicio: new Date(2026, 0, 5, 9, 0, 0).toISOString(),
+        inscricoesFim: new Date(2026, 0, 20, 23, 59, 59).toISOString(),
+        url: "http://poscom.ufba.br/alunoespecial20261",
+        status: "Encerrado",
+        dataPublicacao: new Date(2025, 11, 28, 10, 0, 0).toISOString(),
+        fonte: "FACOM UFBA"
+      });
+
+      editaisAgrupados['aluno-especial'].push({
+        titulo: "Edital ICI/UFBA - Seleção de Aluno Especial - PPGCI (Semestre 2026.1)",
+        resumo: "O Programa de Pós-Graduação em Ciência da Informação (PPGCI) da Faculdade de Ciências da Informação (ICI/UFBA) torna pública a abertura de inscrições para seleção de aluno especial em disciplinas do curso.",
+        instituicao: "UFBA",
+        nivel: "Aluno Especial",
+        area: "Informação e TI",
+        vagas: 10,
+        inscricoesInicio: new Date(2026, 0, 6, 9, 0, 0).toISOString(),
+        inscricoesFim: new Date(2026, 0, 22, 23, 59, 59).toISOString(),
+        url: "https://ppgci.ufba.br/es/node/1425",
+        status: "Encerrado",
+        dataPublicacao: new Date(2025, 11, 29, 10, 0, 0).toISOString(),
+        fonte: "PPGCI UFBA"
       });
     }
 

@@ -108,5 +108,45 @@
     "site": "https://www.uniftc.edu.br",
     "portalservico": "https://www.uniftc.edu.br/pos-graduacao",
     "descricao": "Rede privada com foco em metodologias ativas de aprendizagem e pós-graduações profissionalizantes nas áreas de Saúde, Tecnologia e Educação."
+  },
+  {
+    "sigla": "UFOB",
+    "nome": "Universidade Federal do Oeste da Bahia",
+    "tipo": "Pública Federal",
+    "icone": "⛰️",
+    "sede": "Barreiras",
+    "site": "https://ufob.edu.br",
+    "portalservico": "https://ufob.edu.br/pos-graduacao",
+    "descricao": "Sediada em Barreiras, atende a região oeste da Bahia com programas voltados ao desenvolvimento regional, ciências ambientais, saúde e educação."
+  },
+  {
+    "sigla": "UESB",
+    "nome": "Universidade Estadual do Sudoeste da Bahia",
+    "tipo": "Pública Estadual",
+    "icone": "☕",
+    "sede": "Vitória da Conquista",
+    "site": "https://www.uesb.br",
+    "portalservico": "https://www.uesb.br/pos-graduacao",
+    "descricao": "Universidade estadual de destaque no sudoeste baiano (Conquista, Jequié, Itapetinga), com programas consolidados em Saúde, Educação, Agrárias e Humanas."
+  },
+  {
+    "sigla": "UNIVASF",
+    "nome": "Universidade Federal do Vale do São Francisco",
+    "tipo": "Pública Federal",
+    "icone": "🌵",
+    "sede": "Juazeiro",
+    "site": "https://www.univasf.edu.br",
+    "portalservico": "https://portais.univasf.edu.br/pos-graduacao",
+    "descricao": "Instituição federal multicampi no Vale do São Francisco com forte atuação em Juazeiro e Senhor do Bonfim em pós-graduações tecnológicas, de irrigação e saúde."
+  },
+  {
+    "sigla": "Unijorge",
+    "nome": "Centro Universitário Jorge Amado",
+    "tipo": "Particular",
+    "icone": "✍️",
+    "sede": "Salvador",
+    "site": "https://www.unijorge.edu.br",
+    "portalservico": "https://www.unijorge.edu.br/pos-graduacao/",
+    "descricao": "Instituição privada reconhecida em Salvador, oferecendo mestrados e pós-graduações lato sensu em Gestão, TI, Comunicação, Saúde e Educação."
   }
 ]

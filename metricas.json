@@ -1,62 +1,76 @@
 {
-  "geradoEm": "2026-06-06T15:32:00.555Z",
-  "totalGeral": 102,
+  "geradoEm": "2026-06-06T15:37:59.045Z",
+  "totalGeral": 105,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 12,
-    "Mestrado Profissional": 29,
+    "Mestrado Acadêmico": 11,
+    "Mestrado Profissional": 10,
     "Doutorado Acadêmico": 10,
     "Doutorado Profissional": 0,
-    "Aluno Especial": 51
+    "Aluno Especial": 74
   },
   "totaisAreas": {
-    "Educação": 30,
-    "EPT": 17,
-    "Comunicação": 20,
-    "Informação e TI": 22,
-    "Estágio": 0,
-    "Formação de Professores": 13
+    "Educação": 17,
+    "Tecnologia e Informática": 14,
+    "Gestão e Negócios": 2,
+    "Saúde e Biológicas": 28,
+    "Humanas e Sociais": 8,
+    "Comunicação e Artes": 1,
+    "Engenharias e Exatas": 6,
+    "Agrárias e Ambientais": 27
   },
   "status": {
-    "Aberto": 5,
-    "Encerrado": 97,
+    "Aberto": 6,
+    "Encerrado": 99,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
-      "nome": "UFBA",
-      "total": 23
-    },
-    {
-      "nome": "UFRB",
-      "total": 21
-    },
-    {
-      "nome": "UNEB",
+      "nome": "UEFS",
       "total": 20
     },
     {
-      "nome": "IFBA",
-      "total": 9
+      "nome": "UESC",
+      "total": 19
     },
     {
       "nome": "IF Baiano",
+      "total": 16
+    },
+    {
+      "nome": "UFSB",
+      "total": 16
+    },
+    {
+      "nome": "UFOB",
+      "total": 13
+    },
+    {
+      "nome": "IFBA",
       "total": 8
     },
     {
-      "nome": "UEFS",
-      "total": 7
+      "nome": "UESB",
+      "total": 6
     },
     {
-      "nome": "UESC",
-      "total": 5
+      "nome": "UFBA",
+      "total": 3
     },
     {
-      "nome": "UCSal",
-      "total": 5
+      "nome": "UFRB",
+      "total": 1
     },
     {
-      "nome": "UNIFACS",
-      "total": 4
+      "nome": "UNEB",
+      "total": 1
+    },
+    {
+      "nome": "Unijorge",
+      "total": 1
+    },
+    {
+      "nome": "UNIVASF",
+      "total": 1
     }
   ]
 }
