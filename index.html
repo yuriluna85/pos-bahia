@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Editais de Pós-Graduação da Bahia</title>
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;850&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══ VARIÁVEIS DO SISTEMA DE DESIGN (TEMA CLARO E CLEAN) ══ */
+    :root {
+      --bg-main: #f8fafc; /* Cinza claro e clean */
+      --bg-card: #ffffff; /* Fundo de cartões branco */
+      --bg-header: #ffffff; /* Header branco */
+      --border-glow: #e2e8f0; /* Borda cinza suave */
+      --border-glow-hover: #cbd5e1; /* Borda cinza média no hover */
+      --primary: #0284c7; /* Azul Acadêmico mais escuro */
+      --primary-rgb: 2, 132, 199;
+      --accent: #9a7407; /* Dourado escuro */
+      --accent-orange: #c2410c;
+      --text-main: #000000; /* Texto principal em preto automático */
+      --text-muted: #475569; /* Texto de apoio em cinza escuro */
+      --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --transition-org: cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Cores por Nível adaptadas para fundo claro */
+      --color-mestrado: #16a34a; /* Verde escuro nítido */
+      --color-doutorado: #9a7407; /* Dourado escuro nítido */
+      --color-especial: #ea580c; /* Laranja escuro nítido */
+      --color-fechados: #64748b; /* Cinza ardósia para fechados */
+    }
+
+    /* ══ MODO ALTO CONTRASTE (WCAG) ══ */
+    .alto-contraste {
+      --bg-main: #000000;
+      --bg-card: #000000;
+      --bg-header: #000000;
+      --border-glow: #ffffff;
+      --border-glow-hover: #ffffff;
+      --primary: #ffff00; /* Amarelo puro */
+      --primary-rgb: 255, 255, 0;
+      --accent: #ffffff;
+      --accent-orange: #ffff00;
+      --text-main: #ffffff;
+      --text-muted: #ffffff;
+      --shadow-soft: none;
+      
+      --color-mestrado: #ffff00;
+      --color-doutorado: #ffff00;
+      --color-especial: #ffff00;
+      --color-fechados: #ffff00;
+    }
+
+    /* ══ RESET E BÁSICOS ══ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Foco acessível WCAG */
+    button:focus-visible, 
+    a:focus-visible, 
+    input:focus-visible, 
+    select:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* ══ ACESSIBILIDADE WCAG BAR ══ */
+    .accessibility-bar {
+      background: var(--bg-header);
+      border-bottom: 1.5px solid var(--border-glow);
+      font-size: 0.75rem;
+      padding: 6px 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1001;
+    }
+
+    .accessibility-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .access-btn {
+      background: var(--bg-main);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 6px;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 4px 12px;
+      transition: all 0.2s ease;
+      font-weight: 700;
+      font-family: inherit;
+    }
+
+    .access-btn:hover {
+      background: var(--primary);
+      color: var(--bg-card);
+      border-color: var(--primary);
+    }
+
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .access-label {
+      color: var(--text-muted);
+      margin-right: 4px;
+      font-weight: 700;
+    }
+
+    /* ══ HEADER ══ */
+    header {
+      background: var(--bg-header);
+      border-bottom: 2.5px solid var(--primary);
+      padding: 1.5rem 1rem;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-ball {
+      font-size: 2.2rem;
+    }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-main {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 850;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+
+    .logo-main span {
+      color: var(--primary);
+    }
+
+    .logo-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 750;
+      letter-spacing: 1px;
+      margin-top: -2px;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .badge-update {
+      font-size: 0.75rem;
+      background: rgba(var(--primary-rgb), 0.08);
+      color: var(--primary);
+      border: 1.5px solid rgba(var(--primary-rgb), 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
+    .badge-live {
+      font-size: 0.75rem;
+      background: rgba(154, 116, 7, 0.08);
+      color: var(--accent);
+      border: 1.5px solid rgba(154, 116, 7, 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulseLive 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseLive {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.5; }
+    }
+
+    /* ══ STATUS BAR ══ */
+    .update-bar {
+      background: rgba(226, 232, 240, 0.9); /* Cinza claro clean */
+      border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+      padding: 0.6rem 1rem;
+    }
+
+    .update-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.78rem;
+    }
+
+    .update-info {
+      color: var(--text-main);
+      font-weight: 600; /* Negrito */
+    }
+
+    .update-info span {
+      color: var(--primary);
+      font-weight: 750; /* Negrito */
+    }
+
+    .progress-container {
+      flex: 1;
+      max-width: 250px;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--primary);
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .btn-refresh {
+      background: transparent;
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      border-radius: 6px;
+      padding: 3px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-refresh:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* ══ DASHBOARD BUSCA E HISTÓRICO ══ */
+    .dashboard-wrap {
+      background: #e2e8f0; /* Cinza clean do painel */
+      padding: 1.2rem 1rem;
+      border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .dashboard-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .search-box input {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      color: #000000;
+      padding: 0.6rem 1rem 0.6rem 2.2rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(2, 132, 199, 0.15);
+    }
+
+    .history-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .history-label {
+      font-size: 0.8rem;
+      font-weight: 800; /* Negrito */
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .history-input-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .history-input {
+      background: #ffffff;
+      border: 1.5px solid rgba(0, 0, 0, 0.15);
+      color: #000000;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .history-input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.45rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 750; /* Negrito */
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s var(--transition-org);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+    }
+
+    .btn-primary-style {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-outline-style {
+      background: transparent;
+      border: 1.5px solid rgba(0, 0, 0, 0.2);
+      color: var(--text-main);
+    }
+
+    .btn-outline-style:hover {
+      border-color: var(--text-main);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    /* ══ TABS (ABAS PRINCIPAIS) ══ */
+    .tabs-bar {
+      background: var(--bg-header);
+      border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 37px; /* Logo após a barra de acessibilidade */
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .tabs-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-item {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 1rem 1.5rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700; /* Negrito */
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-bottom: 3.5px solid transparent;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-item:hover {
+      color: #000000;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    /* Cores de ativação específicas para cada aba */
+    .tab-item.active-mestrado { color: var(--color-mestrado); border-bottom-color: var(--color-mestrado); }
+    .tab-item.active-doutorado { color: var(--color-doutorado); border-bottom-color: var(--color-doutorado); }
+    .tab-item.active-especial { color: var(--color-especial); border-bottom-color: var(--color-especial); }
+    .tab-item.active-fechados { color: var(--color-fechados); border-bottom-color: var(--color-fechados); }
+    .tab-item.active-stats { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-item.active-unis { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ══ INFO BOX DO PROJETO ══ */
+    .info-project-panel {
+      max-width: 1400px;
+      margin: 1.5rem auto 0 auto;
+      padding: 0 1rem;
+    }
+
+    .info-project-box {
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.08) 0%, rgba(181, 148, 16, 0.03) 100%);
+      border: 1px solid rgba(2, 132, 199, 0.15);
+      border-left: 4.5px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .info-project-icon {
+      font-size: 1.8rem;
+    }
+
+    .info-project-text h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800; /* Título negrito maior */
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .info-project-text p {
+      font-size: 0.88rem;
+      color: var(--text-main); /* Preto */
+      line-height: 1.6;
+    }
+
+    /* ══ CONTEÚDO PRINCIPAL (LAYOUT GRID COM SIDEBAR) ══ */
+    .main-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.8rem;
+      flex-grow: 1;
+    }
+
+    .content-area {
+      min-width: 0;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem; /* Fonte maior */
+      font-weight: 800; /* Título bem negrito */
+      border-left: 4.5px solid var(--color-mestrado);
+      padding-left: 12px;
+      margin-bottom: 1.5rem;
+      color: var(--text-main); /* Texto em preto automático */
+    }
+
+    .title-doutorado { border-left-color: var(--color-doutorado); }
+    .title-especial { border-left-color: var(--color-especial); }
+
+    /* Chips de Filtro Rápido de Área */
+    .chips-container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .chip-btn {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--text-muted);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700; /* Negrito */
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip-btn:hover {
+      color: #000000;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .chip-btn.active-mestrado { background: var(--color-mestrado); color: #ffffff; border-color: var(--color-mestrado); }
+    .chip-btn.active-doutorado { background: var(--color-doutorado); color: #ffffff; border-color: var(--color-doutorado); }
+    .chip-btn.active-especial { background: var(--color-especial); color: #ffffff; border-color: var(--color-especial); }
+
+    /* ══ CARDS DE EDITAIS ══ */
+    .edital-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .edital-card {
+      background: var(--bg-card); /* Branco */
+      border: 1.5px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.25s var(--transition-org), border-color 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .edital-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-glow-hover);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .edital-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .edital-tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .edital-badge-nivel {
+      font-size: 0.65rem;
+      font-weight: 800; /* Negrito */
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .edital-badge-semestre {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .badge-sem-2026-2 {
+      background: rgba(2, 132, 199, 0.1);
+      color: #0284c7;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+    
+    .badge-sem-2027-1 {
+      background: rgba(147, 51, 234, 0.1);
+      color: #9333ea;
+      border: 1px solid rgba(147, 51, 234, 0.2);
+    }
+    
+    .badge-sem-2026-1 {
+      background: rgba(100, 116, 139, 0.1);
+      color: #64748b;
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+
+    .badge-mest-acad { background: var(--color-mestrado); }
+    .badge-mest-prof { background: #16a34a; opacity: 0.85; }
+    .badge-dout-acad { background: var(--color-doutorado); }
+    .badge-dout-prof { background: #9a7407; opacity: 0.85; }
+    .badge-esp { background: var(--color-especial); }
+
+    .edital-badge-area {
+      font-size: 0.65rem;
+      font-weight: 750; /* Negrito menor */
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--text-muted);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .edital-badge-status {
+      font-size: 0.65rem;
+      font-weight: 800; /* Negrito */
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-aberto { background: rgba(22, 163, 74, 0.1); color: #16a34a; border: 1px solid rgba(22, 163, 74, 0.2); }
+    .status-andamento { background: rgba(234, 88, 12, 0.1); color: #ea580c; border: 1px solid rgba(234, 88, 12, 0.2); }
+    .status-encerrado { background: rgba(0, 0, 0, 0.03); color: var(--text-muted); border: 1px solid rgba(0, 0, 0, 0.06); }
+
+    .edital-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem; /* Fonte maior */
+      font-weight: 800; /* Título em negrito */
+      color: var(--text-main); /* Texto em preto automático */
+      line-height: 1.35;
+    }
+
+    .edital-desc {
+      font-size: 0.88rem;
+      color: var(--text-main); /* Preto automático */
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .edital-meta-bottom {
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding-top: 0.8rem;
+      margin-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .edital-inst-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700; /* Negrito */
+      color: var(--text-main); /* Preto automático */
+    }
+
+    .edital-inst-icon {
+      font-size: 1.1rem;
+    }
+
+    .edital-prazo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+    }
+
+    .edital-btn-detalhes {
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      font-weight: 800; /* Negrito */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.82rem;
+    }
+
+    .edital-btn-detalhes:hover {
+      text-decoration: underline;
+    }
+
+    /* ══ SIDEBAR ══ */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .sidebar-box {
+      background: var(--bg-card); /* Branco */
+      border: 1.5px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sidebar-head {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800; /* Negrito destacado */
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-main); /* Preto automático */
+      border-bottom: 1.5px solid var(--border-glow);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .head-primary { border-left: 3.5px solid var(--primary); padding-left: 6px; }
+    .head-accent { border-left: 3.5px solid var(--accent); padding-left: 6px; }
+
+    /* Filtros Sidebar */
+    .filter-group-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-item-sidebar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(0, 0, 0, 0.01);
+      border: 1px solid transparent;
+      font-weight: 600; /* Negrito */
+    }
+
+    .filter-item-sidebar:hover {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.04);
+    }
+
+    .filter-item-sidebar.active-filter {
+      background: rgba(2, 132, 199, 0.08);
+      border-color: rgba(2, 132, 199, 0.15);
+      color: var(--primary);
+      font-weight: 750; /* Negrito */
+    }
+
+    .filter-badge-count {
+      font-size: 0.72rem;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 750; /* Negrito */
+    }
+
+    .active-filter .filter-badge-count {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .interests-list-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .interest-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 650; /* Negrito */
+      color: var(--text-muted);
+    }
+
+    .interest-item input {
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+
+    /* ══ ESTADOS VAZIOS E LOADING ══ */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      gap: 1rem;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(2, 132, 199, 0.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--bg-card);
+      border: 1.5px dashed rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+    }
+
+    .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .empty-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem; /* Fonte maior */
+      font-weight: 800; /* Título negrito */
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .empty-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ══ ABA ESTATÍSTICAS (MÉTRICAS) ══ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stats-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stats-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 850; /* Negrito destacado */
+      text-transform: uppercase;
+      color: #000000; /* Preto */
+      margin-bottom: 1.2rem;
+      border-left: 3.5px solid var(--accent);
+      padding-left: 8px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .metric-row span:first-child {
+      width: 120px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      height: 8px;
+      background: var(--bg-main);
+      border: 1px solid var(--border-glow);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0;
+      transition: width 0.8s ease;
+    }
+
+    .bg-mestrado { background: var(--color-mestrado); }
+    .bg-doutorado { background: var(--color-doutorado); }
+    .bg-especial { background: var(--color-especial); }
+    .bg-primary-style { background: var(--primary); }
+    .bg-accent-style { background: var(--accent); }
+
+    .metric-val {
+      font-weight: 700;
+      width: 35px;
+      text-align: right;
+      color: var(--text-main);
+    }
+
+    /* ══ ABA UNIVERSIDADES ══ */
+    .unis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .uni-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.25s var(--transition-org);
+    }
+
+    .uni-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-glow-hover);
+    }
+
+    .uni-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-glow);
+      padding-bottom: 8px;
+    }
+
+    .uni-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .uni-escudo {
+      font-size: 1.8rem;
+    }
+
+    .uni-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .uni-city {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .uni-badge-tipo {
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pub-fed { background: var(--primary); color: var(--bg-card); }
+    .badge-pub-est { background: var(--accent); color: var(--bg-card); }
+    .badge-part { background: rgba(0, 0, 0, 0.05); color: var(--text-main); border: 1.5px solid var(--border-glow); }
+
+    .uni-desc {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--text-main);
+      margin-top: 6px;
+    }
+
+    .uni-link {
+      margin-top: auto;
+      align-self: flex-start;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .uni-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--bg-header);
+      border-top: 2px solid var(--primary);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-inner strong {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 850;
+      color: var(--text-main);
+      letter-spacing: 1px;
+    }
+
+    .footer-inner strong span {
+      color: var(--primary);
+    }
+
+    .footer-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+
+    /* ══ MODAL PREMIUM DE EDITAL ══ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      animation: fadeIn 0.25s var(--transition-org);
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-glow);
+      box-shadow: var(--shadow-soft);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 85vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      animation: slideUp 0.3s var(--transition-org);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 10;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--accent-orange);
+    }
+
+    .modal-hero {
+      padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+      background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.08) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(var(--primary-rgb), 0.08);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .modal-avatar-container {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(var(--primary-rgb), 0.1);
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.2);
+      flex-shrink: 0;
+    }
+
+    .modal-header-info {
+      flex: 1;
+    }
+
+    .modal-badge-time {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      background: rgba(var(--primary-rgb), 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(var(--primary-rgb), 0.2);
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .modal-subtitle {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .modal-body-content {
+      padding: 1.8rem 2.2rem 2.2rem 2.2rem;
+    }
+
+    .info-grid-modal {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item-modal {
+      font-size: 0.85rem;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-glow);
+      padding-bottom: 6px;
+    }
+
+    .info-item-modal strong {
+      color: var(--text-muted);
+      display: block;
+      font-size: 0.72rem;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .desc-box-modal {
+      background: var(--bg-main);
+      border: 1.5px solid var(--border-glow);
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .desc-box-modal h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .desc-box-modal p {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .dashboard-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE ACESSIBILIDADE WCAG -->
+  <div class="accessibility-bar" role="complementary" aria-label="Controles de Acessibilidade">
+    <div class="accessibility-inner">
+      <button class="access-btn" onclick="toggleAltoContraste()" aria-label="Alternar modo de alto contraste">🌓 Alto Contraste</button>
+      <div class="font-controls">
+        <span class="access-label">Tamanho da fonte:</span>
+        <button class="access-btn" onclick="alterarFonte(-10)" aria-label="Diminuir texto">A-</button>
+        <button class="access-btn" onclick="alterarFonte(10)" aria-label="Aumentar texto">A+</button>
+        <button class="access-btn" onclick="resetarFonte()" aria-label="Restaurar fonte padrão">A (Normal)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header role="banner">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="Ir para a página inicial do Portal de Editais">
+        <span class="logo-ball" aria-hidden="true">🎓</span>
+        <div class="logo-text-wrap">
+          <span class="logo-main">Bahia<span>Pós</span></span>
+          <span class="logo-sub">Editais de Pós-Graduação</span>
+        </div>
+      </a>
+      <div class="header-info">
+        <div class="badge-update" id="proxAtualiz" aria-live="polite">Próx. atualização: 02:00</div>
+        <div class="badge-live"><span class="dot-live" aria-hidden="true"></span> Monitoramento Ativo</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE ATUALIZAÇÃO -->
+  <div class="update-bar" role="status">
+    <div class="update-inner">
+      <div class="update-info">🔄 Última varredura do compilador: <span id="ultimaHora">—</span></div>
+      <div class="progress-container" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+      <button class="btn-refresh" onclick="atualizarTudo()" aria-label="Recarregar editais agora">↻ Sincronizar agora</button>
+    </div>
+  </div>
+
+  <!-- BUSCA E PESQUISA -->
+  <div class="dashboard-wrap" role="search" aria-label="Buscar editais">
+    <div class="dashboard-inner" style="justify-content: center;">
+      <div class="search-box" style="max-width: 600px; margin: 0 auto; width: 100%;">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="searchInput" oninput="executarFiltros()" placeholder="Buscar por instituição, curso, áreas ou palavras-chave..." aria-label="Digite termos para buscar editais"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVEGAÇÃO DE ABAS -->
+  <nav class="tabs-bar" role="navigation" aria-label="Abas de níveis de pós-graduação e utilitários">
+    <div class="tabs-inner">
+      <button class="tab-item active-mestrado" id="tab-mestrado" onclick="switchTab('mestrado')" aria-controls="panel-mestrado" aria-selected="true" role="tab">🎓 Mestrado</button>
+      <button class="tab-item" id="tab-doutorado" onclick="switchTab('doutorado')" aria-controls="panel-doutorado" aria-selected="false" role="tab">🧬 Doutorado</button>
+      <button class="tab-item" id="tab-especial" onclick="switchTab('aluno-especial')" aria-controls="panel-especial" aria-selected="false" role="tab">🌟 Aluno Especial</button>
+      <button class="tab-item" id="tab-fechados" onclick="switchTab('fechados')" aria-controls="panel-fechados" aria-selected="false" role="tab">🔒 Editais Fechados</button>
+      <button class="tab-item" id="tab-stats" onclick="switchTab('stats')" aria-controls="panel-stats" aria-selected="false" role="tab">📊 Estatísticas</button>
+      <button class="tab-item" id="tab-unis" onclick="switchTab('unis')" aria-controls="panel-unis" aria-selected="false" role="tab">🏫 Instituições Monitoradas</button>
+    </div>
+  </nav>
+
+  <!-- INFO BOX INFORMATIVO -->
+  <section class="info-project-panel" aria-label="Sobre o compilador">
+    <div class="info-project-box">
+      <span class="info-project-icon" aria-hidden="true">📢</span>
+      <div class="info-project-text">
+        <h3>Compilador de Processos Seletivos e Editais BahiaPós</h3>
+        <p>Realizamos uma compilação automatizada periódica dos sites oficiais e diários oficiais das instituições de ensino superior na Bahia. Filtramos editais de Mestrado, Doutorado e seleções de Alunos Especiais (disciplinas isoladas) em todas as áreas do conhecimento (como <strong>Educação, Tecnologia, Gestão, Saúde, Humanas, Comunicação, Engenharias e Agrárias</strong>).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTAINER DE LAYOUT PRINCIPAL -->
+  <div class="main-container">
+    <main class="content-area" role="main">
+      
+      <!-- ABA MESTRADO -->
+      <section class="tab-panel active" id="panel-mestrado" role="tabpanel" aria-labelledby="tab-mestrado">
+        <div class="chips-container" id="filtros-areas-mestrado" aria-label="Filtro rápido de eixos no mestrado"></div>
+        <h2 class="section-title">Editais de Mestrado na Bahia</h2>
+        <div class="edital-grid" id="cards-mestrado">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
+        </div>
+      </section>
+
+      <!-- ABA DOUTORADO -->
+      <section class="tab-panel" id="panel-doutorado" role="tabpanel" aria-labelledby="tab-doutorado">
+        <div class="chips-container" id="filtros-areas-doutorado" aria-label="Filtro rápido de eixos no doutorado"></div>
+        <h2 class="section-title title-doutorado">Editais de Doutorado na Bahia</h2>
+        <div class="edital-grid" id="cards-doutorado">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
+        </div>
+      </section>
+
+      <!-- ABA ALUNO ESPECIAL -->
+      <section class="tab-panel" id="panel-especial" role="tabpanel" aria-labelledby="tab-especial">
+        <div class="chips-container" id="filtros-areas-especial" aria-label="Filtro rápido de eixos de aluno especial"></div>
+        <h2 class="section-title title-especial">Admissões de Aluno Especial na Bahia</h2>
+        <div class="edital-grid" id="cards-especial">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
+        </div>
+      </section>
+
+      <!-- ABA EDITAIS FECHADOS (HISTÓRICO) -->
+      <section class="tab-panel" id="panel-fechados" role="tabpanel" aria-labelledby="tab-fechados">
+        <div class="chips-container" id="filtros-areas-fechados" aria-label="Filtro rápido de eixos de editais fechados"></div>
+        
+        <div style="background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-soft);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem;">
+            <div>
+              <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Arquivo Histórico de Editais Encerrados</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted);">Consulte todos os editais que já finalizaram as inscrições nos anos anteriores.</p>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Ano de Referência:</span>
+              <select id="historyYear" onchange="carregarHistoricoAnual()" style="background: var(--bg-main); border: 1.5px solid var(--border-glow); color: var(--text-main); border-radius: 6px; padding: 0.45rem 1rem; font-family: inherit; font-size: 0.88rem; outline: none; font-weight: 700; cursor: pointer;">
+                <!-- Populado dinamicamente -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="border-left-color: var(--color-fechados);">Editais Encerrados</h2>
+        <div class="edital-grid" id="cards-fechados">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Selecione o ano para carregar...</div></div>
+        </div>
+      </section>
+
+      <!-- ABA ESTATÍSTICAS / MÉTRICAS -->
+      <section class="tab-panel" id="panel-stats" role="tabpanel" aria-labelledby="tab-stats">
+        <h2 class="section-title" style="border-left-color: var(--primary);">Indicadores e Métricas do Histórico</h2>
+        <div class="stats-grid">
+          
+          <!-- Editais por Modalidade -->
+          <div class="stats-card">
+            <h3>Por Nível e Modalidade</h3>
+            <div id="stats-niveis-container"></div>
+          </div>
+          
+          <!-- Presença por Área -->
+          <div class="stats-card">
+            <h3>Distribuição por Áreas de Interesse</h3>
+            <div id="stats-areas-container"></div>
+          </div>
+
+          <!-- Ranking de Universidades -->
+          <div class="stats-card">
+            <h3>Lançamentos por Instituição</h3>
+            <div id="stats-unis-container"></div>
+          </div>
+
+          <!-- Status Geral -->
+          <div class="stats-card">
+            <h3>Status dos Editais Compilados</h3>
+            <div id="stats-status-container"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ABA UNIVERSIDADES -->
+      <section class="tab-panel" id="panel-unis" role="tabpanel" aria-labelledby="tab-unis">
+        <h2 class="section-title" style="border-left-color: var(--accent);">Instituições de Ensino Monitoradas na Bahia</h2>
+        <div class="unis-grid" id="unis-cards-container">
+          <div class="loading"><div class="spinner"></div><div class="loading-text">Carregando instituições...</div></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MENU LATERAL / SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Painel de Filtros e Navegação Rápida">
+      
+      <!-- Caixa de Status das Inscrições -->
+      <div class="sidebar-box">
+        <div class="sidebar-head head-primary">🟢 Status de Inscrição</div>
+        <div class="filter-group-sidebar">
+          <div class="filter-item-sidebar active-filter" id="status-all" onclick="filtrarStatus('Todos')">
+            <span>🌎 Todos os editais</span>
+            <span class="filter-badge-count" id="count-status-all">0</span>
+          </div>
+          <div class="filter-item-sidebar" id="status-aberto" onclick="filtrarStatus('Aberto')">
+            <span>🟢 Inscrições Abertas</span>
+            <span class="filter-badge-count" id="count-status-aberto">0</span>
+          </div>
+          <div class="filter-item-sidebar" id="status-encerrado" onclick="filtrarStatus('Encerrado')">
+            <span>🔴 Inscrições Encerradas</span>
+            <span class="filter-badge-count" id="count-status-encerrado">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Semestre de Ingresso -->
+      <div class="sidebar-box">
+        <div class="sidebar-head head-primary">📅 Semestre de Ingresso</div>
+        <div class="filter-group-sidebar" id="sidebar-semestres-list">
+          <div class="filter-item-sidebar active-filter" id="semestre-all" onclick="filtrarSemestre('Todos')">
+            <span>🌎 Todos os semestres</span>
+            <span class="filter-badge-count" id="count-semestre-all">0</span>
+          </div>
+          <!-- Populado dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Filtro Rápido por Instituição -->
+      <div class="sidebar-box">
+        <div class="sidebar-head head-accent">🏫 Filtrar por Instituição</div>
+        <div class="filter-group-sidebar" id="sidebar-unis-list">
+          <div class="loading" style="padding: 1rem;"><div class="spinner" style="width: 25px; height: 25px;"></div></div>
+        </div>
+      </div>
+
+      <!-- Tipo de Mestrado/Doutorado -->
+      <div class="sidebar-box">
+        <div class="sidebar-head head-primary">🧬 Tipo de Programa</div>
+        <div class="interests-list-sidebar">
+          <label class="interest-item">
+            <input type="checkbox" id="check-acad" checked onchange="executarFiltros()">
+            <span>Acadêmico</span>
+          </label>
+          <label class="interest-item">
+            <input type="checkbox" id="check-prof" checked onchange="executarFiltros()">
+            <span>Profissional</span>
+          </label>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <strong>Bahia<span>Pós</span></strong>
+      <p class="footer-desc">
+        O portal definitivo de acompanhamento de processos seletivos e admissões para mestrados, doutorados e alunos especiais no estado da Bahia. Banco histórico indexado para pesquisa, auxiliando candidatos de todas as áreas do conhecimento.
+      </p>
+      <p class="footer-copy">
+        &copy; 2026 BahiaPós - Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODAL PREMIUM DO EDITAL DETALHADO -->
+  <div id="editalModal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="editalModalTitle" onkeydown="handleModalKeyDown(event)" tabindex="-1">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="fecharModalEdital()" aria-label="Fechar edital">×</button>
+      <div class="modal-hero">
+        <div class="modal-avatar-container" id="modalEditalIcone">🏛️</div>
+        <div class="modal-header-info">
+          <span class="modal-badge-time" id="modalEditalBadgeStatus">Aberto</span>
+          <h2 id="editalModalTitle" class="modal-title"></h2>
+          <p class="modal-subtitle" id="modalEditalSubtitulo"></p>
+        </div>
+      </div>
+      <div class="modal-body-content">
+        <div class="info-grid-modal">
+          <div class="info-item-modal"><strong>Instituição:</strong> <span id="modalEditalInst"></span></div>
+          <div class="info-item-modal"><strong>Nível / Tipo:</strong> <span id="modalEditalNivel"></span></div>
+          <div class="info-item-modal"><strong>Área de Foco:</strong> <span id="modalEditalArea"></span></div>
+          <div class="info-item-modal"><strong>Vagas Oferecidas:</strong> <span id="modalEditalVagas"></span></div>
+          <div class="info-item-modal"><strong>Início das Inscrições:</strong> <span id="modalEditalInscInicio"></span></div>
+          <div class="info-item-modal"><strong>Encerramento:</strong> <span id="modalEditalInscFim"></span></div>
+        </div>
+        
+        <div class="desc-box-modal">
+          <h3>Resumo da Chamada e Requisitos</h3>
+          <p id="modalEditalDesc"></p>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn-action btn-outline-style" onclick="fecharModalEdital()">Fechar</button>
+          <a id="modalEditalLinkLink" class="btn-action btn-primary-style" href="" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 38px; padding: 0 16px;">Ir para página de inscrições ➔</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRONTEND JAVASCRIPT -->
+  <script>
+    // Configurações
+    const INTERVALO_MS = 2 * 60 * 60 * 1000; // 2 horas
+
+    // Eixos Temáticos de Interesse (Todas as áreas de conhecimento)
+    const AREAS_INTERESSE = [
+      "Educação", 
+      "Tecnologia e Informática", 
+      "Gestão e Negócios", 
+      "Saúde e Biológicas", 
+      "Humanas e Sociais",
+      "Comunicação e Artes",
+      "Engenharias e Exatas",
+      "Agrárias e Ambientais"
+    ];
+
+    // Estado Geral da Aplicação
+    let editaisRecentes = null;
+    let modoHistorico = false;
+    let dadosHistorico = { mestrado: [], doutorado: [], 'aluno-especial': [] };
+    let dadosFechadosAno = []; // Array consolidado de editais fechados para o ano selecionado
+    const instituicoes = [
+      {
+        "sigla": "UFBA",
+        "nome": "Universidade Federal da Bahia",
+        "tipo": "Pública Federal",
+        "icone": "🏛️",
+        "sede": "Salvador",
+        "site": "https://www.ufba.br",
+        "portalservico": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf",
+        "descricao": "Principal universidade pública do estado da Bahia, com ampla gama de programas de mestrado e doutorado acadêmicos e profissionais nos principais eixos de pesquisa."
+      },
+      {
+        "sigla": "UFRB",
+        "nome": "Universidade Federal do Recôncavo da Bahia",
+        "tipo": "Pública Federal",
+        "icone": "🌾",
+        "sede": "Cruz das Almas",
+        "site": "https://ufrb.edu.br",
+        "portalservico": "https://ufrb.edu.br/portal/prosel",
+        "descricao": "Instituição federal de destaque no Recôncavo Baiano, com forte atuação em Educação do Campo, Ciências Agrárias, EPT e Formação de Professores."
+      },
+      {
+        "sigla": "UNEB",
+        "nome": "Universidade do Estado da Bahia",
+        "tipo": "Pública Estadual",
+        "icone": "🌴",
+        "sede": "Salvador",
+        "site": "https://www.uneb.br",
+        "portalservico": "https://portal.uneb.br/pos-graduacao/",
+        "descricao": "Maior universidade pública estadual multicampi da Bahia, com forte presença regional e programas de pós-graduação focados em Educação, Educação de Jovens e Adultos (EJA) e EPT."
+      },
+      {
+        "sigla": "UEFS",
+        "nome": "Universidade Estadual de Feira de Santana",
+        "tipo": "Pública Estadual",
+        "icone": "🌵",
+        "sede": "Feira de Santana",
+        "site": "http://www.uefs.br",
+        "portalservico": "http://www.uefs.br/modules/conteudo/conteudo.php?conteudo=16",
+        "descricao": "Instituição estadual de referência no portal do sertão baiano, oferecendo programas de alta qualidade em Educação e Tecnologia da Informação."
+      },
+      {
+        "sigla": "UESC",
+        "nome": "Universidade Estadual de Santa Cruz",
+        "tipo": "Pública Estadual",
+        "icone": "🍫",
+        "sede": "Ilhéus",
+        "site": "http://www.uesc.br",
+        "portalservico": "http://www.uesc.br/cursos/pos_graduacao/",
+        "descricao": "Localizada na região cacaueira, destaca-se em pesquisas tecnológicas, biotecnologia, educação e desenvolvimento regional."
+      },
+      {
+        "sigla": "UFSB",
+        "nome": "Universidade Federal do Sul da Bahia",
+        "tipo": "Pública Federal",
+        "icone": "🌊",
+        "sede": "Itabuna",
+        "site": "https://ufsb.edu.br",
+        "portalservico": "https://ufsb.edu.br/prosis/processos-seletivos/pos-graduacao",
+        "descricao": "Universidade federal multicampi focada no Sul da Bahia, estruturada em colégios universitários com eixos interdisciplinares e pós-graduações inovadoras."
+      },
+      {
+        "sigla": "IFBA",
+        "nome": "Instituto Federal de Educação, Ciência e Tecnologia da Bahia",
+        "tipo": "Pública Federal",
+        "icone": "⚙️",
+        "sede": "Salvador",
+        "site": "https://portal.ifba.edu.br",
+        "portalservico": "https://portal.ifba.edu.br/pos-graduacao",
+        "descricao": "Instituição federal focada no ensino tecnológico e profissional, com excelentes cursos de Mestrado Profissional em EPT, Informática Educativa e TI."
+      },
+      {
+        "sigla": "IF Baiano",
+        "nome": "Instituto Federal Baiano",
+        "tipo": "Pública Federal",
+        "icone": "🚜",
+        "sede": "Salvador (Reitoria)",
+        "site": "https://ifbaiano.edu.br",
+        "portalservico": "https://ifbaiano.edu.br/portal/ingresso-de-estudantes/pos-graduacao/",
+        "descricao": "Rede federal voltada para o desenvolvimento do interior do estado da Bahia, oferecendo pós-graduações e especializações em Educação, EPT e Ciências Agrárias."
+      },
+      {
+        "sigla": "UNIFACS",
+        "nome": "Universidade Salvador",
+        "tipo": "Particular",
+        "icone": "🎓",
+        "sede": "Salvador",
+        "site": "https://www.unifacs.br",
+        "portalservico": "https://www.unifacs.br/pos-graduacao/",
+        "descricao": "Uma das maiores instituições de ensino superior particular da Bahia, com mestrados e doutorados consolidados em Desenvolvimento Regional, TI e Administração."
+      },
+      {
+        "sigla": "UCSal",
+        "nome": "Universidade Católica do Salvador",
+        "tipo": "Particular",
+        "icone": "⛪",
+        "sede": "Salvador",
+        "site": "http://www.ucsal.br",
+        "portalservico": "http://www.ucsal.br/pos-graduacao",
+        "descricao": "Tradicional universidade particular confessional, com mestrados e doutorados em Políticas Sociais, Educação e Cidadania, e Planejamento Territorial."
+      },
+      {
+        "sigla": "UNIFTC",
+        "nome": "Centro Universitário UniFTC",
+        "tipo": "Particular",
+        "icone": "🔬",
+        "sede": "Salvador",
+        "site": "https://www.uniftc.edu.br",
+        "portalservico": "https://www.uniftc.edu.br/pos-graduacao",
+        "descricao": "Rede privada com foco em metodologias ativas de aprendizagem e pós-graduações profissionalizantes nas áreas de Saúde, Tecnologia e Educação."
+      },
+      {
+        "sigla": "UFOB",
+        "nome": "Universidade Federal do Oeste da Bahia",
+        "tipo": "Pública Federal",
+        "icone": "⛰️",
+        "sede": "Barreiras",
+        "site": "https://ufob.edu.br",
+        "portalservico": "https://ufob.edu.br/pos-graduacao",
+        "descricao": "Sediada em Barreiras, atende a região oeste da Bahia com programas voltados ao desenvolvimento regional, ciências ambientais, saúde e educação."
+      },
+      {
+        "sigla": "UESB",
+        "nome": "Universidade Estadual do Sudoeste da Bahia",
+        "tipo": "Pública Estadual",
+        "icone": "☕",
+        "sede": "Vitória da Conquista",
+        "site": "https://www.uesb.br",
+        "portalservico": "https://www.uesb.br/pos-graduacao",
+        "descricao": "Universidade estadual de destaque no sudoeste baiano (Conquista, Jequié, Itapetinga), com programas consolidados em Saúde, Educação, Agrárias e Humanas."
+      },
+      {
+        "sigla": "UNIVASF",
+        "nome": "Universidade Federal do Vale do São Francisco",
+        "tipo": "Pública Federal",
+        "icone": "🌵",
+        "sede": "Juazeiro",
+        "site": "https://www.univasf.edu.br",
+        "portalservico": "https://portais.univasf.edu.br/pos-graduacao",
+        "descricao": "Instituição federal multicampi no Vale do São Francisco com forte atuação em Juazeiro e Senhor do Bonfim em pós-graduações tecnológicas, de irrigação e saúde."
+      },
+      {
+        "sigla": "Unijorge",
+        "nome": "Centro Universitário Jorge Amado",
+        "tipo": "Particular",
+        "icone": "✍️",
+        "sede": "Salvador",
+        "site": "https://www.unijorge.edu.br",
+        "portalservico": "https://www.unijorge.edu.br/pos-graduacao/",
+        "descricao": "Instituição privada reconhecida em Salvador, oferecendo mestrados e pós-graduações lato sensu em Gestão, TI, Comunicação, Saúde e Educação."
+      }
+    ];
+    let metricas = null;
+
+    // Filtros Ativos
+    let filtroStatusAtivo = 'Todos';
+    let filtroUniAtivo = 'Todas';
+    let filtroSemestreAtivo = 'Todos';
+    let filtroAreaAtiva = {
+      mestrado: 'Todas',
+      doutorado: 'Todas',
+      'aluno-especial': 'Todas',
+      fechados: 'Todas'
+    };
+    let activeTab = 'mestrado';
+
+    // Inicializa ano
+    const agora = new Date();
+    const anoAtual = agora.getFullYear();
+
+    // ══ REQUISIÇÃO DE DADOS ══
+    async function fetchJSON(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Erro de rede ao carregar JSON");
+      return await res.json();
+    }
+
+    // Carrega dados iniciais da aplicação
+    async function inicializarDados() {
+      try {
+        // Inicializa o seletor de anos do histórico dinamicamente
+        popularFiltroAnos();
+        document.getElementById('historyYear').value = String(anoAtual);
+
+        // 1. Inicializa universidades monitoradas
+        renderizarUniversidades();
+        renderizarSidebarUnis();
+
+        // 2. Carrega editais recentes de ultimos-editais.json
+        const data = await fetchJSON('ultimos-editais.json');
+        editaisRecentes = categorizarEditais(data.editais);
+
+        // Define a hora da última atualização
+        const dataUlt = new Date(data.ultimaAtualizacao);
+        document.getElementById('ultimaHora').textContent = dataUlt.toLocaleTimeString('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }) + " (" + dataUlt.toLocaleDateString('pt-BR') + ")";
+
+        // Popula os semestres na sidebar com base nos editais reais carregados
+        renderizarSidebarSemestres(data.editais);
+
+        // 3. Carrega métricas do histórico
+        await carregarMetricas();
+
+        // 4. Renderiza filtros de área rápidos (chips)
+        montarFiltrosDeArea();
+
+        // 5. Exibe os dados na tela
+        executarFiltros();
+
+      } catch (err) {
+        console.error("Erro ao carregar dados do portal:", err);
+        mostrarErroCarregamento();
+      }
+    }
+
+    // Separa a lista linear de editais nas 3 abas principais
+    function categorizarEditais(lista) {
+      const mest = [];
+      const dout = [];
+      const esp = [];
+
+      lista.forEach(e => {
+        if (e.nivel.includes("Mestrado")) mest.push(e);
+        else if (e.nivel.includes("Doutorado")) dout.push(e);
+        else if (e.nivel === "Aluno Especial") esp.push(e);
+      });
+
+      return {
+        mestrado: mest,
+        doutorado: dout,
+        'aluno-especial': esp
+      };
+    }
+
+    // Carrega dados estatísticos de metricas.json
+    async function carregarMetricas() {
+      try {
+        metricas = await fetchJSON('metricas.json');
+        
+        // 1. Níveis
+        const niveis = metricas.totaisNiveis;
+        const maxNiv = Math.max(...Object.values(niveis)) || 1;
+        document.getElementById('stats-niveis-container').innerHTML = Object.entries(niveis).map(([niv, total]) => `
+          <div class="metric-row">
+            <span>${niv}:</span>
+            <div class="bar-wrap"><div class="bar-fill ${niv.includes('Mestrado') ? 'bg-mestrado' : niv.includes('Doutorado') ? 'bg-doutorado' : 'bg-especial'}" style="width: ${(total/maxNiv)*100}%"></div></div>
+            <span class="metric-val">${total}</span>
+          </div>
+        `).join('');
+
+        // 2. Áreas
+        const areas = metricas.totaisAreas;
+        const maxAre = Math.max(...Object.values(areas)) || 1;
+        document.getElementById('stats-areas-container').innerHTML = Object.entries(areas).map(([area, total]) => `
+          <div class="metric-row">
+            <span>${area}:</span>
+            <div class="bar-wrap"><div class="bar-fill bg-primary-style" style="width: ${(total/maxAre)*100}%"></div></div>
+            <span class="metric-val">${total}</span>
+          </div>
+        `).join('');
+
+        // 3. Universidades
+        const unis = metricas.porInstituicao;
+        const maxUni = Math.max(...unis.map(u => u.total)) || 1;
+        document.getElementById('stats-unis-container').innerHTML = unis.length > 0
+          ? unis.map(u => `
+              <div class="metric-row">
+                <span>${u.nome}:</span>
+                <div class="bar-wrap"><div class="bar-fill bg-accent-style" style="width: ${(u.total/maxUni)*100}%"></div></div>
+                <span class="metric-val">${u.total}</span>
+              </div>
+            `).join('')
+          : '<div style="font-size:0.8rem; text-align:center; padding:1rem;">Nenhum edital registrado.</div>';
+
+        // 4. Status
+        const st = metricas.status;
+        const maxSt = Math.max(...Object.values(st)) || 1;
+        document.getElementById('stats-status-container').innerHTML = Object.entries(st).map(([stat, total]) => `
+          <div class="metric-row">
+            <span>Inscrições ${stat}s:</span>
+            <div class="bar-wrap"><div class="bar-fill bg-primary-style" style="width: ${(total/maxSt)*100}%"></div></div>
+            <span class="metric-val">${total}</span>
+          </div>
+        `).join('');
+
+      } catch (err) {
+        console.error("Erro ao carregar estatísticas:", err);
+      }
+    }
+
+    // Carrega dados de editais anteriores consolidados por ano
+    async function carregarHistoricoAnual() {
+      const ano = document.getElementById('historyYear').value;
+      if (!ano) return;
+
+      const container = document.getElementById('cards-fechados');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">Carregando histórico anual...</div></div>';
+
+      try {
+        const promessas = [
+          fetchJSON(`DATA/${ano}/mestrado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/doutorado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => [])
+        ];
+
+        const [mest, dout, esp] = await Promise.all(promessas);
+        
+        const agora = new Date();
+        // Combina e filtra apenas os que já fecharam
+        dadosFechadosAno = [...mest, ...dout, ...esp]
+          .filter(e => new Date(e.inscricoesFim) < agora)
+          .map(e => ({
+            ...e,
+            status: 'Encerrado'
+          }));
+
+        if (dadosFechadosAno.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">📅</div>
+              <div class="empty-title">Nenhum Registro Encontrado</div>
+              <div class="empty-desc">Não encontramos processos seletivos arquivados para o ano de ${ano}.</div>
+            </div>`;
+          return;
+        }
+
+        executarFiltrosFechados();
+
+      } catch (err) {
+        console.error("Erro ao carregar histórico anual:", err);
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">⚠</div>
+            <div class="empty-title">Erro de Carregamento</div>
+            <div class="empty-desc">Não foi possível carregar os dados de histórico para o ano de ${ano}.</div>
+          </div>`;
+      }
+    }
+
+    // Restaura o feed de últimas novidades recentes (mantido para compatibilidade se necessário)
+    function restaurarRecentes() {
+      executarFiltros();
+    }
+
+    // ══ FILTRAGEM E RENDERIZAÇÃO DE CARDS ══
+    function executarFiltros() {
+      if (activeTab === 'fechados') {
+        executarFiltrosFechados();
+        return;
+      }
+
+      const db = editaisRecentes;
+      if (!db) return;
+
+      // Executa a filtragem para a aba ativa (apenas abertos/ativos na página inicial)
+      const listaOriginal = db[activeTab] || [];
+      const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+      
+      const checkAcad = document.getElementById('check-acad').checked;
+      const checkProf = document.getElementById('check-prof').checked;
+      const agora = new Date();
+
+      let filtrados = listaOriginal.filter(e => {
+        // A página inicial deverá mostrar todos os abertos (ou seja, prazo final >= agora)
+        const matchesStatus = new Date(e.inscricoesFim) >= agora;
+
+        // 1. Filtro de Busca por Texto
+        const matchesSearch = !searchVal || 
+          e.titulo.toLowerCase().includes(searchVal) || 
+          e.resumo.toLowerCase().includes(searchVal) || 
+          e.instituicao.toLowerCase().includes(searchVal) || 
+          e.area.toLowerCase().includes(searchVal);
+
+        // 2. Filtro de Instituição
+        const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
+
+        // 3. Filtro por Eixo Temático (Chips)
+        const activeAreaTab = filtroAreaAtiva[activeTab];
+        const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
+
+        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
+        let matchesTipo = true;
+        const nivel = e.nivel.toLowerCase();
+        if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
+        if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
+        if (nivel === "aluno especial") matchesTipo = true;
+
+        // 5. Filtro por Semestre de Ingresso
+        const sem = detectarSemestre(e);
+        const matchesSemestre = filtroSemestreAtivo === 'Todos' || sem === filtroSemestreAtivo;
+
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo && matchesSemestre;
+      });
+
+      renderizarCardsList(filtrados);
+      atualizarContadoresSidebar();
+    }
+
+    function executarFiltrosFechados() {
+      const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+      
+      const checkAcad = document.getElementById('check-acad').checked;
+      const checkProf = document.getElementById('check-prof').checked;
+      const agora = new Date();
+
+      let filtrados = dadosFechadosAno.filter(e => {
+        // Filtra apenas os que já fecharam
+        const matchesStatus = new Date(e.inscricoesFim) < agora;
+
+        // 1. Filtro de Busca por Texto
+        const matchesSearch = !searchVal || 
+          e.titulo.toLowerCase().includes(searchVal) || 
+          e.resumo.toLowerCase().includes(searchVal) || 
+          e.instituicao.toLowerCase().includes(searchVal) || 
+          e.area.toLowerCase().includes(searchVal);
+
+        // 2. Filtro de Instituição
+        const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
+
+        // 3. Filtro por Eixo Temático (Chips)
+        const activeAreaTab = filtroAreaAtiva['fechados'];
+        const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
+
+        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
+        let matchesTipo = true;
+        const nivel = e.nivel.toLowerCase();
+        if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
+        if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
+        if (nivel === "aluno especial") matchesTipo = true;
+
+        // 5. Filtro por Semestre de Ingresso
+        const sem = detectarSemestre(e);
+        const matchesSemestre = filtroSemestreAtivo === 'Todos' || sem === filtroSemestreAtivo;
+
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo && matchesSemestre;
+      });
+
+      renderizarCardsList(filtrados);
+    }
+
+    // Popula o filtro de anos com opções dinâmicas a partir do ano atual descendo até 2026
+    function popularFiltroAnos() {
+      const select = document.getElementById('historyYear');
+      if (!select) return;
+      
+      const anoAtual = new Date().getFullYear();
+      const anoInicial = 2026;
+      
+      select.innerHTML = '';
+      for (let ano = anoAtual; ano >= anoInicial; ano--) {
+        const opt = document.createElement('option');
+        opt.value = String(ano);
+        opt.textContent = String(ano);
+        select.appendChild(opt);
+      }
+    }
+
+    // Renderiza a lista de semestres de ingresso disponíveis no painel de filtros lateral
+    function renderizarSidebarSemestres(editais) {
+      const container = document.getElementById('sidebar-semestres-list');
+      if (!container) return;
+
+      const semestresSet = new Set();
+      editais.forEach(e => {
+        semestresSet.add(detectarSemestre(e));
+      });
+
+      const semestres = Array.from(semestresSet).sort();
+
+      let html = `
+        <div class="filter-item-sidebar active-filter" id="semestre-all" onclick="filtrarSemestre('Todos')">
+          <span>🌎 Todos os semestres</span>
+          <span class="filter-badge-count" id="count-semestre-all">0</span>
+        </div>
+      `;
+
+      semestres.forEach(sem => {
+        const slug = sem.replace('.', '-');
+        const emoji = sem.endsWith('.2') ? '🔵' : '🟣';
+        html += `
+          <div class="filter-item-sidebar" id="semestre-${slug}" onclick="filtrarSemestre('${sem}')">
+            <span>${emoji} Semestre ${sem}</span>
+            <span class="filter-badge-count" id="count-semestre-${slug}">0</span>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Detecta o semestre de ingresso com base no título, resumo e datas (suporta 2026, 2027, 2028, 2029...)
+    function detectarSemestre(edital) {
+      const texto = (edital.titulo + " " + edital.resumo).toLowerCase();
+      
+      // Tenta achar padrões como YYYY.S, YYYY/S, YYYY-S
+      const matchPadrao = texto.match(/\b(20\d{2})[\.\-\/]([12])\b/);
+      if (matchPadrao) {
+        return `${matchPadrao[1]}.${matchPadrao[2]}`;
+      }
+
+      // Tenta achar padrões como "1º semestre de YYYY" ou "2º semestre de YYYY"
+      const matchPorExtenso = texto.match(/([12])º\s+semestre\s+de\s+(20\d{2})/);
+      if (matchPorExtenso) {
+        return `${matchPorExtenso[2]}.${matchPorExtenso[1]}`;
+      }
+      
+      // Inferência por data limite de inscrição
+      if (edital.inscricoesFim) {
+        try {
+          const dataFim = new Date(edital.inscricoesFim);
+          const ano = dataFim.getFullYear();
+          if (!isNaN(ano)) {
+            const mes = dataFim.getMonth();
+            if (mes >= 4) { // Maio em diante
+              return `${ano}.2`;
+            } else {
+              return `${ano}.1`;
+            }
+          }
+        } catch (err) {}
+      }
+      
+      const anoAtual = new Date().getFullYear();
+      return `${anoAtual}.2`;
+    }
+
+    function renderizarCardsList(lista) {
+      const container = document.getElementById(`cards-${activeTab === 'aluno-especial' ? 'especial' : activeTab}`);
+      if (lista.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">📋</div>
+            <div class="empty-title">Nenhum Edital Encontrado</div>
+            <div class="empty-desc">Não há processos seletivos cadastrados com os critérios de filtragem selecionados.</div>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = lista.map((e, index) => {
+        let classNivel = 'badge-esp';
+        if (e.nivel === 'Mestrado Acadêmico') classNivel = 'badge-mest-acad';
+        else if (e.nivel === 'Mestrado Profissional') classNivel = 'badge-mest-prof';
+        else if (e.nivel === 'Doutorado Acadêmico') classNivel = 'badge-dout-acad';
+        else if (e.nivel === 'Doutorado Profissional') classNivel = 'badge-dout-prof';
+
+        let classStatus = 'status-encerrado';
+        if (e.status === 'Aberto') classStatus = 'status-aberto';
+        else if (e.status === 'Em andamento') classStatus = 'status-andamento';
+
+        const dataInicioForm = new Date(e.inscricoesInicio).toLocaleDateString('pt-BR');
+        const dataFimForm = new Date(e.inscricoesFim).toLocaleDateString('pt-BR');
+        const dataPubForm = new Date(e.dataPublicacao).toLocaleDateString('pt-BR');
+
+        const metaUni = instituicoes ? instituicoes.find(u => u.sigla === e.instituicao) : null;
+        const emojiUni = metaUni ? metaUni.icone : '🏛️';
+
+        const textoStatus = e.status === 'Aberto' ? 'Inscrições Abertas' : e.status === 'Em andamento' ? 'Inscrições em Andamento' : 'Inscrições Encerradas';
+
+        const sem = detectarSemestre(e);
+        let classSem = sem.endsWith('.2') ? 'badge-sem-2026-2' : 'badge-sem-2027-1';
+
+        return `
+          <div class="edital-card">
+            <div class="edital-card-header">
+              <div class="edital-tag-row">
+                <span class="edital-badge-nivel ${classNivel}">${e.nivel}</span>
+                <span class="edital-badge-semestre ${classSem}">Ingresso ${sem}</span>
+                <span class="edital-badge-area">${e.area}</span>
+              </div>
+              <span class="edital-badge-status ${classStatus}">${textoStatus}</span>
+            </div>
+            
+            <h3 class="edital-title">${e.titulo}</h3>
+            <p class="edital-desc">${e.resumo}</p>
+            
+            <div class="edital-meta-bottom">
+              <div class="edital-inst-wrap">
+                <span class="edital-inst-icon" aria-hidden="true">${emojiUni}</span>
+                <span>${e.instituicao}</span>
+              </div>
+              <div class="edital-prazo-wrap">
+                📅 Inscrições: ${dataInicioForm} a ${dataFimForm}
+              </div>
+              <button class="edital-btn-detalhes" onclick="abrirModalEdital(${JSON.stringify(e).replace(/"/g, '&quot;')})">Ver Detalhes ➔</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filtrarSemestre(semestre) {
+      filtroSemestreAtivo = semestre;
+      
+      const container = document.getElementById('sidebar-semestres-list');
+      if (container) {
+        const items = container.querySelectorAll('.filter-item-sidebar');
+        items.forEach(i => i.classList.remove('active-filter'));
+      }
+      
+      const slugSem = semestre === 'Todos' ? 'all' : semestre.replace('.', '-');
+      const targetEl = document.getElementById(`semestre-${slugSem}`);
+      if (targetEl) targetEl.classList.add('active-filter');
+      
+      executarFiltros();
+    }
+
+    async function atualizarContadoresSidebar() {
+      const agora = new Date();
+      let abertos = 0;
+      let fechados = 0;
+      
+      const contadoresSemestre = {};
+
+      if (editaisRecentes) {
+        const listaGeralRecentes = [...(editaisRecentes.mestrado || []), ...(editaisRecentes.doutorado || []), ...(editaisRecentes['aluno-especial'] || [])];
+        listaGeralRecentes.forEach(e => {
+          const isOpen = new Date(e.inscricoesFim) >= agora;
+          if (isOpen) {
+            abertos++;
+            const sem = detectarSemestre(e);
+            contadoresSemestre[sem] = (contadoresSemestre[sem] || 0) + 1;
+          }
+        });
+      }
+
+      document.getElementById('count-status-all').textContent = abertos;
+      document.getElementById('count-status-aberto').textContent = abertos;
+      
+      const countSemAll = document.getElementById('count-semestre-all');
+      if (countSemAll) countSemAll.textContent = abertos;
+
+      Object.entries(contadoresSemestre).forEach(([sem, total]) => {
+        const slug = sem.replace('.', '-');
+        const badge = document.getElementById(`count-semestre-${slug}`);
+        if (badge) badge.textContent = total;
+      });
+
+      const semestresContainer = document.getElementById('sidebar-semestres-list');
+      if (semestresContainer) {
+        const badges = semestresContainer.querySelectorAll('.filter-badge-count');
+        badges.forEach(b => {
+          const id = b.id;
+          if (id !== 'count-semestre-all') {
+            const semSlug = id.replace('count-semestre-', '');
+            const semOriginal = semSlug.replace('-', '.');
+            if (!(semOriginal in contadoresSemestre)) {
+              b.textContent = '0';
+            }
+          }
+        });
+      }
+
+      try {
+        const ano = new Date().getFullYear();
+        const promessas = [
+          fetchJSON(`DATA/${ano}/mestrado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/doutorado.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => [])
+        ];
+        const [mest, dout, esp] = await Promise.all(promessas);
+        const todos = [...mest, ...dout, ...esp];
+        todos.forEach(e => {
+          if (new Date(e.inscricoesFim) < agora) fechados++;
+        });
+        document.getElementById('count-status-encerrado').textContent = fechados;
+      } catch (e) {
+        console.warn("Erro ao calcular contador de fechados para sidebar:", e);
+      }
+    }
+
+    // Renderiza a lista de instituições monitoradas na aba
+    function renderizarUniversidades() {
+      const container = document.getElementById('unis-cards-container');
+      if (!instituicoes) return;
+
+      container.innerHTML = instituicoes.map(u => {
+        let classTipo = 'badge-part';
+        if (u.tipo === 'Pública Federal') classTipo = 'badge-pub-fed';
+        else if (u.tipo === 'Pública Estadual') classTipo = 'badge-pub-est';
+
+        return `
+          <div class="uni-card">
+            <div class="uni-card-header">
+              <div class="uni-title-wrap">
+                <span class="uni-escudo" aria-hidden="true">${u.icone}</span>
+                <div>
+                  <div class="uni-name">${u.sigla}</div>
+                  <div class="uni-city">${u.sede} - BA</div>
+                </div>
+              </div>
+              <span class="uni-badge-tipo ${classTipo}">${u.tipo}</span>
+            </div>
+            <p class="uni-desc">${u.descricao}</p>
+            <a href="${u.site}" target="_blank" rel="noopener noreferrer" class="uni-link">Visitar site oficial ➔</a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Monta o seletor da Sidebar para filtro de universidades
+    function renderizarSidebarUnis() {
+      const container = document.getElementById('sidebar-unis-list');
+      if (!instituicoes) return;
+
+      container.innerHTML = `
+        <div class="filter-item-sidebar active-filter" id="filter-uni-all" onclick="filtrarUni('Todas')">
+          <span>🌎 Todas</span>
+        </div>
+      ` + instituicoes.map(u => `
+        <div class="filter-item-sidebar" id="filter-uni-${u.sigla}" onclick="filtrarUni('${u.sigla}')">
+          <span>${u.icone} ${u.sigla}</span>
+        </div>
+      `).join('');
+    }
+
+    // ══ FILTROS E ABAS INTERATIVAS ══
+    function switchTab(tab) {
+      activeTab = tab;
+      
+      // Ajusta botões das abas
+      ['mestrado', 'doutorado', 'especial', 'fechados', 'stats', 'unis'].forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (btn) {
+          btn.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados', 'active-stats', 'active-unis');
+          btn.setAttribute('aria-selected', 'false');
+        }
+        
+        const panel = document.getElementById(`panel-${t === 'especial' ? 'especial' : t}`);
+        if (panel) panel.classList.remove('active');
+      });
+
+      // Ativa aba correspondente
+      const activeBtn = document.getElementById(`tab-${tab === 'aluno-especial' ? 'especial' : tab}`);
+      const cActive = tab === 'mestrado' ? 'active-mestrado' : 
+                      tab === 'doutorado' ? 'active-doutorado' : 
+                      tab === 'aluno-especial' || tab === 'especial' ? 'active-especial' : 
+                      tab === 'fechados' ? 'active-fechados' : 
+                      tab === 'stats' ? 'active-stats' : 'active-unis';
+      
+      if (activeBtn) {
+        activeBtn.classList.add(cActive);
+        activeBtn.setAttribute('aria-selected', 'true');
+      }
+      
+      const activePanel = document.getElementById(`panel-${tab === 'aluno-especial' ? 'especial' : tab}`);
+      if (activePanel) activePanel.classList.add('active');
+
+      if (tab === 'stats') {
+        carregarMetricas();
+      } else if (tab === 'unis') {
+        renderizarUniversidades();
+      } else if (tab === 'fechados') {
+        carregarHistoricoAnual();
+      } else {
+        executarFiltros();
+      }
+    }
+
+    // Cria chips rápidos de filtros de eixos/áreas para cada aba
+    function montarFiltrosDeArea() {
+      ['mestrado', 'doutorado', 'especial', 'fechados'].forEach(tabKey => {
+        const divId = `filtros-areas-${tabKey}`;
+        const container = document.getElementById(divId);
+        if (!container) return;
+
+        const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
+                            tabKey === 'doutorado' ? 'active-doutorado' : 
+                            tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
+        const tabKeyFiltro = tabKey === 'especial' ? 'aluno-especial' : tabKey;
+
+        container.innerHTML = `
+          <button class="chip-btn ${classActive}" id="chip-${tabKeyFiltro}-Todas" onclick="filtrarArea('${tabKeyFiltro}', 'Todas')">🌎 Todas as Áreas</button>
+        ` + AREAS_INTERESSE.map(a => `
+          <button class="chip-btn" id="chip-${tabKeyFiltro}-${a.replace(/ /g, '_')}" onclick="filtrarArea('${tabKeyFiltro}', '${a}')">${a}</button>
+        `).join('');
+      });
+    }
+
+    function filtrarArea(tabKey, area) {
+      filtroAreaAtiva[tabKey] = area;
+      
+      // Reseta classes nos chips daquela aba
+      const container = document.getElementById(`filtros-areas-${tabKey === 'aluno-especial' ? 'especial' : tabKey}`);
+      if (container) {
+        const btns = container.querySelectorAll('.chip-btn');
+        btns.forEach(b => b.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados'));
+      }
+
+      const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
+                          tabKey === 'doutorado' ? 'active-doutorado' : 
+                          tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
+      const areaChaveId = area === 'Todas' ? 'Todas' : area.replace(/ /g, '_');
+      
+      const targetBtn = document.getElementById(`chip-${tabKey}-${areaChaveId}`);
+      if (targetBtn) targetBtn.classList.add(classActive);
+      
+      executarFiltros();
+    }
+
+    function filtrarStatus(status) {
+      if (status === 'Encerrado' && activeTab !== 'fechados') {
+        switchTab('fechados');
+        return;
+      }
+      if (status === 'Aberto' && activeTab === 'fechados') {
+        switchTab('mestrado');
+        return;
+      }
+
+      filtroStatusAtivo = status;
+      
+      // Ajusta sidebar status
+      ['all', 'aberto', 'encerrado'].forEach(s => {
+        const el = document.getElementById(`status-${s}`);
+        if (el) el.classList.remove('active-filter');
+      });
+      const slugStatus = status === 'Todos' ? 'all' : status.toLowerCase();
+      const targetEl = document.getElementById(`status-${slugStatus}`);
+      if (targetEl) targetEl.classList.add('active-filter');
+      
+      executarFiltros();
+    }
+
+    function filtrarUni(sigla) {
+      filtroUniAtivo = sigla;
+      
+      // Reseta sidebar unis
+      const sidebarContainer = document.getElementById('sidebar-unis-list');
+      const items = sidebarContainer.querySelectorAll('.filter-item-sidebar');
+      items.forEach(i => i.classList.remove('active-filter'));
+
+      const idEl = sigla === 'Todas' ? 'filter-uni-all' : `filter-uni-${sigla}`;
+      document.getElementById(idEl).classList.add('active-filter');
+
+      executarFiltros();
+    }
+
+    // ══ MODAL PREMIUM DE EDITAL DETALHADO ══
+    function abrirModalEdital(e) {
+      document.getElementById('editalModalTitle').textContent = e.titulo;
+      document.getElementById('modalEditalSubtitulo').textContent = `${e.nivel} · Eixo ${e.area}`;
+      document.getElementById('modalEditalInst').textContent = e.instituicao;
+      document.getElementById('modalEditalNivel').textContent = e.nivel;
+      document.getElementById('modalEditalArea').textContent = e.area;
+      document.getElementById('modalEditalVagas').textContent = `${e.vagas} vagas registradas`;
+      
+      document.getElementById('modalEditalInscInicio').textContent = new Date(e.inscricoesInicio).toLocaleDateString('pt-BR');
+      document.getElementById('modalEditalInscFim').textContent = new Date(e.inscricoesFim).toLocaleDateString('pt-BR');
+      document.getElementById('modalEditalDesc').textContent = e.resumo;
+
+      // Status
+      const statusEl = document.getElementById('modalEditalBadgeStatus');
+      statusEl.textContent = `Inscrições ${e.status}as`;
+      statusEl.className = 'modal-badge-time';
+      
+      if (e.status === 'Aberto') statusEl.classList.add('status-aberto');
+      else if (e.status === 'Em andamento') statusEl.classList.add('status-andamento');
+      else statusEl.classList.add('status-encerrado');
+
+      // Ícone do Avatar do edital
+      const metaUni = instituicoes ? instituicoes.find(u => u.sigla === e.instituicao) : null;
+      document.getElementById('modalEditalIcone').textContent = metaUni ? metaUni.icone : '🏛️';
+
+      // Link oficial
+      const linkEl = document.getElementById('modalEditalLinkLink');
+      linkEl.href = e.url;
+
+      // Exibe o modal
+      const modal = document.getElementById('editalModal');
+      modal.style.display = 'flex';
+      modal.focus();
+
+      // Bloqueia scroll
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModalEdital() {
+      document.getElementById('editalModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function handleModalKeyDown(event) {
+      if (event.key === 'Escape') {
+        fecharModalEdital();
+      }
+    }
+
+    // ══ ACESSIBILIDADE WCAG CONTROLES ══
+    let tamanhoFontePorcentagem = 100;
+    
+    function toggleAltoContraste() {
+      document.body.classList.toggle('alto-contraste');
+    }
+
+    function alterarFonte(percentVal) {
+      tamanhoFontePorcentagem += percentVal;
+      // Limites de alteração saudáveis
+      if (tamanhoFontePorcentagem < 80) tamanhoFontePorcentagem = 80;
+      if (tamanhoFontePorcentagem > 160) tamanhoFontePorcentagem = 160;
+      
+      document.documentElement.style.fontSize = `${tamanhoFontePorcentagem}%`;
+    }
+
+    function resetarFonte() {
+      tamanhoFontePorcentagem = 100;
+      document.documentElement.style.fontSize = '100%';
+    }
+
+    // Loaders e erros
+    function mostrarLoaders() {
+      const html = '<div class="loading" role="alert" aria-busy="true"><div class="spinner"></div><div class="loading-text">Buscando no histórico...</div></div>';
+      document.getElementById('cards-mestrado').innerHTML = html;
+      document.getElementById('cards-doutorado').innerHTML = html;
+      document.getElementById('cards-especial').innerHTML = html;
+    }
+
+    function mostrarEmptyState(ano, mes) {
+      const html = `
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">📅</div>
+          <div class="empty-title">Nenhum Registro Encontrado</div>
+          <div class="empty-desc">Não encontramos processos seletivos arquivados para o período de ${mes}/${ano}. Selecione outra data.</div>
+        </div>
+      `;
+      document.getElementById('cards-mestrado').innerHTML = html;
+      document.getElementById('cards-doutorado').innerHTML = html;
+      document.getElementById('cards-especial').innerHTML = html;
+    }
+
+    function mostrarErroCarregamento() {
+      const html = `
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">⚠</div>
+          <div class="empty-title">Falha de Comunicação</div>
+          <div class="empty-desc">Erro ao ler os dados consolidados dos editais recentes. Verifique se o compilador concluiu a primeira execução com sucesso.</div>
+        </div>
+      `;
+      document.getElementById('cards-mestrado').innerHTML = html;
+      document.getElementById('cards-doutorado').innerHTML = html;
+      document.getElementById('cards-especial').innerHTML = html;
+    }
+
+    function atualizarTudo() {
+      location.reload();
+    }
+
+    // Inicialização da Página
+    window.addEventListener('DOMContentLoaded', () => {
+      inicializarDados();
+    });
+  </script>
+</body>
+</html>
