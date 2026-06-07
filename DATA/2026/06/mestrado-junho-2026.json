@@ -7,11 +7,26 @@
     "nivel": "Mestrado Acadêmico",
     "area": "Tecnologia e Informática",
     "vagas": 8,
-    "inscricoesInicio": "2026-06-04T21:50:19.567Z",
-    "inscricoesFim": "2026-06-21T21:50:19.567Z",
+    "inscricoesInicio": "2026-06-05T03:42:22.645Z",
+    "inscricoesFim": "2026-06-22T03:42:22.645Z",
     "url": "https://inscricao.ucsal.br/wp-content/uploads/2023/10/Edital-n.o-01-de-16-de-janeiro-de-2026-Selecao-de-Aluno-Especial-dos-Programas-de-Pos-Graduacao-Stricto-Sensu-UCSal-2026.1.pdf",
     "status": "Aberto",
-    "dataPublicacao": "2026-06-02T21:50:19.567Z",
+    "dataPublicacao": "2026-06-03T03:42:22.645Z",
     "fonte": "UCSal Pos"
+  },
+  {
+    "dataColeta": "2026-06-07T03:52:11.784Z",
+    "titulo": "Inscrições abertas para o Mestrado Profissional em Saúde da Família com vagas na Univasf — UNIVASF U",
+    "resumo": "Estão abertas as inscrições para a Turma 6 do curso de Mestrado Profissional em Saúde da Família (ProfSaúde), que oferece 600 vagas ...",
+    "instituicao": "UNIVASF",
+    "nivel": "Mestrado Profissional",
+    "area": "Saúde e Biológicas",
+    "vagas": 16,
+    "inscricoesInicio": "2026-01-07T00:00:00.000Z",
+    "inscricoesFim": "2026-05-04T00:00:00.000Z",
+    "url": "https://portais.univasf.edu.br/noticias/inscricoes-abertas-para-o-mestrado-profissional-em-saude-da-familia-com-vagas-na-univasf",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-06-03T03:42:22.645Z",
+    "fonte": "UNIVASF Pos"
   }
 ]

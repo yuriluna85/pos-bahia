@@ -1,9 +1,9 @@
 {
-  "geradoEm": "2026-06-06T21:59:49.346Z",
-  "totalGeral": 12,
+  "geradoEm": "2026-06-07T03:52:11.791Z",
+  "totalGeral": 13,
   "totaisNiveis": {
     "Mestrado Acadêmico": 1,
-    "Mestrado Profissional": 0,
+    "Mestrado Profissional": 1,
     "Doutorado Acadêmico": 4,
     "Doutorado Profissional": 0,
     "Aluno Especial": 7
@@ -12,7 +12,7 @@
     "Educação": 8,
     "Tecnologia e Informática": 1,
     "Gestão e Negócios": 0,
-    "Saúde e Biológicas": 2,
+    "Saúde e Biológicas": 3,
     "Humanas e Sociais": 0,
     "Comunicação e Artes": 1,
     "Engenharias e Exatas": 0,
@@ -20,7 +20,7 @@
   },
   "status": {
     "Aberto": 10,
-    "Encerrado": 2,
+    "Encerrado": 3,
     "Em andamento": 0
   },
   "porInstituicao": [
@@ -33,23 +33,23 @@
       "total": 2
     },
     {
-      "nome": "UCSal",
+      "nome": "UNIVASF",
       "total": 2
     },
     {
-      "nome": "UNIVASF",
-      "total": 1
+      "nome": "UCSal",
+      "total": 2
     },
     {
       "nome": "UESB",
       "total": 1
     },
     {
-      "nome": "UFRB",
+      "nome": "UNIFACS",
       "total": 1
     },
     {
-      "nome": "UNIFACS",
+      "nome": "UFRB",
       "total": 1
     }
   ]
