@@ -1,0 +1,37 @@
+name: Atualizar Editais de Pos-Graduacao Bahia
+
+on:
+  schedule:
+    # Agenda a execucao diaria a meia-noite (00:00 UTC)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Permite execucao manual pelo botao do GitHub Actions
+
+permissions:
+  contents: write # Permite que o bot comite as atualizacoes no repositorio
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do Repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Executar Compilador de Editais
+      env:
+        SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+        SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+      run: python compilador.py
+
+    - name: Comitar e Enviar Atualizacoes para o GitHub
+      run: |
+        git config --global user.name "GitHub Action Bot"
+        git config --global user.email "actions@github.com"
+        git add -A
+        git diff-index --quiet HEAD || git commit -m "chore: atualizacao periodica de editais e metricas [skip ci]"
+        git push origin main
