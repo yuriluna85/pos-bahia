@@ -1361,7 +1361,6 @@
     <div class="tabs-inner">
       <button class="tab-item active-mestrado" id="tab-mestrado" onclick="switchTab('mestrado')" aria-controls="panel-mestrado" aria-selected="true" role="tab">🎓 Mestrado</button>
       <button class="tab-item" id="tab-doutorado" onclick="switchTab('doutorado')" aria-controls="panel-doutorado" aria-selected="false" role="tab">🧬 Doutorado</button>
-      <button class="tab-item" id="tab-especial" onclick="switchTab('aluno-especial')" aria-controls="panel-especial" aria-selected="false" role="tab">🌟 Aluno Especial</button>
       <button class="tab-item" id="tab-fechados" onclick="switchTab('fechados')" aria-controls="panel-fechados" aria-selected="false" role="tab">🔒 Editais Fechados</button>
       <button class="tab-item" id="tab-stats" onclick="switchTab('stats')" aria-controls="panel-stats" aria-selected="false" role="tab">📊 Estatísticas</button>
       <button class="tab-item" id="tab-unis" onclick="switchTab('unis')" aria-controls="panel-unis" aria-selected="false" role="tab">🏫 Instituições Monitoradas</button>
@@ -1397,15 +1396,6 @@
         <div class="chips-container" id="filtros-areas-doutorado" aria-label="Filtro rápido de eixos no doutorado"></div>
         <h2 class="section-title title-doutorado">Editais de Doutorado na Bahia</h2>
         <div class="edital-grid" id="cards-doutorado">
-          <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
-        </div>
-      </section>
-
-      <!-- ABA ALUNO ESPECIAL -->
-      <section class="tab-panel" id="panel-especial" role="tabpanel" aria-labelledby="tab-especial">
-        <div class="chips-container" id="filtros-areas-especial" aria-label="Filtro rápido de eixos de aluno especial"></div>
-        <h2 class="section-title title-especial">Admissões de Aluno Especial na Bahia</h2>
-        <div class="edital-grid" id="cards-especial">
           <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
         </div>
       </section>
@@ -1520,17 +1510,17 @@
         </div>
       </div>
 
-      <!-- Tipo de Mestrado/Doutorado -->
+      <!-- Modalidade de Ingresso -->
       <div class="sidebar-box">
-        <div class="sidebar-head head-primary">🧬 Tipo de Programa</div>
+        <div class="sidebar-head head-primary">🧬 Modalidade de Ingresso</div>
         <div class="interests-list-sidebar">
           <label class="interest-item">
-            <input type="checkbox" id="check-acad" checked onchange="executarFiltros()">
-            <span>Acadêmico</span>
+            <input type="checkbox" id="check-regular" checked onchange="executarFiltros()">
+            <span>🎓 Aluno Regular (Curso Completo)</span>
           </label>
           <label class="interest-item">
-            <input type="checkbox" id="check-prof" checked onchange="executarFiltros()">
-            <span>Profissional</span>
+            <input type="checkbox" id="check-especial" checked onchange="executarFiltros()">
+            <span>🌟 Aluno Especial (Disciplina Isolada)</span>
           </label>
         </div>
       </div>
@@ -1606,7 +1596,7 @@
     // Estado Geral da Aplicação
     let editaisRecentes = null;
     let modoHistorico = false;
-    let dadosHistorico = { mestrado: [], doutorado: [], 'aluno-especial': [] };
+    let dadosHistorico = { mestrado: [], doutorado: [] };
     let dadosFechadosAno = []; // Array consolidado de editais fechados para o ano selecionado
     const instituicoes = [
       {
@@ -1769,7 +1759,6 @@
     let filtroAreaAtiva = {
       mestrado: 'Todas',
       doutorado: 'Todas',
-      'aluno-especial': 'Todas',
       fechados: 'Todas'
     };
     let activeTab = 'mestrado';
@@ -1834,27 +1823,26 @@
       }
     }
 
-    // Separa a lista linear de editais nas 3 abas principais
+    // Separa a lista linear de editais nas abas principais (Mestrado/Doutorado)
     function categorizarEditais(lista) {
       const mest = [];
       const dout = [];
-      const esp = [];
 
       lista.forEach(e => {
         const nivLower = e.nivel.toLowerCase();
-        if (nivLower.includes("especial") || nivLower.includes("isolada")) {
-          esp.push(e);
-        } else if (e.nivel.includes("Mestrado")) {
-          mest.push(e);
-        } else if (e.nivel.includes("Doutorado")) {
+        const titLower = e.titulo.toLowerCase();
+        
+        if (nivLower.includes("doutorado") || titLower.includes("doutorado")) {
           dout.push(e);
+        } else {
+          // Padrão é Mestrado se não for explicitamente Doutorado
+          mest.push(e);
         }
       });
 
       return {
         mestrado: mest,
-        doutorado: dout,
-        'aluno-especial': esp
+        doutorado: dout
       };
     }
 
@@ -1958,12 +1946,9 @@
         
         const agora = new Date();
         // Combina e filtra apenas os que já fecharam
+        // O Aluno Especial será distribuído entre as abas conforme a lógica do categorizarEditais
         dadosFechadosAno = [...mest, ...dout, ...esp]
-          .filter(e => new Date(e.inscricoesFim) < agora)
-          .map(e => ({
-            ...e,
-            status: 'Encerrado'
-          }));
+          .filter(e => new Date(e.inscricoesFim) < agora);
 
         // Armazena no cache para uso futuro
         cacheHistoricoAnual[ano] = dadosFechadosAno;
@@ -2006,44 +1991,40 @@
       const db = editaisRecentes;
       if (!db) return;
 
-      // Executa a filtragem para a aba ativa (apenas abertos/ativos na página inicial)
       const listaOriginal = db[activeTab] || [];
       const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
-      
-      const checkAcad = document.getElementById('check-acad').checked;
-      const checkProf = document.getElementById('check-prof').checked;
+
+      const checkRegular = document.getElementById('check-regular').checked;
+      const checkEspecial = document.getElementById('check-especial').checked;
       const agora = new Date();
 
       let filtrados = listaOriginal.filter(e => {
-        // A página inicial deverá mostrar todos os abertos (ou seja, prazo final >= agora)
         const matchesStatus = new Date(e.inscricoesFim) >= agora;
 
-        // 1. Filtro de Busca por Texto
-        const matchesSearch = !searchVal || 
-          e.titulo.toLowerCase().includes(searchVal) || 
-          e.resumo.toLowerCase().includes(searchVal) || 
-          e.instituicao.toLowerCase().includes(searchVal) || 
+        const matchesSearch = !searchVal ||
+          e.titulo.toLowerCase().includes(searchVal) ||
+          e.resumo.toLowerCase().includes(searchVal) ||
+          e.instituicao.toLowerCase().includes(searchVal) ||
           e.area.toLowerCase().includes(searchVal);
 
-        // 2. Filtro de Instituição
         const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
 
-        // 3. Filtro por Eixo Temático (Chips)
         const activeAreaTab = filtroAreaAtiva[activeTab];
         const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
 
-        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
-        let matchesTipo = true;
+        // Modalidade: Aluno Regular vs Aluno Especial
         const nivel = e.nivel.toLowerCase();
-        if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
-        if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
-        if (nivel === "aluno especial") matchesTipo = true;
+        const titulo = e.titulo.toLowerCase();
+        const ehEspecial = nivel.includes("especial") || titulo.includes("especial");
 
-        // 5. Filtro por Semestre de Ingresso
+        let matchesModalidade = false;
+        if (checkRegular && !ehEspecial) matchesModalidade = true;
+        if (checkEspecial && ehEspecial) matchesModalidade = true;
+
         const sem = detectarSemestre(e);
         const matchesSemestre = filtroSemestreAtivo === 'Todos' || sem === filtroSemestreAtivo;
 
-        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo && matchesSemestre;
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesModalidade && matchesSemestre;   
       });
 
       renderizarCardsList(filtrados);
@@ -2052,46 +2033,48 @@
 
     function executarFiltrosFechados() {
       const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
-      
-      const checkAcad = document.getElementById('check-acad').checked;
-      const checkProf = document.getElementById('check-prof').checked;
+
+      const checkRegular = document.getElementById('check-regular').checked;
+      const checkEspecial = document.getElementById('check-especial').checked;
       const agora = new Date();
 
       let filtrados = dadosFechadosAno.filter(e => {
-        // Filtra apenas os que já fecharam
         const matchesStatus = new Date(e.inscricoesFim) < agora;
 
-        // 1. Filtro de Busca por Texto
-        const matchesSearch = !searchVal || 
-          e.titulo.toLowerCase().includes(searchVal) || 
-          e.resumo.toLowerCase().includes(searchVal) || 
-          e.instituicao.toLowerCase().includes(searchVal) || 
+        const matchesSearch = !searchVal ||
+          e.titulo.toLowerCase().includes(searchVal) ||
+          e.resumo.toLowerCase().includes(searchVal) ||
+          e.instituicao.toLowerCase().includes(searchVal) ||
           e.area.toLowerCase().includes(searchVal);
 
-        // 2. Filtro de Instituição
         const matchesUni = filtroUniAtivo === 'Todas' || e.instituicao === filtroUniAtivo;
 
-        // 3. Filtro por Eixo Temático (Chips)
         const activeAreaTab = filtroAreaAtiva['fechados'];
         const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
 
-        // 4. Filtro por Tipo de Programa (Acadêmico vs Profissional)
-        let matchesTipo = true;
+        // Modalidade: Aluno Regular vs Aluno Especial
         const nivel = e.nivel.toLowerCase();
-        if (nivel.includes("acadêmico") && !checkAcad) matchesTipo = false;
-        if (nivel.includes("profissional") && !checkProf) matchesTipo = false;
-        if (nivel === "aluno especial") matchesTipo = true;
+        const titulo = e.titulo.toLowerCase();
+        const ehEspecial = nivel.includes("especial") || titulo.includes("especial");
 
-        // 5. Filtro por Semestre de Ingresso
+        let matchesModalidade = false;
+        if (checkRegular && !ehEspecial) matchesModalidade = true;
+        if (checkEspecial && ehEspecial) matchesModalidade = true;
+
         const sem = detectarSemestre(e);
         const matchesSemestre = filtroSemestreAtivo === 'Todos' || sem === filtroSemestreAtivo;
 
-        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesTipo && matchesSemestre;
+        return matchesStatus && matchesSearch && matchesUni && matchesArea && matchesModalidade && matchesSemestre;   
       });
 
-      renderizarCardsList(filtrados);
+      // Distribui os editais fechados nas abas correspondentes se não estiver na aba geral de fechados
+      if (activeTab !== 'fechados') {
+        const cat = categorizarEditais(filtrados);
+        renderizarCardsList(cat[activeTab] || []);
+      } else {
+        renderizarCardsList(filtrados);
+      }
     }
-
     // Popula o filtro de anos com opções dinâmicas a partir do ano atual descendo até 2026
     function popularFiltroAnos() {
       const select = document.getElementById('historyYear');

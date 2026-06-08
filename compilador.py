@@ -559,6 +559,7 @@ def consolidar_ano(ano):
         # Deduplicar mantendo o de maior prazo
         mapa_editais = {}
         for e in todos_tema:
+            # Chave baseada em Titulo e URL
             chave = f"{normalizar_chave_dedup(e['titulo'])}-{e['url']}"
             if chave not in mapa_editais:
                 mapa_editais[chave] = e
@@ -845,20 +846,30 @@ def raspar_sigaa_portal_direct(sigla, url):
                         
                     status = "Aberto" if end_dt >= hoje else "Encerrado"
                     
-                    nivel = "Mestrado Acadêmico"
-                    pasta_tema = "mestrado"
+                    # Identificação de Aluno Especial
+                    aluno_especial_terms = [
+                        "aluno especial", "aluno de matricula especial", "aluno de matrícula especial", 
+                        "matricula especial", "matrícula especial", "estudante especial", 
+                        "disciplina isolada", "disciplinas isoladas", "vaga isolada", "vagas isoladas", 
+                        "estudante isolado", "aluno/a especial"
+                    ]
                     combined_lower = f"{edital_nome} {course}".lower()
+                    eh_especial = any(x in combined_lower for x in aluno_especial_terms)
                     
-                    aluno_especial_terms = ["aluno especial", "matricula especial", "matrícula especial", "estudante especial", "disciplina isolada", "disciplinas isoladas", "vaga isolada", "vagas isoladas", "estudante isolado"]
-                    if any(x in combined_lower for x in aluno_especial_terms):
-                        nivel = "Aluno Especial"
-                        pasta_tema = "aluno-especial"
-                    elif "doutorado" in combined_lower:
-                        nivel = "Doutorado Profissional" if "profissional" in combined_lower else "Doutorado Acadêmico"
-                        pasta_tema = "doutorado"
-                    elif "mestrado" in combined_lower:
-                        nivel = "Mestrado Profissional" if "profissional" in combined_lower else "Mestrado Acadêmico"
-                        pasta_tema = "mestrado"
+                    nivel_base = "Mestrado"
+                    if "doutorado" in combined_lower:
+                        nivel_base = "Doutorado"
+                    
+                    tipo = "Acadêmico"
+                    if "profissional" in combined_lower:
+                        tipo = "Profissional"
+                    
+                    if eh_especial:
+                        nivel = f"{nivel_base} - Aluno Especial"
+                        pasta_tema = "aluno-especial" # Mantém compatibilidade de pasta por enquanto
+                    else:
+                        nivel = f"{nivel_base} {tipo}"
+                        pasta_tema = nivel_base.lower()
                     
                     area = "Saúde e Biológicas"
                     max_contagem = 0
@@ -1055,20 +1066,29 @@ def raspar_uneb_ssppg():
                     
                 status = "Aberto" if end_dt >= hoje else "Encerrado"
                 
-                nivel = "Mestrado Acadêmico"
+                # Identificação de Aluno Especial
+                aluno_especial_terms = [
+                    "aluno especial", "aluno de matricula especial", "aluno de matrícula especial", 
+                    "matricula especial", "matrícula especial", "estudante especial", 
+                    "ae", "aluno/a especial"
+                ]
                 combined_lower = full_title.lower()
-                
-                aluno_especial_terms = ["aluno especial", "matricula especial", "matrícula especial", "estudante especial", "ae"]
                 eh_especial = any(x in combined_lower for x in aluno_especial_terms) or re.search(r'\bAE\b', full_title) or "2026ae" in combined_lower
                 
+                nivel_base = "Mestrado"
+                if "doutorado" in combined_lower:
+                    nivel_base = "Doutorado"
+                
+                tipo = "Acadêmico"
+                if any(x in combined_lower for x in ["profissional", "gestec", "mpeja", "profept"]):
+                    tipo = "Profissional"
+                
                 if eh_especial:
-                    nivel = "Aluno Especial"
-                elif "doutorado" in combined_lower:
-                    nivel = "Doutorado Profissional" if "profissional" in combined_lower else "Doutorado Acadêmico"
-                elif "mestrado" in combined_lower:
-                    nivel = "Mestrado Profissional" if "profissional" in combined_lower or "gestec" in combined_lower or "mpeja" in combined_lower or "profept" in combined_lower else "Mestrado Acadêmico"
+                    nivel = f"{nivel_base} - Aluno Especial"
                 elif "lato sensu" in combined_lower or "especialização" in combined_lower or "especializacao" in combined_lower:
-                    nivel = "Mestrado Profissional"
+                    nivel = f"{nivel_base} Profissional"
+                else:
+                    nivel = f"{nivel_base} {tipo}"
                 
                 area = "Educação"
                 max_contagem = 0
@@ -1132,7 +1152,7 @@ def buscar_novos_editais():
             print(f"[{portal['sigla']} SIGAA] Encontrados {len(portal_editais)} editais reais.")
             for ed in portal_editais:
                 pasta = "mestrado"
-                if ed['nivel'] == "Aluno Especial":
+                if "Aluno Especial" in ed['nivel']:
                     pasta = "aluno-especial"
                 elif ed['nivel'].startswith("Doutorado"):
                     pasta = "doutorado"
@@ -1149,7 +1169,7 @@ def buscar_novos_editais():
         print(f"[UNEB SSPPG] Encontrados {len(uneb_editais)} editais reais.")
         for ed in uneb_editais:
             pasta = "mestrado"
-            if ed['nivel'] == "Aluno Especial":
+            if "Aluno Especial" in ed['nivel']:
                 pasta = "aluno-especial"
             elif ed['nivel'].startswith("Doutorado"):
                 pasta = "doutorado"
