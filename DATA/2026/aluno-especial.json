@@ -1,0 +1,47 @@
+[
+  {
+    "dataColeta": "2026-06-08T14:43:30.214505Z",
+    "titulo": "PROCESSO SELETIVO PARA INGRESSO DE ALUNO ESPECIAL DOUTORADO- PGENF 2026.2   - DOUTORADO EM ENFERMAGEM E SAÚDE",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM ENFERMAGEM E SAÚDE. Vagas ofertadas: 30. Período de inscrições de 09/06/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Saúde e Biológicas",
+    "vagas": 30,
+    "inscricoesInicio": "2026-06-09T12:00:00Z",
+    "inscricoesFim": "2026-06-14T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-09T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  },
+  {
+    "dataColeta": "2026-06-08T14:43:30.214505Z",
+    "titulo": "PROCESSO SELETIVO PARA INGRESSO DE ALUNO ESPECIAL MESTRADO- PGENF 2026.2   - MESTRADO EM ENFERMAGEM E SAÚDE",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENFERMAGEM E SAÚDE. Vagas ofertadas: 60. Período de inscrições de 09/06/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Saúde e Biológicas",
+    "vagas": 60,
+    "inscricoesInicio": "2026-06-09T12:00:00Z",
+    "inscricoesFim": "2026-06-14T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-09T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  },
+  {
+    "dataColeta": "2026-06-08T14:43:30.214505Z",
+    "titulo": "SELEÇÃO PARA ALUNO ESPECIAL PPGCONT 2026.2   - MESTRADO EM CONTABILIDADE",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CONTABILIDADE. Vagas ofertadas: 80. Período de inscrições de 05/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Aluno Especial",
+    "area": "Saúde e Biológicas",
+    "vagas": 80,
+    "inscricoesInicio": "2026-06-05T12:00:00Z",
+    "inscricoesFim": "2026-06-12T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-05T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  }
+]
