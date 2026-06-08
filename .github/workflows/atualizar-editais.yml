@@ -33,5 +33,6 @@ jobs:
         git config --global user.name "GitHub Action Bot"
         git config --global user.email "actions@github.com"
         git add -A
-        git diff-index --quiet HEAD || git commit -m "chore: atualizacao periodica de editais e metricas [skip ci]"
+        git diff-index --quiet HEAD || git commit -m "chore: atualizacao periodica de editais e metricas"
         git push origin main
+
