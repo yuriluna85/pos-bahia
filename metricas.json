@@ -1,36 +1,36 @@
 {
-  "geradoEm": "2026-06-07T16:03:55.824877Z",
-  "totalGeral": 19,
+  "geradoEm": "2026-06-08T03:51:14.003718Z",
+  "totalGeral": 42,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 5,
-    "Mestrado Profissional": 6,
-    "Doutorado Acadêmico": 3,
-    "Doutorado Profissional": 0,
-    "Aluno Especial": 5
+    "Mestrado Acadêmico": 14,
+    "Mestrado Profissional": 8,
+    "Doutorado Acadêmico": 11,
+    "Doutorado Profissional": 1,
+    "Aluno Especial": 8
   },
   "totaisAreas": {
     "Educação": 4,
     "Tecnologia e Informática": 5,
     "Gestão e Negócios": 1,
-    "Saúde e Biológicas": 4,
+    "Saúde e Biológicas": 15,
     "Humanas e Sociais": 3,
-    "Comunicação e Artes": 0,
-    "Engenharias e Exatas": 0,
-    "Agrárias e Ambientais": 2
+    "Comunicação e Artes": 2,
+    "Engenharias e Exatas": 8,
+    "Agrárias e Ambientais": 4
   },
   "status": {
-    "Aberto": 19,
-    "Encerrado": 0,
+    "Aberto": 41,
+    "Encerrado": 1,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
-      "nome": "UNEB",
-      "total": 4
+      "nome": "UFBA",
+      "total": 25
     },
     {
-      "nome": "UFBA",
-      "total": 2
+      "nome": "UNEB",
+      "total": 4
     },
     {
       "nome": "UCSal",
