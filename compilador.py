@@ -1305,6 +1305,30 @@ def buscar_novos_editais():
         except Exception as e:
             print(f"Erro ao raspar SIGAA {portal['sigla']} diretamente: {e}")
 
+    # Mescla editais conhecidos/consolidados (fallbacks) para garantir que não sumam na busca dinâmica
+    for e in FALLBACKS_EDITEIS:
+        pasta_tema = "mestrado"
+        if "Doutorado" in e['nivel']:
+            pasta_tema = "doutorado"
+        elif e['nivel'] == "Aluno Especial":
+            pasta_tema = "aluno-especial"
+
+        ja_existe = any(x['titulo'] == e['titulo'] for x in resultados[pasta_tema])
+        if not ja_existe:
+            data_inicio = datetime.fromisoformat(e['inscricoesInicio'].replace('Z', ''))
+            data_fim = datetime.fromisoformat(e['inscricoesFim'].replace('Z', ''))
+            data_pub = datetime.fromisoformat(e.get('dataPublicacao', e['inscricoesInicio']).replace('Z', ''))
+            status = "Aberto" if data_fim >= hoje else "Encerrado"
+            
+            resultados[pasta_tema].append({
+                **e,
+                'inscricoesInicio': data_inicio.isoformat() + 'Z',
+                'inscricoesFim': data_fim.isoformat() + 'Z',
+                'dataPublicacao': data_pub.isoformat() + 'Z',
+                'status': status,
+                'fonte': e.get('fonte', f"{e['instituicao']} Ingresso")
+            })
+
     total_obtido = len(resultados['mestrado']) + len(resultados['doutorado']) + len(resultados['aluno-especial'])
     if total_obtido == 0:
         print("Nenhum edital real extraído. Utilizando fallbacks simulados...")
