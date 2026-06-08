@@ -1,36 +1,36 @@
 {
-  "geradoEm": "2026-06-08T14:56:27.732662Z",
-  "totalGeral": 30,
+  "geradoEm": "2026-06-08T18:23:35.473541Z",
+  "totalGeral": 28,
   "totaisNiveis": {
     "Mestrado Acadêmico": 8,
-    "Mestrado Profissional": 5,
+    "Mestrado Profissional": 4,
     "Doutorado Acadêmico": 8,
     "Doutorado Profissional": 1,
-    "Aluno Especial": 1
+    "Aluno Especial": 6
   },
   "totaisAreas": {
     "Educação": 4,
-    "Tecnologia e Informática": 2,
+    "Tecnologia e Informática": 1,
     "Gestão e Negócios": 0,
-    "Saúde e Biológicas": 12,
+    "Saúde e Biológicas": 11,
     "Humanas e Sociais": 0,
     "Comunicação e Artes": 2,
     "Engenharias e Exatas": 8,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 27,
+    "Aberto": 25,
     "Encerrado": 3,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
       "nome": "UFBA",
-      "total": 24
+      "total": 23
     },
     {
       "nome": "UNEB",
-      "total": 6
+      "total": 5
     }
   ]
 }
