@@ -35,7 +35,26 @@ def http_request(url, method='GET', headers=None, data=None):
         with urllib.request.urlopen(req, context=ctx, timeout=30) as response:
             status_code = response.getcode()
             response_headers = dict(response.info())
-            response_data = response.read().decode('utf-8', errors='ignore')
+            raw_bytes = response.read()
+            
+            # Detect charset
+            charset = 'utf-8'
+            content_type = response_headers.get('Content-Type', '').lower()
+            if 'charset=' in content_type:
+                parts = content_type.split('charset=')
+                if len(parts) > 1:
+                    charset = parts[1].split(';')[0].strip()
+            
+            # Special case for UNEB: main list page is Latin-1, detail pages (with 'editalExterno') are UTF-8.
+            # Both declare utf-8 in headers, but the main page body bytes are latin-1.
+            if 'uneb.br' in url.lower() and 'editalexterno' not in url.lower():
+                charset = 'latin-1'
+                
+            try:
+                response_data = raw_bytes.decode(charset)
+            except Exception:
+                response_data = raw_bytes.decode('latin-1', errors='ignore')
+                
             return {
                 'statusCode': status_code,
                 'headers': response_headers,
@@ -438,7 +457,7 @@ def salvar_historico_edital(tema, editais, data_especifica=None):
             historico_dia = []
 
     for e in editais:
-        index = next((i for i, h in enumerate(historico_dia) if h['url'] == e['url'] and h['titulo'] == e['titulo']), -1)
+        index = next((i for i, h in enumerate(historico_dia) if h['url'] == e['url'] and normalizar_titulo(h['titulo']) == normalizar_titulo(e['titulo'])), -1)
         if index != -1:
             existente = historico_dia[index]
             # Prorrogação detectada
@@ -598,7 +617,7 @@ def gerar_metricas():
     chaves_unicas = set()
     editais_unicos = []
     for e in todos_editais:
-        chave = f"{e['titulo']}-{e['url']}"
+        chave = f"{normalizar_titulo(e['titulo'])}-{e['url']}"
         if chave not in chaves_unicas:
             chaves_unicas.add(chave)
             editais_unicos.append(e)
@@ -666,7 +685,7 @@ def gerar_ultimos_editais():
     # Deduplicar mantendo o prazo final mais longo
     mapa_editais = {}
     for e in todos_editais:
-        chave = f"{e['titulo']}-{e['url']}"
+        chave = f"{normalizar_titulo(e['titulo'])}-{e['url']}"
         if chave not in mapa_editais:
             mapa_editais[chave] = e
         else:
@@ -765,6 +784,8 @@ def raspar_sigaa_portal_direct(sigla, url):
                 clean_text = re.sub(r'<[^>]*>', ' ', tr_content)
                 clean_text = re.sub(r'\s+', ' ', clean_text).strip()
                 clean_text = html.unescape(clean_text)
+                clean_text = clean_text.replace('\ufffd', '').replace('\xa0', ' ')
+                clean_text = re.sub(r'\s+', ' ', clean_text).strip()
                 if clean_text:
                     current_edital = clean_text
                 continue
@@ -772,16 +793,24 @@ def raspar_sigaa_portal_direct(sigla, url):
             td_regex = re.compile(r'<td\b[^>]*>([\s\S]*?)<\/td>', re.IGNORECASE)
             tds = []
             for td_match in td_regex.finditer(tr_content):
-                clean_td = re.sub(r'<[^>]*>', ' ', td_match.group(1))
+                clean_td = html.unescape(td_match.group(1))
+                clean_td = re.sub(r'<[^>]*>', ' ', clean_td)
                 clean_td = re.sub(r'\s+', ' ', clean_td).strip()
                 tds.append(clean_td)
             
             if len(tds) >= 3:
-                has_date_range = any(re.search(r'\d{2}/\d{2}/\d{4}', td) for td in tds)
-                if has_date_range:
-                    course = html.unescape(tds[0])
-                    vacancies_raw = tds[1]
-                    period_raw = tds[2]
+                # Localiza dinamicamente qual coluna contém o período de inscrições
+                period_idx = -1
+                for idx, td in enumerate(tds):
+                    if re.search(r'\d{2}/\d{2}/\d{4}', td):
+                        period_idx = idx
+                        break
+                
+                if period_idx != -1:
+                    course = html.unescape(tds[0]).replace('\xa0', ' ').replace('\ufffd', '')
+                    course = re.sub(r'\s+', ' ', course).strip()
+                    period_raw = tds[period_idx]
+                    vacancies_raw = tds[period_idx - 1] if period_idx > 0 else "10"
                     
                     edital_nome = current_edital if current_edital else f"Processo Seletivo {sigla}"
                     start_dt, end_dt = parse_periodo(period_raw)
@@ -823,6 +852,8 @@ def raspar_sigaa_portal_direct(sigla, url):
                             area = tema_nome
                     
                     titulo_edital = f"{edital_nome} - {course}"
+                    titulo_edital = titulo_edital.replace('\ufffd', '').replace('\xa0', ' ')
+                    titulo_edital = re.sub(r'\s+', ' ', titulo_edital).strip()
                     resumo_edital = f"Inscrições abertas para o processo seletivo da {sigla} de ingresso no curso: {course}. Vagas ofertadas: {vagas}. Período de inscrições de {period_raw}. Consulte o edital completo no portal oficial da instituição."
                     
                     editais_encontrados.append({
@@ -876,9 +907,166 @@ def eh_url_generica(url):
     return False
 
 
-# Busca novos editais nos portais SIGAA (raspagem direta de fontes oficiais)
+def corrigir_utf8_corrompido(texto):
+    if not texto:
+        return texto
+    try:
+        patterns = [
+            '\xc3\xa7', '\xc3\xa3', '\xc3\xa1', '\xc3\xb3', '\xc3\xaa',
+            '\xc3\xa9', '\xc3\xba', '\xc3\xad', '\xc3\xa0', '\xc3\xa2',
+            '\xc3\xb5', '\xc3\x98', '\xc3\x89', '\xc3\x93'
+        ]
+        if any(x in texto for x in patterns):
+            texto = texto.encode('latin-1').decode('utf-8')
+    except Exception:
+        pass
+    # Remove replacement characters caused by any remaining encoding issues
+    texto = texto.replace('\ufffd', '').strip()
+    return texto
+
+
+def normalizar_titulo(texto):
+    """Normalizes a title for deduplication: strips NBSP, replacement chars and extra spaces."""
+    if not texto:
+        return ''
+    texto = texto.replace('\xa0', ' ').replace('\u00a0', ' ').replace('\ufffd', '')
+    texto = re.sub(r'\s+', ' ', texto)
+    return texto.strip()
+
+# ══ RASPADOR DIRETO E INTEGRADO DA UNEB SSPPG ══
+def raspar_uneb_ssppg():
+    print("[UNEB SSPPG] Buscando processos seletivos diretamente de: https://ssppg.uneb.br")
+    editais_encontrados = []
+    hoje = datetime.now()
+    
+    try:
+        response = http_request(
+            'https://ssppg.uneb.br',
+            method='GET',
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
+        )
+        
+        if response['statusCode'] != 200:
+            print(f"[UNEB SSPPG] Erro ao acessar. Status: {response['statusCode']}")
+            return []
+            
+        html_content = response['data']
+        
+        # Encontra os links e títulos correspondentes na listagem inicial (com [\s\S]*? para suportar novas linhas)
+        pattern = re.compile(
+            r'href=["\'](/inicio/editalExterno/\d+\?selecao=\d+)["\'][^>]*>[\s\S]*?<h5[^>]*>[\s\S]*?<strong>\s*([\s\S]*?)\s*</strong>[\s\S]*?</h5>',
+            re.IGNORECASE
+        )
+        
+        matches = pattern.findall(html_content)
+        print(f"[UNEB SSPPG] Encontrados {len(matches)} links de editais na página inicial.")
+        
+        for path, full_title in matches:
+            full_title = html.unescape(full_title).strip()
+            full_title = re.sub(r'\s+', ' ', full_title)
+            full_title = full_title.replace('\x81', '').replace('\xa0', ' ').replace('\ufffd', '').strip()
+            full_title = corrigir_utf8_corrompido(full_title)
+            
+            url_edital = f"https://ssppg.uneb.br{path}"
+            print(f"[UNEB SSPPG] Buscando detalhes de: {full_title}")
+            
+            try:
+                detail_res = http_request(
+                    url_edital,
+                    method='GET',
+                    headers={
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                    }
+                )
+                
+                start_dt = hoje
+                end_dt = hoje + timedelta(days=15)
+                period_str = "período não especificado"
+                
+                if detail_res['statusCode'] == 200:
+                    detail_html = detail_res['data']
+                    # Padrão: Período de Inscrições - DD/MM/YYYY a DD/MM/YYYY ou similar
+                    date_pattern = re.search(
+                        r'Período de Inscrições\s*-\s*(\d{2}/\d{2}/\d{4})[\s\S]*?(?:a|à)\s*(\d{2}/\d{2}/\d{4})',
+                        detail_html,
+                        re.IGNORECASE
+                    )
+                    if date_pattern:
+                        start_str = date_pattern.group(1)
+                        end_str = date_pattern.group(2)
+                        period_str = f"{start_str} a {end_str}"
+                        try:
+                            start_dt = datetime.strptime(start_str.strip(), "%d/%m/%Y")
+                            end_dt = datetime.strptime(end_str.strip(), "%d/%m/%Y")
+                            start_dt = start_dt.replace(hour=12, minute=0, second=0)
+                            end_dt = end_dt.replace(hour=23, minute=59, second=59)
+                        except Exception as ex:
+                            print(f"[UNEB SSPPG] Erro ao parsear data ({start_str} ou {end_str}): {ex}")
+                
+                # Ignora editais encerrados muito antigos
+                limite_historico = datetime(2026, 6, 1, 0, 0, 0)
+                if end_dt < limite_historico:
+                    continue
+                    
+                status = "Aberto" if end_dt >= hoje else "Encerrado"
+                
+                nivel = "Mestrado Acadêmico"
+                combined_lower = full_title.lower()
+                
+                aluno_especial_terms = ["aluno especial", "matricula especial", "matrícula especial", "estudante especial", "ae"]
+                eh_especial = any(x in combined_lower for x in aluno_especial_terms) or re.search(r'\bAE\b', full_title) or "2026ae" in combined_lower
+                
+                if eh_especial:
+                    nivel = "Aluno Especial"
+                elif "doutorado" in combined_lower:
+                    nivel = "Doutorado Profissional" if "profissional" in combined_lower else "Doutorado Acadêmico"
+                elif "mestrado" in combined_lower:
+                    nivel = "Mestrado Profissional" if "profissional" in combined_lower or "gestec" in combined_lower or "mpeja" in combined_lower or "profept" in combined_lower else "Mestrado Acadêmico"
+                elif "lato sensu" in combined_lower or "especialização" in combined_lower or "especializacao" in combined_lower:
+                    nivel = "Mestrado Profissional"
+                
+                area = "Educação"
+                max_contagem = 0
+                for tema_nome, keywords in TEMAS_INTERESSE.items():
+                    contagem = sum(len(re.findall(r'\b' + re.escape(kw) + r'\b', combined_lower)) for kw in keywords)
+                    if contagem > max_contagem:
+                        max_contagem = contagem
+                        area = tema_nome
+                
+                if "gestec" in combined_lower or "tecnologias" in combined_lower:
+                    area = "Tecnologia e Informática"
+                elif "linguagens" in combined_lower or "letras" in combined_lower or "ppgel" in combined_lower:
+                    area = "Humanas e Sociais"
+                
+                resumo_edital = f"Inscrições para o processo seletivo da UNEB: {full_title}. Período de inscrições de {period_str}. Consulte o edital completo no portal SSPPG UNEB."
+                
+                editais_encontrados.append({
+                    'titulo': full_title[:150],
+                    'resumo': resumo_edital[:350],
+                    'instituicao': 'UNEB',
+                    'nivel': nivel,
+                    'area': area,
+                    'vagas': 15,
+                    'inscricoesInicio': start_dt.isoformat() + 'Z',
+                    'inscricoesFim': end_dt.isoformat() + 'Z',
+                    'url': url_edital,
+                    'status': status,
+                    'dataPublicacao': start_dt.isoformat() + 'Z',
+                    'fonte': "UNEB SSPPG"
+                })
+            except Exception as e_detail:
+                print(f"[UNEB SSPPG] Erro ao buscar detalhes para {url_edital}: {e_detail}")
+    except Exception as e:
+        print(f"[UNEB SSPPG] Falha na raspagem direta: {e}")
+        
+    return editais_encontrados
+
+
+# Busca novos editais nos portais SIGAA e SSPPG (raspagem direta de fontes oficiais)
 def buscar_novos_editais():
-    print("Iniciando busca direta e em tempo real nos portais SIGAA (UFBA, UFRB, UFSB, UFOB, UNILAB)...")
+    print("Iniciando busca direta nos portais SIGAA e SSPPG (UFBA, UFRB, UFSB, UFOB, UNILAB, UNEB)...")
     
     resultados = {
         'mestrado': [],
@@ -886,6 +1074,7 @@ def buscar_novos_editais():
         'aluno-especial': []
     }
 
+    # 1. Raspagem dos Portais SIGAA
     sigaa_portais = [
         { 'sigla': 'UFBA', 'url': 'https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
         { 'sigla': 'UFRB', 'url': 'https://sistemas.ufrb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
@@ -911,7 +1100,25 @@ def buscar_novos_editais():
         except Exception as e:
             print(f"Erro ao raspar SIGAA {portal['sigla']} diretamente: {e}")
 
+    # 2. Raspagem do Portal SSPPG da UNEB
+    try:
+        uneb_editais = raspar_uneb_ssppg()
+        print(f"[UNEB SSPPG] Encontrados {len(uneb_editais)} editais reais.")
+        for ed in uneb_editais:
+            pasta = "mestrado"
+            if ed['nivel'] == "Aluno Especial":
+                pasta = "aluno-especial"
+            elif ed['nivel'].startswith("Doutorado"):
+                pasta = "doutorado"
+            
+            ja_existe = any(x['titulo'] == ed['titulo'] for x in resultados[pasta])
+            if not ja_existe:
+                resultados[pasta].append(ed)
+    except Exception as e:
+        print(f"Erro ao raspar UNEB SSPPG diretamente: {e}")
+
     return resultados
+
 
 
 # Simulação de busca com dados de fallbacks

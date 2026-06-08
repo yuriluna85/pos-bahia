@@ -42,9 +42,34 @@ function httpRequest(options, postData = null, redirectCount = 0) {
           .catch(reject);
       }
 
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
+      const chunks = [];
+      res.on('data', (chunk) => { chunks.push(chunk); });
       res.on('end', () => {
+        const buffer = Buffer.concat(chunks);
+        let charset = 'utf8';
+        const contentType = (res.headers['content-type'] || '').toLowerCase();
+        if (contentType.includes('charset=')) {
+          const parts = contentType.split('charset=');
+          if (parts.length > 1) {
+            charset = parts[1].split(';')[0].trim();
+          }
+        }
+        
+        // Special case for UNEB: main list page is Latin-1, detail pages (with 'editalExterno') are UTF-8.
+        // Both declare utf-8 in headers, but the main page body bytes are latin-1.
+        const currentUrl = options.url || '';
+        const isUnebMain = (currentUrl.includes('uneb.br') && !currentUrl.toLowerCase().includes('editalexterno')) ||
+                           (reqOptions.hostname && reqOptions.hostname.includes('uneb.br') && !reqOptions.path.toLowerCase().includes('editalexterno'));
+        if (isUnebMain) {
+          charset = 'latin1';
+        }
+        
+        let encoding = 'utf8';
+        if (charset === 'latin-1' || charset === 'latin1' || charset === 'iso-8859-1') {
+          encoding = 'latin1';
+        }
+        
+        const data = buffer.toString(encoding);
         resolve({
           statusCode: res.statusCode,
           headers: res.headers,
@@ -506,7 +531,7 @@ function salvarHistoricoEdital(tema, editais, dataEspecifica = null) {
   }
 
   editais.forEach(e => {
-    const index = historicoDia.findIndex(h => h.url === e.url && h.titulo === e.titulo);
+    const index = historicoDia.findIndex(h => h.url === e.url && normalizarTitulo(h.titulo) === normalizarTitulo(e.titulo));
     if (index !== -1) {
       const existente = historicoDia[index];
       // Se a data de fim de inscrição mudou (ex: prorrogação), nós atualizamos os campos relevantes
@@ -637,7 +662,7 @@ function gerarMetricas() {
   const chavesUnicas = new Set();
   const editaisUnicos = [];
   todosEditais.forEach(e => {
-    const chave = `${e.titulo}-${e.url}`;
+    const chave = `${normalizarTitulo(e.titulo)}-${e.url}`;
     if (!chavesUnicas.has(chave)) {
       chavesUnicas.add(chave);
       editaisUnicos.push(e);
@@ -927,9 +952,166 @@ function ehUrlGenerica(urlStr) {
   return false;
 }
 
-// Busca editais reais no Google via Serper.dev e le com ScraperAPI se as chaves estiverem configuradas
+function corrigirUtf8Corrompido(texto) {
+  if (!texto) return '';
+  try {
+    const corruptPatterns = ['Ã§', 'Ã£', 'Ã¡', 'Ã³', 'Ãª', 'Ã©', 'Ãº', 'Ã­', 'Ã ', 'Ã¢', 'Ãµ', 'Ã', 'Ã', 'Ã'];
+    if (corruptPatterns.some(x => texto.includes(x))) {
+      const buf = Buffer.from(texto, 'latin1');
+      return buf.toString('utf8');
+    }
+  } catch (e) {
+    // Mantém original se falhar
+  }
+  return texto;
+}
+
+// ══ RASPADOR DIRETO E INTEGRADO DA UNEB SSPPG ══
+async function rasparUnebSsppg() {
+  console.log("[UNEB SSPPG] Buscando processos seletivos diretamente de: https://ssppg.uneb.br");
+  const editaisEncontrados = [];
+  const hoje = new Date();
+  
+  try {
+    const response = await httpRequest({
+      url: 'https://ssppg.uneb.br',
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      }
+    });
+
+    if (response.statusCode !== 200) {
+      console.log(`[UNEB SSPPG] Erro ao acessar. Status: ${response.statusCode}`);
+      return [];
+    }
+
+    const html = response.data;
+    const pattern = /href=["'](\/inicio\/editalExterno\/\d+\?selecao=\d+)["'][^>]*>[\s\S]*?<h5[^>]*>[\s\S]*?<strong>\s*([\s\S]*?)\s*<\/strong>[\s\S]*?<\/h5>/gi;
+    let match;
+    
+    while ((match = pattern.exec(html)) !== null) {
+      const path = match[1];
+      let fullTitle = decodeEntities(match[2].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
+      fullTitle = fullTitle.replace(/[\x81\u0081]/g, '').replace(/\xa0/g, ' ').replace(/\ufffd/g, '').trim();
+      fullTitle = corrigirUtf8Corrompido(fullTitle);
+      
+      const urlEdital = `https://ssppg.uneb.br${path}`;
+      console.log(`[UNEB SSPPG] Buscando detalhes de: ${fullTitle}`);
+      
+      try {
+        const detailRes = await httpRequest({
+          url: urlEdital,
+          method: 'GET',
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+          }
+        });
+        
+        let start = new Date();
+        let end = new Date(hoje.getTime() + 15 * 24 * 3600 * 1000);
+        let periodStr = "período não especificado";
+        
+        if (detailRes.statusCode === 200) {
+          const detailHtml = detailRes.data;
+          const datePattern = /Período de Inscrições\s*-\s*(\d{2}\/\d{2}\/\d{4})[\s\S]*?(?:a|à)\s*(\d{2}\/\d{2}\/\d{4})/i;
+          const dateMatch = datePattern.exec(detailHtml);
+          if (dateMatch) {
+            const startStr = dateMatch[1];
+            const endStr = dateMatch[2];
+            periodStr = `${startStr} a ${endStr}`;
+            
+            const parseDate = (dStr) => {
+              const parts = dStr.split('/');
+              return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10), 12, 0, 0);
+            };
+            
+            try {
+              start = parseDate(startStr);
+              end = parseDate(endStr);
+              end.setHours(23, 59, 59);
+            } catch (ex) {
+              console.error("[UNEB SSPPG] Erro ao parsear data:", ex.message);
+            }
+          }
+        }
+        
+        // Ignora processos encerrados antigos
+        const limiteHistorico = new Date('2026-06-01T00:00:00.000Z');
+        if (end < limiteHistorico) {
+          continue;
+        }
+        
+        const status = end >= hoje ? "Aberto" : "Encerrado";
+        
+        let nivel = "Mestrado Acadêmico";
+        const combinedLower = fullTitle.toLowerCase();
+        
+        const alunoEspecialTerms = ["aluno especial", "matricula especial", "matrícula especial", "estudante especial", "ae"];
+        const ehEspecial = alunoEspecialTerms.some(term => combinedLower.includes(term)) || /\bAE\b/.test(fullTitle) || combinedLower.includes("2026ae");
+        
+        if (ehEspecial) {
+          nivel = "Aluno Especial";
+        } else if (combinedLower.includes("doutorado")) {
+          nivel = combinedLower.includes("profissional") ? "Doutorado Profissional" : "Doutorado Acadêmico";
+        } else if (combinedLower.includes("mestrado")) {
+          nivel = (combinedLower.includes("profissional") || combinedLower.includes("gestec") || combinedLower.includes("mpeja") || combinedLower.includes("profept")) ? "Mestrado Profissional" : "Mestrado Acadêmico";
+        } else if (combinedLower.includes("lato sensu") || combinedLower.includes("especialização") || combinedLower.includes("especializacao")) {
+          nivel = "Mestrado Profissional";
+        }
+        
+        let area = "Educação";
+        let maxContagem = 0;
+        for (const [temaNome, keywords] of Object.entries(TEMAS_INTERESSE)) {
+          let contagem = 0;
+          keywords.forEach(kw => {
+            const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+            const matches = combinedLower.match(regex);
+            if (matches) contagem += matches.length;
+          });
+          if (contagem > maxContagem) {
+            maxContagem = contagem;
+            area = temaNome;
+          }
+        }
+        
+        if (combinedLower.includes("gestec") || combinedLower.includes("tecnologias")) {
+          area = "Tecnologia e Informática";
+        } else if (combinedLower.includes("linguagens") || combinedLower.includes("letras") || combinedLower.includes("ppgel")) {
+          area = "Humanas e Sociais";
+        }
+        
+        const resumoEdital = `Inscrições para o processo seletivo da UNEB: ${fullTitle}. Período de inscrições de ${periodStr}. Consulte o edital completo no portal SSPPG UNEB.`;
+        
+        editaisEncontrados.push({
+          titulo: fullTitle.substring(0, 150),
+          resumo: resumoEdital.substring(0, 350),
+          instituicao: 'UNEB',
+          nivel: nivel,
+          area: area,
+          vagas: 15,
+          inscricoesInicio: start.toISOString(),
+          inscricoesFim: end.toISOString(),
+          url: urlEdital,
+          status: status,
+          dataPublicacao: start.toISOString(),
+          fonte: "UNEB SSPPG"
+        });
+      } catch (err) {
+        console.error(`[UNEB SSPPG] Erro ao obter detalhes para ${urlEdital}:`, err.message);
+      }
+    }
+  } catch (err) {
+    console.error("[UNEB SSPPG] Falha na raspagem direta:", err.message);
+  }
+  
+  return editaisEncontrados;
+}
+
+
+// Busca editais reais nos portais SIGAA e SSPPG da UNEB
 async function buscarNovosEditais() {
-  console.log("Iniciando busca direta e em tempo real nos portais SIGAA (UFBA, UFRB, UFSB, UFOB, UNILAB)...");
+  console.log("Iniciando busca direta nos portais SIGAA e SSPPG (UFBA, UFRB, UFSB, UFOB, UNILAB, UNEB)...");
   
   const resultados = {
     'mestrado': [],
@@ -937,6 +1119,7 @@ async function buscarNovosEditais() {
     'aluno-especial': []
   };
 
+  // 1. Raspagem dos Portais SIGAA
   const sigaaPortais = [
     { sigla: 'UFBA', url: 'https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
     { sigla: 'UFRB', url: 'https://sistemas.ufrb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
@@ -964,6 +1147,26 @@ async function buscarNovosEditais() {
     } catch (err) {
       console.error(`Erro ao raspar SIGAA ${portal.sigla} diretamente:`, err.message);
     }
+  }
+
+  // 2. Raspagem da UNEB SSPPG
+  try {
+    const unebEditais = await rasparUnebSsppg();
+    console.log(`[UNEB SSPPG] Encontrados ${unebEditais.length} editais reais.`);
+    unebEditais.forEach(ed => {
+      let pasta = "mestrado";
+      if (ed.nivel === "Aluno Especial") {
+        pasta = "aluno-especial";
+      } else if (ed.nivel.startsWith("Doutorado")) {
+        pasta = "doutorado";
+      }
+      const jaExiste = resultados[pasta].some(x => x.titulo === ed.titulo);
+      if (!jaExiste) {
+        resultados[pasta].push(ed);
+      }
+    });
+  } catch (err) {
+    console.error("Erro ao raspar UNEB SSPPG diretamente:", err.message);
   }
 
   return resultados;
@@ -1011,7 +1214,7 @@ async function rasparSigaaPortalDirect(sigla, url) {
       const agrupadorMatch = trContent.match(/class=["']agrupador["']/i) || trContent.match(/colspan=["'](?:4|5)["']/i);
       if (agrupadorMatch) {
         let cleanText = trContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-        cleanText = decodeEntities(cleanText);
+        cleanText = decodeEntities(cleanText).replace(/\ufffd/g, '').replace(/\xa0/g, ' ').replace(/\s+/g, ' ').trim();
         if (cleanText) {
           currentEdital = cleanText;
         }
@@ -1022,15 +1225,23 @@ async function rasparSigaaPortalDirect(sigla, url) {
       let tdMatch;
       const tds = [];
       while ((tdMatch = tdRegex.exec(trContent)) !== null) {
-        tds.push(tdMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
+        const decoded = decodeEntities(tdMatch[1]);
+        tds.push(decoded.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
       }
       
       if (tds.length >= 3) {
-        const hasDateRange = tds.some(td => /\d{2}\/\d{2}\/\d{4}/.test(td));
-        if (hasDateRange) {
-          const course = decodeEntities(tds[0]);
-          const vacanciesRaw = tds[1];
-          const periodRaw = tds[2];
+        let periodIdx = -1;
+        for (let i = 0; i < tds.length; i++) {
+          if (/\d{2}\/\d{2}\/\d{4}/.test(tds[i])) {
+            periodIdx = i;
+            break;
+          }
+        }
+        
+        if (periodIdx !== -1) {
+          const course = decodeEntities(tds[0]).replace(/\xa0/g, ' ').replace(/\ufffd/g, '').replace(/\s+/g, ' ').trim();
+          const periodRaw = tds[periodIdx];
+          const vacanciesRaw = periodIdx > 0 ? tds[periodIdx - 1] : "10";
           
           const editalNome = currentEdital ? currentEdital : `Processo Seletivo ${sigla}`;
           const { start, end } = parsePeriodo(periodRaw);
@@ -1076,8 +1287,9 @@ async function rasparSigaaPortalDirect(sigla, url) {
             }
           }
           
-          const tituloEdital = `${editalNome} - ${course}`;
-          const resumoEdital = `Inscrições abertas para o processo seletivo da ${sigla} de ingresso no curso: ${course}. Vagas ofertadas: ${vagas}. Período de inscrições de ${periodRaw}. Consulte o edital completo no portal oficial da instituição.`;
+          const tituloEditalRaw = `${editalNome} - ${course}`;
+          const tituloEdital = tituloEditalRaw.replace(/\ufffd/g, '').replace(/\xa0/g, ' ').replace(/\s+/g, ' ').trim();
+          const resumoEdital = `Inscri\u00e7\u00f5es abertas para o processo seletivo da ${sigla} de ingresso no curso: ${course}. Vagas ofertadas: ${vagas}. Per\u00edodo de inscri\u00e7\u00f5es de ${periodRaw}. Consulte o edital completo no portal oficial da institui\u00e7\u00e3o.`;
           
           editaisEncontrados.push({
             titulo: tituloEdital.substring(0, 150),
@@ -1266,7 +1478,7 @@ function gerarUltimosEditais() {
   // Deduplicar mantendo o de maior prazo (caso de prorrogação)
   const mapaEditais = new Map();
   todosEditais.forEach(e => {
-    const chave = `${e.titulo}-${e.url}`;
+    const chave = `${normalizarTitulo(e.titulo)}-${e.url}`;
     if (!mapaEditais.has(chave)) {
       mapaEditais.set(chave, e);
     } else {
