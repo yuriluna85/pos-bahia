@@ -45,15 +45,14 @@ def http_request(url, method='GET', headers=None, data=None):
                 if len(parts) > 1:
                     charset = parts[1].split(';')[0].strip()
             
-            # Special case for UNEB: main list page is Latin-1, detail pages (with 'editalExterno') are UTF-8.
-            # Both declare utf-8 in headers, but the main page body bytes are latin-1.
-            if 'uneb.br' in url.lower() and 'editalexterno' not in url.lower():
-                charset = 'latin-1'
-                
             try:
                 response_data = raw_bytes.decode(charset)
             except Exception:
-                response_data = raw_bytes.decode('latin-1', errors='ignore')
+                # Se falhar com o charset detectado, tenta utf-8 e depois latin-1
+                try:
+                    response_data = raw_bytes.decode('utf-8')
+                except Exception:
+                    response_data = raw_bytes.decode('latin-1', errors='ignore')
                 
             return {
                 'statusCode': status_code,
@@ -415,10 +414,23 @@ NOMES_MESES = [
 def criar_diretorio_robustamente(dir_path):
     os.makedirs(dir_path, exist_ok=True)
 
+def corrigir_campos_edital(e):
+    """Corrige codificação em todos os campos de texto de um objeto edital."""
+    e['titulo'] = normalizar_titulo(corrigir_utf8_corrompido(e.get('titulo', '')))
+    e['resumo'] = corrigir_utf8_corrompido(e.get('resumo', ''))
+    e['instituicao'] = corrigir_utf8_corrompido(e.get('instituicao', ''))
+    e['area'] = corrigir_utf8_corrompido(e.get('area', ''))
+    e['nivel'] = corrigir_utf8_corrompido(e.get('nivel', ''))
+    return e
+
+
 # Salva histórico mensal em formato JSON e CSV
 def salvar_historico_edital(tema, editais, data_especifica=None):
     if not editais:
         return
+
+    # Corrige todos os novos editais antes de salvar
+    editais = [corrigir_campos_edital(e) for e in editais]
 
     ref_date = data_especifica or datetime.now()
     ano = str(ref_date.year)
@@ -457,7 +469,7 @@ def salvar_historico_edital(tema, editais, data_especifica=None):
             historico_dia = []
 
     for e in editais:
-        index = next((i for i, h in enumerate(historico_dia) if h['url'] == e['url'] and normalizar_titulo(h['titulo']) == normalizar_titulo(e['titulo'])), -1)
+        index = next((i for i, h in enumerate(historico_dia) if h['url'] == e['url'] and normalizar_chave_dedup(h['titulo']) == normalizar_chave_dedup(e['titulo'])), -1)
         if index != -1:
             existente = historico_dia[index]
             # Prorrogação detectada
@@ -540,14 +552,14 @@ def consolidar_ano(ano):
                     with open(json_path, 'r', encoding='utf-8') as f:
                         content = json.load(f)
                         if isinstance(content, list):
-                            todos_tema.extend(content)
+                            todos_tema.extend([corrigir_campos_edital(e) for e in content])
                 except Exception as e:
                     print(f"Erro ao ler arquivo {json_path} para consolidação anual: {e}")
 
         # Deduplicar mantendo o de maior prazo
         mapa_editais = {}
         for e in todos_tema:
-            chave = f"{e['titulo']}-{e['url']}"
+            chave = f"{normalizar_chave_dedup(e['titulo'])}-{e['url']}"
             if chave not in mapa_editais:
                 mapa_editais[chave] = e
             else:
@@ -609,7 +621,7 @@ def gerar_metricas():
             with open(file, 'r', encoding='utf-8') as f:
                 content = json.load(f)
                 if isinstance(content, list):
-                    todos_editais.extend(content)
+                    todos_editais.extend([corrigir_campos_edital(e) for e in content])
         except Exception as e:
             print(f"Erro ao ler arquivo para métricas: {file} - {e}")
 
@@ -617,7 +629,7 @@ def gerar_metricas():
     chaves_unicas = set()
     editais_unicos = []
     for e in todos_editais:
-        chave = f"{normalizar_titulo(e['titulo'])}-{e['url']}"
+        chave = f"{normalizar_chave_dedup(e['titulo'])}-{e['url']}"
         if chave not in chaves_unicas:
             chaves_unicas.add(chave)
             editais_unicos.append(e)
@@ -678,14 +690,14 @@ def gerar_ultimos_editais():
             with open(file, 'r', encoding='utf-8') as f:
                 content = json.load(f)
                 if isinstance(content, list):
-                    todos_editais.extend(content)
+                    todos_editais.extend([corrigir_campos_edital(e) for e in content])
         except Exception as e:
             print(f"Erro ao ler arquivo para ultimos-editais: {file} - {e}")
 
     # Deduplicar mantendo o prazo final mais longo
     mapa_editais = {}
     for e in todos_editais:
-        chave = f"{normalizar_titulo(e['titulo'])}-{e['url']}"
+        chave = f"{normalizar_chave_dedup(e['titulo'])}-{e['url']}"
         if chave not in mapa_editais:
             mapa_editais[chave] = e
         else:
@@ -807,12 +819,17 @@ def raspar_sigaa_portal_direct(sigla, url):
                         break
                 
                 if period_idx != -1:
-                    course = html.unescape(tds[0]).replace('\xa0', ' ').replace('\ufffd', '')
-                    course = re.sub(r'\s+', ' ', course).strip()
+                    course = html.unescape(tds[0]).strip()
+                    course = re.sub(r'\s+', ' ', course)
+                    course = corrigir_utf8_corrompido(course)
+                    course = course.replace('\xa0', ' ')
+                    
                     period_raw = tds[period_idx]
                     vacancies_raw = tds[period_idx - 1] if period_idx > 0 else "10"
                     
                     edital_nome = current_edital if current_edital else f"Processo Seletivo {sigla}"
+                    edital_nome = corrigir_utf8_corrompido(edital_nome)
+                    
                     start_dt, end_dt = parse_periodo(period_raw)
                     
                     # Filtra editais encerrados antes de Junho/2026 (início do histórico)
@@ -852,8 +869,7 @@ def raspar_sigaa_portal_direct(sigla, url):
                             area = tema_nome
                     
                     titulo_edital = f"{edital_nome} - {course}"
-                    titulo_edital = titulo_edital.replace('\ufffd', '').replace('\xa0', ' ')
-                    titulo_edital = re.sub(r'\s+', ' ', titulo_edital).strip()
+                    titulo_edital = normalizar_titulo(titulo_edital)
                     resumo_edital = f"Inscrições abertas para o processo seletivo da {sigla} de ingresso no curso: {course}. Vagas ofertadas: {vagas}. Período de inscrições de {period_raw}. Consulte o edital completo no portal oficial da instituição."
                     
                     editais_encontrados.append({
@@ -910,17 +926,38 @@ def eh_url_generica(url):
 def corrigir_utf8_corrompido(texto):
     if not texto:
         return texto
+    
+    # 1. Tenta o fix global (mais rápido e limpo)
     try:
+        # Padrões de mojibake comuns (UTF-8 lido como Latin-1)
         patterns = [
             '\xc3\xa7', '\xc3\xa3', '\xc3\xa1', '\xc3\xb3', '\xc3\xaa',
             '\xc3\xa9', '\xc3\xba', '\xc3\xad', '\xc3\xa0', '\xc3\xa2',
-            '\xc3\xb5', '\xc3\x98', '\xc3\x89', '\xc3\x93'
+            '\xc3\xb5', '\xc3\x98', '\xc3\x89', '\xc3\x93', '\xc3\x81',
+            '\xc3\x8a', '\xc3\x82', '\xc3\x80', '\xc3\x8d', '\xc3\x9a',
+            '\xc3\x95', '\xc3\x91'
         ]
         if any(x in texto for x in patterns):
-            texto = texto.encode('latin-1').decode('utf-8')
+            return texto.encode('latin-1').decode('utf-8')
     except Exception:
-        pass
-    # Remove replacement characters caused by any remaining encoding issues
+        # 2. Se falhar (por bytes isolados que quebram o decode), tenta fix cirúrgico via regex
+        def fix_match(m):
+            try:
+                return m.group(0).encode('latin-1').decode('utf-8')
+            except:
+                return m.group(0)
+        
+        # Corrige sequências de 2 bytes UTF-8 (Ã ou Â seguidos de byte de continuação)
+        texto = re.sub(r'[\u00c2-\u00c3][\u0080-\u00bf]', fix_match, texto)
+        
+    # 3. Recuperação de caracteres "Ã" isolados (mesmo se o fix global funcionou ou foi pulado)
+    # Comum em: Ãridos -> Áridos, Ãrea -> Área
+    texto = texto.replace('\u00c3ridos', 'Áridos').replace('\u00c3rea', 'Área').replace('\u00c3\u0081', 'Á')
+    # Caso geral: Ã seguido de consoante costuma ser Á
+    texto = re.sub(r'\u00c3(?=[rR]idos)', 'Á', texto)
+    texto = re.sub(r'\u00c3(?=[rR]ea)', 'Á', texto)
+    
+    # 4. Limpeza final de caracteres residuais
     texto = texto.replace('\ufffd', '').strip()
     return texto
 
@@ -932,6 +969,12 @@ def normalizar_titulo(texto):
     texto = texto.replace('\xa0', ' ').replace('\u00a0', ' ').replace('\ufffd', '')
     texto = re.sub(r'\s+', ' ', texto)
     return texto.strip()
+
+
+def normalizar_chave_dedup(titulo):
+    """Full normalization for dedup key: fixes encoding AND normalizes whitespace.
+    Ensures 'GestÃ£o' and 'Gestão' are treated as the same edital."""
+    return normalizar_titulo(corrigir_utf8_corrompido(titulo))
 
 # ══ RASPADOR DIRETO E INTEGRADO DA UNEB SSPPG ══
 def raspar_uneb_ssppg():
@@ -966,8 +1009,8 @@ def raspar_uneb_ssppg():
         for path, full_title in matches:
             full_title = html.unescape(full_title).strip()
             full_title = re.sub(r'\s+', ' ', full_title)
-            full_title = full_title.replace('\x81', '').replace('\xa0', ' ').replace('\ufffd', '').strip()
             full_title = corrigir_utf8_corrompido(full_title)
+            full_title = full_title.replace('\x81', '').replace('\xa0', ' ').strip()
             
             url_edital = f"https://ssppg.uneb.br{path}"
             print(f"[UNEB SSPPG] Buscando detalhes de: {full_title}")
