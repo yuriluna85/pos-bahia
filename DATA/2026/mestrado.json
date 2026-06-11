@@ -1,5 +1,35 @@
 [
   {
+    "dataColeta": "2026-06-11T03:49:06.950198Z",
+    "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL MESTRADO - MESTRADO EM CIÊNCIA DE ALIMENTOS",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 12. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Mestrado Acadêmico",
+    "area": "Saúde e Biológicas",
+    "vagas": 12,
+    "inscricoesInicio": "2026-06-10T12:00:00Z",
+    "inscricoesFim": "2026-06-28T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-10T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  },
+  {
+    "dataColeta": "2026-06-11T03:49:06.950198Z",
+    "titulo": "SELEÇÃO DE ALUNO(A) ESPECIAL - PPGMUS - 2026.2 - MESTRADO EM MÚSICA",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MÚSICA. Vagas ofertadas: 25. Período de inscrições de 08/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Mestrado Acadêmico",
+    "area": "Comunicação e Artes",
+    "vagas": 25,
+    "inscricoesInicio": "2026-06-08T12:00:00Z",
+    "inscricoesFim": "2026-06-12T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-08T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  },
+  {
     "dataColeta": "2026-06-08T17:42:56.818278Z",
     "titulo": "EDITAL 01/2026 PROCESSO DE SELEÇÃO PARA O MP-CECRE (MINTER CEFOR) - MESTRADO PROFISSIONAL EM CONSERVAÇÃO E RESTAURAÇÃO DE MONUMENTOS E NÚCLEOS HISTÓRI",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO PROFISSIONAL EM CONSERVAÇÃO E RESTAURAÇÃO DE MONUMENTOS E NÚCLEOS HISTÓRICOS. Vagas ofertadas: 13. Período de inscrições de 05/06/2026 a 06/07/2026. Consulte o edital completo no portal oficial da instituição.",
@@ -145,7 +175,7 @@
     "inscricoesInicio": "2026-05-15T12:00:00Z",
     "inscricoesFim": "2026-06-10T12:00:00Z",
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-    "status": "Aberto",
+    "status": "Encerrado",
     "dataPublicacao": "2026-05-15T12:00:00Z",
     "fonte": "UFBA SIGAA"
   },

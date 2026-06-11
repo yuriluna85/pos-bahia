@@ -1,5 +1,20 @@
 [
   {
+    "dataColeta": "2026-06-11T03:49:06.952780Z",
+    "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL DOUTORADO - DOUTORADO EM CIÊNCIA DE ALIMENTOS",
+    "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 22. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
+    "instituicao": "UFBA",
+    "nivel": "Doutorado Acadêmico",
+    "area": "Saúde e Biológicas",
+    "vagas": 22,
+    "inscricoesInicio": "2026-06-10T12:00:00Z",
+    "inscricoesFim": "2026-06-28T12:00:00Z",
+    "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-10T12:00:00Z",
+    "fonte": "UFBA SIGAA"
+  },
+  {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
     "titulo": "EDITAL N.º003/2026 DOUTORADO - DOUTORADO EM FARMÁCIA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM FARMÁCIA. Vagas ofertadas: 12. Período de inscrições de 04/06/2026 a 30/06/2026. Consulte o edital completo no portal oficial da instituição.",
@@ -70,7 +85,7 @@
     "inscricoesInicio": "2026-05-15T12:00:00Z",
     "inscricoesFim": "2026-06-10T12:00:00Z",
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-    "status": "Aberto",
+    "status": "Encerrado",
     "dataPublicacao": "2026-05-15T12:00:00Z",
     "fonte": "UFBA SIGAA"
   },
