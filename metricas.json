@@ -1,6 +1,6 @@
 {
-  "geradoEm": "2026-06-12T03:46:57.565432Z",
-  "totalGeral": 34,
+  "geradoEm": "2026-06-13T03:33:26.727685Z",
+  "totalGeral": 36,
   "totaisNiveis": {
     "Mestrado Acadêmico": 10,
     "Mestrado Profissional": 4,
@@ -15,18 +15,18 @@
     "Saúde e Biológicas": 13,
     "Humanas e Sociais": 0,
     "Comunicação e Artes": 3,
-    "Engenharias e Exatas": 8,
+    "Engenharias e Exatas": 10,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 31,
+    "Aberto": 33,
     "Encerrado": 3,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
       "nome": "UFBA",
-      "total": 29
+      "total": 31
     },
     {
       "nome": "UNEB",

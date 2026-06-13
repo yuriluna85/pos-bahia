@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-12T03:46:57.563400Z",
+  "ultimaAtualizacao": "2026-06-13T03:33:26.725636Z",
   "editais": [
     {
       "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -26,6 +26,36 @@
       "vagas": 70,
       "inscricoesInicio": "2026-06-12T12:00:00Z",
       "inscricoesFim": "2026-06-19T12:00:00Z",
+      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+      "status": "Aberto",
+      "dataPublicacao": "2026-06-12T12:00:00Z",
+      "fonte": "UFBA SIGAA"
+    },
+    {
+      "dataColeta": "2026-06-13T03:33:26.719781Z",
+      "titulo": "EDITAL DE ALUNO ESPECIAL 2026.2 DOUTORADO - DOUTORADO EM ARQUITETURA E URBANISMO",
+      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM ARQUITETURA E URBANISMO. Vagas ofertadas: 50. Período de inscrições de 12/06/2026 a 18/06/2026. Consulte o edital completo no portal oficial da instituição.",
+      "instituicao": "UFBA",
+      "nivel": "Doutorado - Aluno Especial",
+      "area": "Engenharias e Exatas",
+      "vagas": 50,
+      "inscricoesInicio": "2026-06-12T12:00:00Z",
+      "inscricoesFim": "2026-06-18T12:00:00Z",
+      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
+      "status": "Aberto",
+      "dataPublicacao": "2026-06-12T12:00:00Z",
+      "fonte": "UFBA SIGAA"
+    },
+    {
+      "dataColeta": "2026-06-13T03:33:26.719781Z",
+      "titulo": "EDITAL DE ALUNO ESPECIAL 2026.2 MESTRADO - MESTRADO EM ARQUITETURA E URBANISMO",
+      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ARQUITETURA E URBANISMO. Vagas ofertadas: 50. Período de inscrições de 12/06/2026 a 18/06/2026. Consulte o edital completo no portal oficial da instituição.",
+      "instituicao": "UFBA",
+      "nivel": "Mestrado - Aluno Especial",
+      "area": "Engenharias e Exatas",
+      "vagas": 50,
+      "inscricoesInicio": "2026-06-12T12:00:00Z",
+      "inscricoesFim": "2026-06-18T12:00:00Z",
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
       "status": "Aberto",
       "dataPublicacao": "2026-06-12T12:00:00Z",
@@ -92,21 +122,6 @@
       "fonte": "UFBA SIGAA"
     },
     {
-      "dataColeta": "2026-06-11T03:49:06.954331Z",
-      "titulo": "EDITAL nº 02/2026 - SELEÇÃO PARA ALUNO ESPECIAL - SEMESTRE LETIVO 2026.2 - MESTRADO EM EDUCAÇÃO",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM EDUCAÇÃO. Vagas ofertadas: 102. Período de inscrições de 09/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Educação",
-      "vagas": 102,
-      "inscricoesInicio": "2026-06-09T12:00:00Z",
-      "inscricoesFim": "2026-06-12T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-09T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
       "dataColeta": "2026-06-08T17:42:56.821340Z",
       "titulo": "045/2026AE - Educação, Cultura e Territórios Semi Áridos - Stricto Sensu Mestrado - Aluno Especial",
       "resumo": "Inscrições para o processo seletivo da UNEB: 045/2026AE - Educação, Cultura e Territórios Semi Áridos - Stricto Sensu Mestrado - Aluno Especial. Período de inscrições de 08/06/2026 a 22/06/2026. Consulte o edital completo no portal SSPPG UNEB.",
@@ -122,36 +137,6 @@
       "fonte": "UNEB SSPPG"
     },
     {
-      "dataColeta": "2026-06-11T03:49:06.950198Z",
-      "titulo": "SELEÇÃO DE ALUNO(A) ESPECIAL - PPGMUS - 2026.2 - MESTRADO EM MÚSICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MÚSICA. Vagas ofertadas: 25. Período de inscrições de 08/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Comunicação e Artes",
-      "vagas": 25,
-      "inscricoesInicio": "2026-06-08T12:00:00Z",
-      "inscricoesFim": "2026-06-12T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-08T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.821340Z",
-      "titulo": "SELEÇÃO PARA ALUNO ESPECIAL PPGCONT 2026.2 - MESTRADO EM CONTABILIDADE",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CONTABILIDADE. Vagas ofertadas: 80. Período de inscrições de 05/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 80,
-      "inscricoesInicio": "2026-06-05T12:00:00Z",
-      "inscricoesFim": "2026-06-12T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-05T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
       "dataColeta": "2026-06-08T17:42:56.821340Z",
       "titulo": "046/2026AE - Educação de Jovens e Adultos - Stricto Sensu Mestrado - Aluno Especial",
       "resumo": "Inscrições para o processo seletivo da UNEB: 046/2026AE - Educação de Jovens e Adultos - Stricto Sensu Mestrado - Aluno Especial. Período de inscrições de 05/06/2026 a 30/06/2026. Consulte o edital completo no portal SSPPG UNEB.",
@@ -165,21 +150,6 @@
       "status": "Aberto",
       "dataPublicacao": "2026-06-05T12:00:00Z",
       "fonte": "UNEB SSPPG"
-    },
-    {
-      "dataColeta": "2026-06-08T18:23:35.467242Z",
-      "titulo": "SELEÇÃO DE ALUNO/A ESPECIAL DO PPGCS - 2026.2 - MESTRADO EM CIÊNCIAS SOCIAIS",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIAS SOCIAIS. Vagas ofertadas: 45. Período de inscrições de 05/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 45,
-      "inscricoesInicio": "2026-06-05T12:00:00Z",
-      "inscricoesFim": "2026-06-12T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-05T12:00:00Z",
-      "fonte": "UFBA SIGAA"
     },
     {
       "dataColeta": "2026-06-08T17:42:56.818278Z",
