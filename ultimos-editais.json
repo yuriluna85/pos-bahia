@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-14T03:55:36.114016Z",
+  "ultimaAtualizacao": "2026-06-15T04:06:08.256334Z",
   "editais": [
     {
       "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -318,36 +318,6 @@
     },
     {
       "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "MESTRADO PROFISSIONAL EM MÚSICA. ALUNOS REGULARES 2026.2 - MESTRADO PROFISSIONAL EM MÚSICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO PROFISSIONAL EM MÚSICA. Vagas ofertadas: 30. Período de inscrições de 04/05/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Profissional",
-      "area": "Comunicação e Artes",
-      "vagas": 30,
-      "inscricoesInicio": "2026-05-04T12:00:00Z",
-      "inscricoesFim": "2026-06-14T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-04T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.820247Z",
-      "titulo": "DOUTORADO PROFISSIONAL EM MÚSICA. SELEÇÃO ALUNOS REGULARES 2026.2 - DOUTORADO PROFISSIONAL EM MÚSICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO PROFISSIONAL EM MÚSICA. Vagas ofertadas: 5. Período de inscrições de 04/05/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado Profissional",
-      "area": "Comunicação e Artes",
-      "vagas": 5,
-      "inscricoesInicio": "2026-05-04T12:00:00Z",
-      "inscricoesFim": "2026-06-14T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-04T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
       "titulo": "EDITAL 04/2026 - POSPETRO PROCESSO SELETIVO PARA MESTRADO EM GEOQUÍMICA: PETRÓLE - MESTRADO EM GEOQUÍMICA: PETRÓLEO E MEIO AMBIENTE",
       "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM GEOQUÍMICA: PETRÓLEO E MEIO AMBIENTE. Vagas ofertadas: 8. Período de inscrições de 27/04/2026 a 16/06/2026. Consulte o edital completo no portal oficial da instituição.",
       "instituicao": "UFBA",
@@ -374,36 +344,6 @@
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
       "status": "Aberto",
       "dataPublicacao": "2026-04-27T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "Processo Seletivo 2026.2 Mestrado - Aluno Regular - MESTRADO EM MECATRÔNICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MECATRÔNICA. Vagas ofertadas: 30. Período de inscrições de 16/04/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Saúde e Biológicas",
-      "vagas": 30,
-      "inscricoesInicio": "2026-04-16T12:00:00Z",
-      "inscricoesFim": "2026-06-14T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-04-16T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.820247Z",
-      "titulo": "Processo Seletivo 2026.2 Doutorado - Aluno Regular - DOUTORADO EM MECATRÔNICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM MECATRÔNICA. Vagas ofertadas: 16. Período de inscrições de 16/04/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado Acadêmico",
-      "area": "Saúde e Biológicas",
-      "vagas": 16,
-      "inscricoesInicio": "2026-04-16T12:00:00Z",
-      "inscricoesFim": "2026-06-14T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-04-16T12:00:00Z",
       "fonte": "UFBA SIGAA"
     }
   ]
