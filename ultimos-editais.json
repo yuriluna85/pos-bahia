@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-15T04:06:08.256334Z",
+  "ultimaAtualizacao": "2026-06-16T03:57:25.923785Z",
   "editais": [
     {
       "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -89,36 +89,6 @@
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
       "status": "Aberto",
       "dataPublicacao": "2026-06-10T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.821340Z",
-      "titulo": "PROCESSO SELETIVO PARA INGRESSO DE ALUNO ESPECIAL DOUTORADO- PGENF 2026.2 - DOUTORADO EM ENFERMAGEM E SAÚDE",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM ENFERMAGEM E SAÚDE. Vagas ofertadas: 30. Período de inscrições de 09/06/2026 a 15/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 30,
-      "inscricoesInicio": "2026-06-09T12:00:00Z",
-      "inscricoesFim": "2026-06-15T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-09T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.821340Z",
-      "titulo": "PROCESSO SELETIVO PARA INGRESSO DE ALUNO ESPECIAL MESTRADO- PGENF 2026.2 - MESTRADO EM ENFERMAGEM E SAÚDE",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENFERMAGEM E SAÚDE. Vagas ofertadas: 60. Período de inscrições de 09/06/2026 a 15/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 60,
-      "inscricoesInicio": "2026-06-09T12:00:00Z",
-      "inscricoesFim": "2026-06-15T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-09T12:00:00Z",
       "fonte": "UFBA SIGAA"
     },
     {
@@ -255,36 +225,6 @@
       "status": "Aberto",
       "dataPublicacao": "2026-06-01T12:00:00Z",
       "fonte": "UNEB SSPPG"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "PPGEEC - Edital de Seleção para Alunos Regulares de Mestrado 2026.2 - MESTRADO EM ENGENHARIA ELÉTRICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENGENHARIA ELÉTRICA. Vagas ofertadas: 48. Período de inscrições de 19/05/2026 a 15/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Engenharias e Exatas",
-      "vagas": 48,
-      "inscricoesInicio": "2026-05-19T12:00:00Z",
-      "inscricoesFim": "2026-06-15T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-19T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.820247Z",
-      "titulo": "PPGEEC - Edital de Seleção para Alunos Regulares de Doutorado 2026.2 - DOUTORADO EM ENGENHARIA ELÉTRICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM ENGENHARIA ELÉTRICA. Vagas ofertadas: 23. Período de inscrições de 19/05/2026 a 15/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado Acadêmico",
-      "area": "Engenharias e Exatas",
-      "vagas": 23,
-      "inscricoesInicio": "2026-05-19T12:00:00Z",
-      "inscricoesFim": "2026-06-15T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-19T12:00:00Z",
-      "fonte": "UFBA SIGAA"
     },
     {
       "dataColeta": "2026-06-08T17:42:56.818278Z",
