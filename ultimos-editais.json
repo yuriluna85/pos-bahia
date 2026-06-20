@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-19T04:09:05.803365Z",
+  "ultimaAtualizacao": "2026-06-20T03:31:00.292613Z",
   "editais": [
     {
       "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -152,36 +152,6 @@
       "fonte": "UFBA SIGAA"
     },
     {
-      "dataColeta": "2026-06-11T03:49:06.954331Z",
-      "titulo": "PROCESSO SELETIVO IC-PGCOMP DOUTORADO PARA ALUNO ESPECIAL 2026.2 - DOUTORADO EM CIÊNCIA DA COMPUTAÇÃO",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM CIÊNCIA DA COMPUTAÇÃO. Vagas ofertadas: 30. Período de inscrições de 12/06/2026 a 19/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado - Aluno Especial",
-      "area": "Tecnologia e Informática",
-      "vagas": 30,
-      "inscricoesInicio": "2026-06-12T12:00:00Z",
-      "inscricoesFim": "2026-06-19T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-12T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-11T03:49:06.954331Z",
-      "titulo": "PROCESSO SELETIVO IC-PGCOMP MESTRADO PARA ALUNO ESPECIAL 2026.2 - MESTRADO EM CIÊNCIA DA COMPUTAÇÃO",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIA DA COMPUTAÇÃO. Vagas ofertadas: 70. Período de inscrições de 12/06/2026 a 19/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Tecnologia e Informática",
-      "vagas": 70,
-      "inscricoesInicio": "2026-06-12T12:00:00Z",
-      "inscricoesFim": "2026-06-19T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-12T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
       "dataColeta": "2026-06-11T03:49:06.950198Z",
       "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL MESTRADO - MESTRADO EM CIÊNCIA DE ALIMENTOS",
       "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 12. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
@@ -317,18 +287,18 @@
       "fonte": "UNEB SSPPG"
     },
     {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "042/2026 - Docência na Educação Básica - Lato Sensu - Aluno Regular",
-      "resumo": "Inscrições para o processo seletivo da UNEB: 042/2026 - Docência na Educação Básica - Lato Sensu - Aluno Regular. Período de inscrições de 01/06/2026 a 19/06/2026. Consulte o edital completo no portal SSPPG UNEB.",
+      "dataColeta": "2026-06-20T03:31:00.280149Z",
+      "titulo": "060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular",
+      "resumo": "Inscrições para o processo seletivo da UNEB: 060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular. Período de inscrições de 03/06/2026 a 13/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
       "instituicao": "UNEB",
       "nivel": "Mestrado Profissional",
       "area": "Educação",
       "vagas": 15,
-      "inscricoesInicio": "2026-06-01T12:00:00Z",
-      "inscricoesFim": "2026-06-19T23:59:59Z",
-      "url": "https://ssppg.uneb.br/inicio/editalExterno/1552?selecao=1552",
+      "inscricoesInicio": "2026-06-03T12:00:00Z",
+      "inscricoesFim": "2026-07-13T23:59:59Z",
+      "url": "https://ssppg.uneb.br/inicio/editalExterno/1571?selecao=1571",
       "status": "Aberto",
-      "dataPublicacao": "2026-06-01T12:00:00Z",
+      "dataPublicacao": "2026-06-03T12:00:00Z",
       "fonte": "UNEB SSPPG"
     },
     {
