@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-21T04:01:14.543900Z",
+  "ultimaAtualizacao": "2026-06-22T04:02:58.497200Z",
   "editais": [
     {
       "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -300,36 +300,6 @@
       "status": "Aberto",
       "dataPublicacao": "2026-06-03T12:00:00Z",
       "fonte": "UNEB SSPPG"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "SELEÇÃO PARA INGRESSO NO MESTRADO EM QUÍMICA 2026.2 - MESTRADO EM QUÍMICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM QUÍMICA. Vagas ofertadas: 27. Período de inscrições de 18/05/2026 a 21/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Engenharias e Exatas",
-      "vagas": 27,
-      "inscricoesInicio": "2026-05-18T12:00:00Z",
-      "inscricoesFim": "2026-06-21T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-18T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.820247Z",
-      "titulo": "SELEÇÃO PARA INGRESSO NO DOUTORADO EM QUÍMICA 2026.2 - DOUTORADO EM QUÍMICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM QUÍMICA. Vagas ofertadas: 20. Período de inscrições de 18/05/2026 a 21/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado Acadêmico",
-      "area": "Engenharias e Exatas",
-      "vagas": 20,
-      "inscricoesInicio": "2026-05-18T12:00:00Z",
-      "inscricoesFim": "2026-06-21T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-05-18T12:00:00Z",
-      "fonte": "UFBA SIGAA"
     }
   ]
 }
