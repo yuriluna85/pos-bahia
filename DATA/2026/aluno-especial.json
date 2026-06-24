@@ -1,6 +1,36 @@
 [
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
+    "titulo": "053/2026AEDO - Crítica Cultural - Stricto Sensu Doutorado - Aluno Especial",
+    "resumo": "Inscrições para o processo seletivo da UNEB: 053/2026AEDO - Crítica Cultural - Stricto Sensu Doutorado - Aluno Especial. Período de inscrições de 23/06/2026 a 06/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
+    "instituicao": "UNEB",
+    "nivel": "Doutorado - Aluno Especial",
+    "area": "Educação",
+    "vagas": 15,
+    "inscricoesInicio": "2026-06-23T12:00:00Z",
+    "inscricoesFim": "2026-07-06T23:59:59Z",
+    "url": "https://ssppg.uneb.br/inicio/editalExterno/1567?selecao=1567",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-23T12:00:00Z",
+    "fonte": "UNEB SSPPG"
+  },
+  {
+    "dataColeta": "2026-06-24T03:25:53.912700Z",
+    "titulo": "053/2026AEME - Crítica Cultural - Stricto Sensu Mestrado - Aluno Especial",
+    "resumo": "Inscrições para o processo seletivo da UNEB: 053/2026AEME - Crítica Cultural - Stricto Sensu Mestrado - Aluno Especial. Período de inscrições de 23/06/2026 a 06/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
+    "instituicao": "UNEB",
+    "nivel": "Mestrado - Aluno Especial",
+    "area": "Educação",
+    "vagas": 15,
+    "inscricoesInicio": "2026-06-23T12:00:00Z",
+    "inscricoesFim": "2026-07-06T23:59:59Z",
+    "url": "https://ssppg.uneb.br/inicio/editalExterno/1565?selecao=1565",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-23T12:00:00Z",
+    "fonte": "UNEB SSPPG"
+  },
+  {
+    "dataColeta": "2026-06-17T03:57:08.945936Z",
     "titulo": "Edital nº 01 - Processo Seletivo Aluno Especial Doutorado 2026.2 - DOUTORADO EM ESTATÍSTICA E CIÊNCIAS DE DADOS",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM ESTATÍSTICA E CIÊNCIAS DE DADOS. Vagas ofertadas: 5. Período de inscrições de 15/06/2026 a 10/07/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -55,21 +85,6 @@
     "inscricoesInicio": "2026-06-15T12:00:00Z",
     "inscricoesFim": "2026-07-06T23:59:59Z",
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1559?selecao=1559",
-    "status": "Aberto",
-    "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UNEB SSPPG"
-  },
-  {
-    "dataColeta": "2026-06-17T03:57:08.945936Z",
-    "titulo": "053/2026AEDO - Crítica Cultural - Stricto Sensu Doutorado - Aluno Especial",
-    "resumo": "Inscrições para o processo seletivo da UNEB: 053/2026AEDO - Crítica Cultural - Stricto Sensu Doutorado - Aluno Especial. Período de inscrições de 15/06/2026 a 03/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
-    "instituicao": "UNEB",
-    "nivel": "Doutorado - Aluno Especial",
-    "area": "Educação",
-    "vagas": 15,
-    "inscricoesInicio": "2026-06-15T12:00:00Z",
-    "inscricoesFim": "2026-07-03T23:59:59Z",
-    "url": "https://ssppg.uneb.br/inicio/editalExterno/1567?selecao=1567",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
     "fonte": "UNEB SSPPG"
