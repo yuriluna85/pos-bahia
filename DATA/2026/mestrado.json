@@ -1,5 +1,20 @@
 [
   {
+    "dataColeta": "2026-06-27T02:55:02.410365Z",
+    "titulo": "057/2026AR - Educação e Linguagens - Lato Sensu - Aluno Regular",
+    "resumo": "Inscrições para o processo seletivo da UNEB: 057/2026AR - Educação e Linguagens - Lato Sensu - Aluno Regular. Período de inscrições de 25/06/2026 a 10/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
+    "instituicao": "UNEB",
+    "nivel": "Mestrado Profissional",
+    "area": "Humanas e Sociais",
+    "vagas": 15,
+    "inscricoesInicio": "2026-06-25T12:00:00Z",
+    "inscricoesFim": "2026-07-10T23:59:59Z",
+    "url": "https://ssppg.uneb.br/inicio/editalExterno/1549?selecao=1549",
+    "status": "Aberto",
+    "dataPublicacao": "2026-06-25T12:00:00Z",
+    "fonte": "UNEB SSPPG"
+  },
+  {
     "dataColeta": "2026-06-17T03:57:08.940948Z",
     "titulo": "PROCESSO SELETIVO DO MESTRADO ACADÊMICO TURMA 2027.1 - MESTRADO EM ARQUITETURA E URBANISMO",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ARQUITETURA E URBANISMO. Vagas ofertadas: 25. Período de inscrições de 15/06/2026 a 31/07/2026. Consulte o edital completo no portal oficial da instituição.",
@@ -25,7 +40,7 @@
     "inscricoesInicio": "2026-06-15T12:00:00Z",
     "inscricoesFim": "2026-06-26T12:00:00Z",
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-    "status": "Aberto",
+    "status": "Encerrado",
     "dataPublicacao": "2026-06-15T12:00:00Z",
     "fonte": "UFBA SIGAA"
   },
@@ -130,7 +145,7 @@
     "inscricoesInicio": "2026-06-03T12:00:00Z",
     "inscricoesFim": "2026-06-26T23:59:59Z",
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1550?selecao=1550",
-    "status": "Aberto",
+    "status": "Encerrado",
     "dataPublicacao": "2026-06-03T12:00:00Z",
     "fonte": "UNEB SSPPG"
   },

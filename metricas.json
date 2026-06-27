@@ -1,25 +1,25 @@
 {
-  "geradoEm": "2026-06-26T03:33:18.912584Z",
-  "totalGeral": 48,
+  "geradoEm": "2026-06-27T02:55:02.433593Z",
+  "totalGeral": 52,
   "totaisNiveis": {
     "Mestrado Acadêmico": 12,
-    "Mestrado Profissional": 5,
+    "Mestrado Profissional": 6,
     "Doutorado Acadêmico": 11,
     "Doutorado Profissional": 1,
     "Aluno Especial": 6
   },
   "totaisAreas": {
-    "Educação": 10,
+    "Educação": 13,
     "Tecnologia e Informática": 3,
     "Gestão e Negócios": 0,
     "Saúde e Biológicas": 13,
-    "Humanas e Sociais": 0,
+    "Humanas e Sociais": 1,
     "Comunicação e Artes": 3,
     "Engenharias e Exatas": 17,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 45,
+    "Aberto": 49,
     "Encerrado": 3,
     "Em andamento": 0
   },
@@ -30,7 +30,7 @@
     },
     {
       "nome": "UNEB",
-      "total": 11
+      "total": 15
     }
   ]
 }
