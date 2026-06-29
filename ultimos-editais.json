@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-28T03:37:33.462552Z",
+  "ultimaAtualizacao": "2026-06-29T03:43:21.904614Z",
   "editais": [
     {
       "dataColeta": "2026-06-27T02:55:02.415475Z",
@@ -194,36 +194,6 @@
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
       "status": "Aberto",
       "dataPublicacao": "2026-06-15T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-11T03:49:06.950198Z",
-      "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL MESTRADO - MESTRADO EM CIÊNCIA DE ALIMENTOS",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 12. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Saúde e Biológicas",
-      "vagas": 12,
-      "inscricoesInicio": "2026-06-10T12:00:00Z",
-      "inscricoesFim": "2026-06-28T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-10T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-11T03:49:06.952780Z",
-      "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL DOUTORADO - DOUTORADO EM CIÊNCIA DE ALIMENTOS",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: DOUTORADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 22. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Doutorado Acadêmico",
-      "area": "Saúde e Biológicas",
-      "vagas": 22,
-      "inscricoesInicio": "2026-06-10T12:00:00Z",
-      "inscricoesFim": "2026-06-28T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-10T12:00:00Z",
       "fonte": "UFBA SIGAA"
     },
     {
