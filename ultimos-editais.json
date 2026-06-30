@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-06-29T03:43:21.904614Z",
+  "ultimaAtualizacao": "2026-06-30T03:31:21.518840Z",
   "editais": [
     {
       "dataColeta": "2026-06-27T02:55:02.415475Z",
@@ -254,21 +254,6 @@
       "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
       "status": "Aberto",
       "dataPublicacao": "2026-06-04T12:00:00Z",
-      "fonte": "UFBA SIGAA"
-    },
-    {
-      "dataColeta": "2026-06-08T17:42:56.818278Z",
-      "titulo": "PPGEEC / UNIVASF - Seleção para Alunos de Mestrado 2026.2 (Turma MINTER) - MESTRADO EM ENGENHARIA ELÉTRICA",
-      "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENGENHARIA ELÉTRICA. Vagas ofertadas: 20. Período de inscrições de 03/06/2026 a 29/06/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Engenharias e Exatas",
-      "vagas": 20,
-      "inscricoesInicio": "2026-06-03T12:00:00Z",
-      "inscricoesFim": "2026-06-29T12:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-03T12:00:00Z",
       "fonte": "UFBA SIGAA"
     },
     {
