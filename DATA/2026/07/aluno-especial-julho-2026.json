@@ -418,5 +418,20 @@
     "status": "Aberto",
     "dataPublicacao": "2026-01-09T00:00:00Z",
     "fonte": "Google Search (UFBA)"
+  },
+  {
+    "dataColeta": "2026-07-05T22:24:14.906428Z",
+    "titulo": "ATOS, EDITAIS E RESOLUÇÕES – UCSal",
+    "resumo": "... 2026 – Bolsas FAPESB Mestrado e Doutorado – Cotas Institucionais UCSal 2026. ... ALUNO ESPECIAL no Mestrado e Doutorado. 09/12/2015 – Resolução 13/2015 ...",
+    "instituicao": "UCSal",
+    "nivel": "Mestrado - Aluno Especial",
+    "area": "Educação",
+    "vagas": 10,
+    "inscricoesInicio": "2026-01-09T00:00:00Z",
+    "inscricoesFim": "2026-07-01T00:00:00Z",
+    "url": "https://www.ucsal.br/atos-editais-e-resolucoes/",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-01-09T00:00:00Z",
+    "fonte": "Google Search (UCSal)"
   }
 ]
