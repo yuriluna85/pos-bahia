@@ -9,6 +9,19 @@ import ssl
 import unicodedata
 from datetime import datetime, timedelta
 
+# Carrega arquivo .env se existir localmente (sem dependências)
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+if os.path.exists(env_path):
+    try:
+        with open(env_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ[key.strip()] = val.strip()
+    except Exception as e_env:
+        print(f"Aviso ao carregar .env: {e_env}")
+
 # Helper para realizar requisições HTTP
 def http_request(url, method='GET', headers=None, data=None, use_fallback=True):
     if headers is None:
@@ -67,7 +80,7 @@ def http_request(url, method='GET', headers=None, data=None, use_fallback=True):
         scraper_key = os.environ.get('SCRAPER_API_KEY')
         if use_fallback and scraper_key and not is_api_service:
             print(f"[Fallback Proxy] Requisição direta falhou para {url} (Erro: {e}). Tentando via ScraperAPI...")
-            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}&render=true"
+            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}"
             try:
                 return http_request(scraper_url, method='GET', use_fallback=False)
             except Exception as e_fallback:
@@ -509,7 +522,13 @@ def corrigir_campos_edital(e):
     instituicao_lower = remover_acentos_py(e.get('instituicao', '').lower())
     fonte_lower = remover_acentos_py(e.get('fonte', '').lower())
     titulo_lower = remover_acentos_py(e.get('titulo', '').lower())
-    eh_publica = any(x in instituicao_lower or x in fonte_lower or x in titulo_lower for x in INSTITUICOES_PUBLICAS)
+    eh_publica = (
+        any(x in instituicao_lower or x in fonte_lower or x in titulo_lower for x in INSTITUICOES_PUBLICAS) or
+        bool(re.search(r'\bif[a-z]{2}\b', instituicao_lower)) or
+        bool(re.search(r'\bif[a-z]{2}\b', fonte_lower)) or
+        'instituto federal' in instituicao_lower or
+        'instituto federal' in fonte_lower
+    )
 
     if tipo_pos == 'Stricto':
         # Stricto Sensu em pública é sempre gratuito
@@ -1267,7 +1286,9 @@ def buscar_novos_editais():
             f'site:unifacs.br OR site:ucsal.br OR site:unijorge.edu.br OR site:uniftc.edu.br "mestrado" OR "doutorado" OR "aluno especial" {ano_corrente}',
             # Lato Sensu (Especializações - Qualquer localidade do Brasil, de preferência EaD)
             f'site:.edu.br "edital" "especialização" "inscrições abertas" "ead" OR "a distância" {ano_corrente}',
-            f'site:.gov.br OR site:.org.br "processo seletivo" "lato sensu" "especialização" "ead" {ano_corrente}'
+            f'site:.gov.br OR site:.org.br "processo seletivo" "lato sensu" "especialização" "ead" {ano_corrente}',
+            # Lato Sensu - Foco Especial em Educação Profissional e Tecnológica (EPT) Nacional
+            f'site:.edu.br "edital" "especialização" "docência na ept" OR "gestão na ept" OR "educação profissional e tecnológica" {ano_corrente}'
         ]
         
         links_processados = set()
@@ -1323,7 +1344,7 @@ def buscar_novos_editais():
                         print(f"[Serper] Processando URL: {url} (Sigla: {instituicao})")
                         
                         try:
-                            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}&render=true"
+                            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}"
                             scrape_res = http_request(scraper_url, method='GET', use_fallback=False)
                             
                             if scrape_res['statusCode'] == 200:
@@ -1353,15 +1374,22 @@ def buscar_novos_editais():
                                     titulo = item.get('snippet', item.get('title', 'Processo Seletivo'))[:120]
                                 titulo = corrigir_utf8_corrompido(titulo)
                                 
-                                nivel = "Mestrado Acadêmico"
-                                if any(x in text_lower for x in ["aluno especial", "matricula especial", "estudante especial", "disciplina isolada"]):
-                                    nivel = "Mestrado - Aluno Especial"
-                                elif "doutorado" in text_lower:
-                                    nivel = "Doutorado Profissional" if "doutorado profissional" in text_lower else "Doutorado Acadêmico"
-                                elif "especialização" in text_lower or "especializacao" in text_lower or "lato sensu" in text_lower:
+                                # Classifica o nível com base no texto, título e URL combinados para precisão
+                                search_text = (titulo + " " + url + " " + text_lower).lower()
+                                title_url = (titulo + " " + url).lower()
+                                
+                                if "especializ" in title_url or "lato" in title_url:
                                     nivel = "Especialização"
-                                elif "mestrado" in text_lower:
-                                    nivel = "Mestrado Profissional" if "mestrado profissional" in text_lower else "Mestrado Acadêmico"
+                                elif any(x in search_text for x in ["aluno especial", "matricula especial", "estudante especial", "disciplina isolada"]):
+                                    nivel = "Mestrado - Aluno Especial"
+                                elif "doutorado" in search_text:
+                                    nivel = "Doutorado Profissional" if "doutorado profissional" in search_text else "Doutorado Acadêmico"
+                                elif "especializ" in search_text or "lato" in search_text or "pos-graduacao" in search_text:
+                                    nivel = "Especialização"
+                                elif "mestrado" in search_text:
+                                    nivel = "Mestrado Profissional" if "mestrado profissional" in search_text else "Mestrado Acadêmico"
+                                else:
+                                    nivel = "Mestrado Acadêmico"
                                     
                                 is_lato = (nivel == "Especialização")
                                 

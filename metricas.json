@@ -1,45 +1,65 @@
 {
-  "geradoEm": "2026-07-05T21:41:17.307691Z",
-  "totalGeral": 66,
+  "geradoEm": "2026-07-05T18:59:42.280809Z",
+  "totalGeral": 73,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 13,
-    "Mestrado Profissional": 6,
+    "Mestrado Acadêmico": 14,
+    "Mestrado Profissional": 7,
     "Doutorado Acadêmico": 12,
     "Doutorado Profissional": 2,
-    "Aluno Especial": 6,
-    "Especialização": 2,
+    "Aluno Especial": 2,
+    "Especialização": 5,
     "Pós-Doc": 0
   },
   "totaisAreas": {
-    "Educação": 19,
-    "Tecnologia e Informática": 3,
-    "Gestão e Negócios": 1,
-    "Saúde e Biológicas": 16,
+    "Educação": 22,
+    "Tecnologia e Informática": 4,
+    "Gestão e Negócios": 2,
+    "Saúde e Biológicas": 17,
     "Humanas e Sociais": 4,
-    "Comunicação e Artes": 3,
+    "Comunicação e Artes": 4,
     "Engenharias e Exatas": 18,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 60,
-    "Encerrado": 6,
+    "Aberto": 54,
+    "Encerrado": 19,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
       "nome": "UFBA",
-      "total": 40
+      "total": 41
     },
     {
       "nome": "UNEB",
-      "total": 23
+      "total": 24
     },
     {
       "nome": "IFRS",
       "total": 2
     },
     {
+      "nome": "UFSB",
+      "total": 1
+    },
+    {
       "nome": "UNILAB",
+      "total": 1
+    },
+    {
+      "nome": "UCSal",
+      "total": 1
+    },
+    {
+      "nome": "IFSP",
+      "total": 1
+    },
+    {
+      "nome": "UFCA",
+      "total": 1
+    },
+    {
+      "nome": "ESTUDE",
       "total": 1
     }
   ]
