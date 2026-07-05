@@ -12,48 +12,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;850&display=swap" rel="stylesheet">
 
   <style>
-    /* ══ VARIÁVEIS DO SISTEMA DE DESIGN (PALETA OFICIAL YLUNA85 LABS) ══ */
+    /* ══ DESIGN SYSTEM — YLuna85 LABs (Identidade Oficial Unificada) ══
+       Paleta: Dark #0D1117 | Ciano Neon #00D4FF | Roxo Neon #9B59FF | Azul #4361EE
+    ══════════════════════════════════════════════════════════════════════ */
     :root {
-      --bg-main: #FAFAFA; /* Fundo Claro YLuna85 LABs */
-      --bg-card: #ffffff; /* Fundo de cartões branco */
-      --bg-header: #ffffff; /* Header branco */
-      --border-glow: #e2e8f0; /* Borda cinza suave */
-      --border-glow-hover: #cbd5e1; /* Borda cinza média no hover */
-      --primary: #0D6EFD; /* Azul Royal (Primário YLuna85 LABs) */
-      --primary-rgb: 13, 110, 253;
-      --accent: #7952B3; /* Roxo Violeta (Secundário YLuna85 LABs) */
-      --accent-orange: #ea580c;
-      --text-main: #262626; /* Cinza Escuro YLuna85 LABs */
-      --text-muted: #475569;
-      --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      /* ── Fundo & Superfícies ── */
+      --bg-main:       #0D1117;
+      --bg-card:       rgba(22, 30, 49, 0.85);
+      --bg-header:     rgba(13, 17, 23, 0.95);
+      --bg-input:      rgba(13, 17, 23, 0.90);
+      --bg-surface:    #161B27;
+
+      /* ── Bordas ── */
+      --border-glow:        rgba(0, 212, 255, 0.18);
+      --border-glow-hover:  rgba(0, 212, 255, 0.40);
+      --border-purple:      rgba(155, 89, 255, 0.25);
+
+      /* ── Marca YLuna85 LABs ── */
+      --primary:        #00D4FF;      /* Ciano elétrico */
+      --primary-rgb:    0, 212, 255;
+      --primary-glow:   rgba(0, 212, 255, 0.20);
+      --primary-dark:   #00A8CC;
+      --accent:         #9B59FF;      /* Roxo neon */
+      --accent-glow:    rgba(155, 89, 255, 0.20);
+      --accent-dark:    #7B2FBE;
+      --accent-orange:  #F59E0B;      /* Âmbar — alertas */
+      --brand-blue:     #4361EE;      /* Azul royal */
+
+      /* ── Tipografia ── */
+      --text-main:      #E2E8F0;
+      --text-muted:     #94A3B8;
+      --text-subtle:    #4A5568;
+
+      /* ── Sombras ── */
+      --shadow-soft:        0 4px 24px -4px rgba(0, 0, 0, 0.50);
+      --shadow-glow-cyan:   0 0 20px rgba(0, 212, 255, 0.20);
+      --shadow-glow-purple: 0 0 20px rgba(155, 89, 255, 0.20);
       --transition-org: cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* Cores por Nível adaptadas para a marca */
-      --color-mestrado: #16a34a; /* Verde */
-      --color-doutorado: #7952B3; /* Roxo Violeta */
-      --color-especial: #ea580c; /* Laranja */
-      --color-fechados: #64748b; /* Cinza */
+
+      /* ── Cores por Nível ── */
+      --color-mestrado:   #00D4FF;   /* Ciano — Mestrado */
+      --color-doutorado:  #9B59FF;   /* Roxo — Doutorado */
+      --color-especial:   #F59E0B;   /* Âmbar — Aluno Especial */
+      --color-fechados:   #4A5568;   /* Cinza — Encerrados */
     }
 
     /* ══ MODO ALTO CONTRASTE (WCAG) ══ */
     .alto-contraste {
-      --bg-main: #000000;
-      --bg-card: #000000;
-      --bg-header: #000000;
-      --border-glow: #ffffff;
-      --border-glow-hover: #ffffff;
-      --primary: #ffff00; /* Amarelo puro */
-      --primary-rgb: 255, 255, 0;
-      --accent: #ffffff;
-      --accent-orange: #ffff00;
-      --text-main: #ffffff;
-      --text-muted: #ffffff;
-      --shadow-soft: none;
-      
-      --color-mestrado: #ffff00;
-      --color-doutorado: #ffff00;
-      --color-especial: #ffff00;
-      --color-fechados: #ffff00;
+      --bg-main:     #000000;
+      --bg-card:     #0a0a0a;
+      --bg-header:   #000000;
+      --bg-input:    #0d0d0d;
+      --bg-surface:  #111111;
+      --border-glow:       #ffffff;
+      --border-glow-hover: #ffff00;
+      --primary:        #00ffff;
+      --primary-rgb:    0, 255, 255;
+      --accent:         #ff00ff;
+      --accent-orange:  #ffff00;
+      --text-main:      #ffffff;
+      --text-muted:     #e0e0e0;
+      --shadow-soft:    none;
+      --color-mestrado:   #ffff00;
+      --color-doutorado:  #ffff00;
+      --color-especial:   #ffff00;
+      --color-fechados:   #ffff00;
     }
 
     /* ══ RESET E BÁSICOS ══ */
@@ -65,6 +88,11 @@
 
     body {
       background-color: var(--bg-main);
+      background-image:
+        radial-gradient(at 0% 0%,    rgba(0, 212, 255, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 0%,  rgba(155, 89, 255, 0.06) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(67, 97, 238, 0.07) 0px, transparent 50%);
+      background-attachment: fixed;
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;

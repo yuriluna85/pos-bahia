@@ -31,6 +31,7 @@ Plataforma desenvolvida para centralizar a busca de seleções acadêmicas e cur
 - 🛠️ **Filtros Lato Sensu Avançados**: Implementação de seletores interativos na interface para classificar por Modalidade (EaD/Presencial), Foco em EPT (Pós em Gestão/Docência na EPT vs outras EaD) e Investimento (Cursos Gratuitos vs Pagos).
 - 🏷️ **Badges Dinâmicos nos Cards**: Inserção de tags visuais com as novas propriedades dos processos seletivos diretamente nos cards de visualização rápida.
 - 🧹 **[BUGFIX] Sanitização de JS nos Títulos de Editais** (`compilador.py`): Corrigido o vazamento de código JavaScript (ex: `function dpf(f){...}`) para os títulos dos cards, causado por HTML renderizado retornado pelo ScraperAPI. Adicionados: flag `re.DOTALL` nos regex de remoção de `<script>/<style>`, filtros de palavras-chave JS (`function`, `var`, `if`, etc.) e fallback automático para o `snippet` do Serper quando o título resultante parecer código.
+- 🎨 **[VISUAL] Identidade YLuna85 LABs Unificada** (`index.html`): Design System migrado de **Light Mode branco** (`#FAFAFA`) para o **Dark Mode oficial** `#0D1117`. Paleta unificada com a marca — **Ciano Elétrico** `#00D4FF` (primário), **Roxo Neon** `#9B59FF` (secundário), gradiente de fundo neon tricolor e cores por nível de pós (Mestrado=Ciano, Doutorado=Roxo, Especial=Âmbar).
 
 ### 📅 30/06/2026 - Estruturação de SEO & Monetização
 - 🌐 **Otimização de SEO (White Hat)**: Inclusão de meta tags de indexação, dados estruturados JSON-LD e tags Open Graph (OG) para melhorar a relevância e indexação orgânica no Google.
