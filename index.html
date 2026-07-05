@@ -460,9 +460,8 @@
     }
 
     /* Cores de ativação específicas para cada aba */
-    .tab-item.active-mestrado { color: var(--color-mestrado); border-bottom-color: var(--color-mestrado); }
-    .tab-item.active-doutorado { color: var(--color-doutorado); border-bottom-color: var(--color-doutorado); }
-    .tab-item.active-especial { color: var(--color-especial); border-bottom-color: var(--color-especial); }
+    .tab-item.active-stricto { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-item.active-lato { color: var(--color-especial); border-bottom-color: var(--color-especial); }
     .tab-item.active-fechados { color: var(--color-fechados); border-bottom-color: var(--color-fechados); }
     .tab-item.active-stats { color: var(--primary); border-bottom-color: var(--primary); }
     .tab-item.active-unis { color: var(--accent); border-bottom-color: var(--accent); }
@@ -565,9 +564,46 @@
       background: rgba(0, 0, 0, 0.08);
     }
 
-    .chip-btn.active-mestrado { background: var(--color-mestrado); color: #ffffff; border-color: var(--color-mestrado); }
-    .chip-btn.active-doutorado { background: var(--color-doutorado); color: #ffffff; border-color: var(--color-doutorado); }
-    .chip-btn.active-especial { background: var(--color-especial); color: #ffffff; border-color: var(--color-especial); }
+    .chip-btn.active-stricto { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+    .chip-btn.active-lato { background: var(--color-especial); color: #ffffff; border-color: var(--color-especial); }
+    .chip-btn.active-fechados { background: var(--color-fechados); color: #ffffff; border-color: var(--color-fechados); }
+
+    /* Badges adicionais para os cards de editais */
+    .badge-especializacao {
+      background: rgba(234, 88, 12, 0.1) !important;
+      color: var(--color-especial) !important;
+      border: 1.5px solid rgba(234, 88, 12, 0.3) !important;
+    }
+    .badge-posdoc {
+      background: rgba(15, 118, 110, 0.1) !important;
+      color: #0f766e !important;
+      border: 1.5px solid rgba(15, 118, 110, 0.3) !important;
+    }
+    .badge-ead {
+      background: rgba(2, 132, 199, 0.1) !important;
+      color: var(--primary) !important;
+      border: 1.5px solid rgba(2, 132, 199, 0.25) !important;
+    }
+    .badge-presencial {
+      background: rgba(71, 85, 105, 0.08) !important;
+      color: var(--text-muted) !important;
+      border: 1.5px solid rgba(71, 85, 105, 0.2) !important;
+    }
+    .badge-gratuita {
+      background: rgba(22, 163, 74, 0.1) !important;
+      color: var(--color-mestrado) !important;
+      border: 1.5px solid rgba(22, 163, 74, 0.25) !important;
+    }
+    .badge-paga {
+      background: rgba(220, 38, 38, 0.1) !important;
+      color: var(--accent-orange, #c2410c) !important;
+      border: 1.5px solid rgba(220, 38, 38, 0.25) !important;
+    }
+    .badge-ept {
+      background: rgba(154, 116, 7, 0.1) !important;
+      color: var(--color-doutorado) !important;
+      border: 1.5px solid rgba(154, 116, 7, 0.25) !important;
+    }
 
     /* ══ CARDS DE EDITAIS ══ */
     .edital-grid {
@@ -1304,6 +1340,137 @@
       }
     }
   </style>
+<style>
+
+/* ==========================================================================
+   RESPONSIVE MOBILE-FIRST OVERRIDES (responsive-web-checker)
+   ========================================================================== */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  img, iframe, video, table, canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .container, .wrapper, .main, .content, [class*="container"], [class*="wrapper"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+  .grid, [class*="grid"], .row, [class*="row"] {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+}
+</style>
+<style>
+/* ==========================================================================
+   WEB ACCESSIBILITY & A11Y STYLES (web-accessibility-a11y)
+   ========================================================================== */
+.a11y-floating-bar {
+  position: fixed; top: 12px; right: 12px; z-index: 999999;
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+  padding: 4px 8px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.a11y-btn {
+  background: rgba(255,255,255,0.15); border: none; color: #fff;
+  padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: 0.2s; font-family: sans-serif;
+}
+.a11y-btn:hover { background: #fff; color: #000; }
+
+body.high-contrast {
+  background: #000000 !important; color: #ffffff !important;
+}
+body.high-contrast header, body.high-contrast footer, body.high-contrast section, body.high-contrast div, body.high-contrast table, body.high-contrast tr, body.high-contrast td, body.high-contrast th, body.high-contrast aside, body.high-contrast nav, body.high-contrast main {
+  background: #000000 !important; color: #ffffff !important; border-color: #ffd700 !important;
+}
+body.high-contrast a, body.high-contrast h1, body.high-contrast h2, body.high-contrast h3, body.high-contrast h4, body.high-contrast p, body.high-contrast span, body.high-contrast i, body.high-contrast label, body.high-contrast button {
+  color: #ffffff !important; text-shadow: none !important;
+}
+body.high-contrast button, body.high-contrast input, body.high-contrast select {
+  background: #111111 !important; color: #ffd700 !important; border: 2px solid #ffd700 !important;
+}
+</style>
+  <!-- Meta Tags de SEO e Indexação (White Hat SEO) -->
+  <meta name="description" content="Acesse o portal Portal de Editais de Pós-Graduação da Bahia. Ferramenta desenvolvida para consulta, monitoramento e utilidade pública sob a chancela YLuna85 LABs.">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="editais, pos, bahia, portal de editais de pós-graduação da bahia, yluna85 labs, almeidaluna">
+  <link rel="canonical" href="https://labs.almeidaluna.tech/editais-pos-bahia/">
+
+  <!-- Protocolo Open Graph (Redes Sociais) -->
+  <meta property="og:title" content="Portal de Editais de Pós-Graduação da Bahia">
+  <meta property="og:description" content="Acesse o portal Portal de Editais de Pós-Graduação da Bahia. Ferramenta desenvolvida para consulta, monitoramento e utilidade pública sob a chancela YLuna85 LABs.">
+  <meta property="og:image" content="https://labs.almeidaluna.tech/editais-pos-bahia/assets/og-image.png">
+  <meta property="og:url" content="https://labs.almeidaluna.tech/editais-pos-bahia/">
+  <meta property="og:type" content="website">
+
+  <!-- Dados Estruturados JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Portal de Editais de Pós-Graduação da Bahia",
+    "url": "https://labs.almeidaluna.tech/editais-pos-bahia/",
+    "description": "Acesse o portal Portal de Editais de Pós-Graduação da Bahia. Ferramenta desenvolvida para consulta, monitoramento e utilidade pública sob a chancela YLuna85 LABs."
+  }
+  </script>
+
+  <!-- Estilos de Monetização (AdSense & AdMob) -->
+  <style>
+    .ad-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.02);
+      border: 1.5px dashed rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    .ad-placeholder {
+      font-size: 0.75rem;
+      color: var(--text-muted, #555555);
+      font-weight: 700;
+      text-align: center;
+      padding: 1rem;
+      pointer-events: none;
+    }
+    .ad-banner-horizontal {
+      width: 100%;
+      margin: 1.5rem 0;
+      display: block;
+    }
+    .ad-banner-horizontal .ad-container {
+      min-height: 90px;
+    }
+    .ad-slot-sidebar {
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .ad-slot-sidebar .ad-container {
+      min-height: 250px;
+    }
+    .ad-container ins[data-ad-status="filled"] + .ad-placeholder {
+      display: none;
+    }
+    body.high-contrast .ad-container {
+      background: #000000 !important;
+      border-color: #ffd700 !important;
+    }
+    body.high-contrast .ad-placeholder {
+      color: #ffffff !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -1337,6 +1504,23 @@
     </div>
   </header>
 
+  <!-- BANNER HORIZONTAL DE MONETIZAÇÃO (ADSENSE) -->
+  <div class="ad-banner-horizontal" role="complementary" aria-label="Espaço Publicitário">
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:728px;height:90px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <div class="ad-placeholder">
+        Anúncio Patrocinado · Google AdSense
+      </div>
+    </div>
+  </div>
+
+
   <!-- BARRA DE ATUALIZAÇÃO -->
   <div class="update-bar" role="status">
     <div class="update-inner">
@@ -1359,8 +1543,8 @@
   <!-- NAVEGAÇÃO DE ABAS -->
   <nav class="tabs-bar" role="navigation" aria-label="Abas de níveis de pós-graduação e utilitários">
     <div class="tabs-inner">
-      <button class="tab-item active-mestrado" id="tab-mestrado" onclick="switchTab('mestrado')" aria-controls="panel-mestrado" aria-selected="true" role="tab">🎓 Mestrado</button>
-      <button class="tab-item" id="tab-doutorado" onclick="switchTab('doutorado')" aria-controls="panel-doutorado" aria-selected="false" role="tab">🧬 Doutorado</button>
+      <button class="tab-item active-stricto" id="tab-stricto" onclick="switchTab('stricto')" aria-controls="panel-stricto" aria-selected="true" role="tab">🎓 Stricto Sensu</button>
+      <button class="tab-item" id="tab-lato" onclick="switchTab('lato')" aria-controls="panel-lato" aria-selected="false" role="tab">📜 Lato Sensu</button>
       <button class="tab-item" id="tab-fechados" onclick="switchTab('fechados')" aria-controls="panel-fechados" aria-selected="false" role="tab">🔒 Editais Fechados</button>
       <button class="tab-item" id="tab-stats" onclick="switchTab('stats')" aria-controls="panel-stats" aria-selected="false" role="tab">📊 Estatísticas</button>
       <button class="tab-item" id="tab-unis" onclick="switchTab('unis')" aria-controls="panel-unis" aria-selected="false" role="tab">🏫 Instituições Monitoradas</button>
@@ -1382,20 +1566,56 @@
   <div class="main-container">
     <main class="content-area" role="main">
       
-      <!-- ABA MESTRADO -->
-      <section class="tab-panel active" id="panel-mestrado" role="tabpanel" aria-labelledby="tab-mestrado">
-        <div class="chips-container" id="filtros-areas-mestrado" aria-label="Filtro rápido de eixos no mestrado"></div>
-        <h2 class="section-title">Editais de Mestrado na Bahia</h2>
-        <div class="edital-grid" id="cards-mestrado">
+      <!-- ABA STRICTO SENSU -->
+      <section class="tab-panel active" id="panel-stricto" role="tabpanel" aria-labelledby="tab-stricto">
+        <!-- Sub-filtros para stricto: Todos, Mestrado, Doutorado, Pós-Doc -->
+        <div style="background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-soft);">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-right: 8px;">Filtrar Nível:</span>
+            <button class="chip-btn active-stricto" id="subtab-stricto-all" onclick="filtrarSubtipoStricto('Todos')">🎓 Todos Stricto</button>
+            <button class="chip-btn" id="subtab-stricto-mestrado" onclick="filtrarSubtipoStricto('Mestrado')">Mestrado</button>
+            <button class="chip-btn" id="subtab-stricto-doutorado" onclick="filtrarSubtipoStricto('Doutorado')">Doutorado</button>
+            <button class="chip-btn" id="subtab-stricto-posdoc" onclick="filtrarSubtipoStricto('Pós-Doc')">Pós-Doc</button>
+          </div>
+        </div>
+        <div class="chips-container" id="filtros-areas-stricto" aria-label="Filtro rápido de eixos no stricto sensu"></div>
+        <h2 class="section-title">Editais Stricto Sensu na Bahia</h2>
+        <div class="edital-grid" id="cards-stricto">
           <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
         </div>
       </section>
 
-      <!-- ABA DOUTORADO -->
-      <section class="tab-panel" id="panel-doutorado" role="tabpanel" aria-labelledby="tab-doutorado">
-        <div class="chips-container" id="filtros-areas-doutorado" aria-label="Filtro rápido de eixos no doutorado"></div>
-        <h2 class="section-title title-doutorado">Editais de Doutorado na Bahia</h2>
-        <div class="edital-grid" id="cards-doutorado">
+      <!-- ABA LATO SENSU -->
+      <section class="tab-panel" id="panel-lato" role="tabpanel" aria-labelledby="tab-lato">
+        <!-- Controles de filtros rápidos Lato Sensu -->
+        <div style="background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-soft);">
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <!-- Modalidade -->
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Modalidade:</span>
+              <button class="chip-btn active-lato" id="filter-lato-mod-all" onclick="filtrarLatoModalidade('Todos')">Todas</button>
+              <button class="chip-btn" id="filter-lato-mod-ead" onclick="filtrarLatoModalidade('EaD')">Apenas EaD 🖥️</button>
+              <button class="chip-btn" id="filter-lato-mod-presencial" onclick="filtrarLatoModalidade('Presencial')">Presencial 🏫</button>
+            </div>
+            <!-- Categoria / EPT -->
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Foco / EPT:</span>
+              <button class="chip-btn active-lato" id="filter-lato-foco-all" onclick="filtrarLatoFoco('Todos')">Todos</button>
+              <button class="chip-btn" id="filter-lato-foco-ept" onclick="filtrarLatoFoco('EPT')">Pós na EPT 🛠️</button>
+              <button class="chip-btn" id="filter-lato-foco-outrasead" onclick="filtrarLatoFoco('OutrasEaD')">Outros EaD 💻</button>
+            </div>
+            <!-- Gratuidade -->
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Investimento:</span>
+              <button class="chip-btn active-lato" id="filter-lato-grat-all" onclick="filtrarLatoGratuidade('Todos')">Todos</button>
+              <button class="chip-btn" id="filter-lato-grat-gratuita" onclick="filtrarLatoGratuidade('Gratuita')">Gratuita ✅</button>
+              <button class="chip-btn" id="filter-lato-grat-paga" onclick="filtrarLatoGratuidade('Paga')">Paga 🪙</button>
+            </div>
+          </div>
+        </div>
+        <div class="chips-container" id="filtros-areas-lato" aria-label="Filtro rápido de eixos no lato sensu"></div>
+        <h2 class="section-title" style="border-left-color: var(--color-especial);">Editais Lato Sensu (Especializações) na Bahia</h2>
+        <div class="edital-grid" id="cards-lato">
           <div class="loading"><div class="spinner"></div><div class="loading-text">Buscando editais...</div></div>
         </div>
       </section>
@@ -1470,6 +1690,27 @@
 
     <!-- MENU LATERAL / SIDEBAR -->
     <aside class="sidebar" role="complementary" aria-label="Painel de Filtros e Navegação Rápida">
+
+    <!-- BOX DE MONETIZAÇÃO LATERAL (ADSENSE / ADMOB) -->
+    <div class="sidebar-box ad-slot-sidebar" role="complementary" aria-label="Espaço Publicitário Lateral">
+      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1.5px solid var(--border-glow, #eee); padding-bottom: 8px; margin-bottom: 12px; border-left: 3.5px solid var(--accent, #b45309); padding-left: 6px;">📢 Patrocinado</div>
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="YYYYYYYYYY"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="ad-placeholder">
+          Espaço Publicitário<br>
+          <span style="font-size: 0.65rem; font-weight: 500;">Google AdSense / AdMob</span>
+        </div>
+      </div>
+    </div>
+
       
       <!-- Caixa de Status das Inscrições -->
       <div class="sidebar-box">
@@ -1757,11 +1998,19 @@
     let filtroUniAtivo = 'Todas';
     let filtroSemestreAtivo = 'Todos';
     let filtroAreaAtiva = {
-      mestrado: 'Todas',
-      doutorado: 'Todas',
+      stricto: 'Todas',
+      lato: 'Todas',
       fechados: 'Todas'
     };
-    let activeTab = 'mestrado';
+    let activeTab = 'stricto';
+
+    // Filtros específicos de Lato Sensu
+    let filtroLatoModalidadeAtivo = 'Todos';
+    let filtroLatoFocoAtivo = 'Todos';
+    let filtroLatoGratuidadeAtivo = 'Todos';
+
+    // Filtros específicos de Stricto Sensu
+    let filtroSubtipoStrictoAtivo = 'Todos';
 
     // Inicializa ano
     const agora = new Date();
@@ -1823,26 +2072,24 @@
       }
     }
 
-    // Separa a lista linear de editais nas abas principais (Mestrado/Doutorado)
+    // Separa a lista linear de editais nas abas principais (Stricto/Lato)
     function categorizarEditais(lista) {
-      const mest = [];
-      const dout = [];
+      const stricto = [];
+      const lato = [];
 
       lista.forEach(e => {
-        const nivLower = e.nivel.toLowerCase();
-        const titLower = e.titulo.toLowerCase();
+        const tipo = e.tipo_pos || (e.nivel.toLowerCase().includes("especializ") || e.titulo.toLowerCase().includes("especializ") || e.titulo.toLowerCase().includes("lato sensu") ? "Lato" : "Stricto");
         
-        if (nivLower.includes("doutorado") || titLower.includes("doutorado")) {
-          dout.push(e);
+        if (tipo === "Lato") {
+          lato.push(e);
         } else {
-          // Padrão é Mestrado se não for explicitamente Doutorado
-          mest.push(e);
+          stricto.push(e);
         }
       });
 
       return {
-        mestrado: mest,
-        doutorado: dout
+        stricto: stricto,
+        lato: lato
       };
     }
 
@@ -1853,13 +2100,21 @@
       // 1. Níveis
       const niveis = metricas.totaisNiveis;
       const maxNiv = Math.max(...Object.values(niveis)) || 1;
-      document.getElementById('stats-niveis-container').innerHTML = Object.entries(niveis).map(([niv, total]) => `
-        <div class="metric-row">
-          <span>${niv}:</span>
-          <div class="bar-wrap"><div class="bar-fill ${niv.includes('Mestrado') ? 'bg-mestrado' : niv.includes('Doutorado') ? 'bg-doutorado' : 'bg-especial'}" style="width: ${(total/maxNiv)*100}%"></div></div>
-          <span class="metric-val">${total}</span>
-        </div>
-      `).join('');
+      document.getElementById('stats-niveis-container').innerHTML = Object.entries(niveis).map(([niv, total]) => {
+        let barClass = 'bg-especial';
+        if (niv.includes('Mestrado')) barClass = 'bg-mestrado';
+        else if (niv.includes('Doutorado')) barClass = 'bg-doutorado';
+        else if (niv.includes('Especialização')) barClass = 'bg-especial';
+        else if (niv.includes('Pós-Doc')) barClass = 'bg-pos-doc';
+        
+        return `
+          <div class="metric-row">
+            <span>${niv}:</span>
+            <div class="bar-wrap"><div class="bar-fill ${barClass}" style="width: ${(total/maxNiv)*100}%"></div></div>
+            <span class="metric-val">${total}</span>
+          </div>
+        `;
+      }).join('');
 
       // 2. Áreas
       const areas = metricas.totaisAreas;
@@ -1939,15 +2194,15 @@
         const promessas = [
           fetchJSON(`DATA/${ano}/mestrado.json`).catch(() => []),
           fetchJSON(`DATA/${ano}/doutorado.json`).catch(() => []),
-          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => [])
+          fetchJSON(`DATA/${ano}/aluno-especial.json`).catch(() => []),
+          fetchJSON(`DATA/${ano}/especializacao.json`).catch(() => [])
         ];
 
-        const [mest, dout, esp] = await Promise.all(promessas);
+        const [mest, dout, esp, espec] = await Promise.all(promessas);
         
         const agora = new Date();
         // Combina e filtra apenas os que já fecharam
-        // O Aluno Especial será distribuído entre as abas conforme a lógica do categorizarEditais
-        dadosFechadosAno = [...mest, ...dout, ...esp]
+        dadosFechadosAno = [...mest, ...dout, ...esp, ...espec]
           .filter(e => new Date(e.inscricoesFim) < agora);
 
         // Armazena no cache para uso futuro
@@ -2012,14 +2267,49 @@
         const activeAreaTab = filtroAreaAtiva[activeTab];
         const matchesArea = activeAreaTab === 'Todas' || e.area === activeAreaTab;
 
+        // Filtro específico para subtipos de Stricto Sensu
+        if (activeTab === 'stricto') {
+          const sub = e.subtipo_pos || (e.nivel.toLowerCase().includes("doutor") ? "Doutorado" : e.nivel.toLowerCase().includes("doc") ? "Pós-Doc" : "Mestrado");
+          if (filtroSubtipoStrictoAtivo !== 'Todos' && sub !== filtroSubtipoStrictoAtivo) {
+            return false;
+          }
+        }
+
+        // Filtros específicos para Lato Sensu
+        if (activeTab === 'lato') {
+          // 1. Modalidade (EaD vs Presencial)
+          const mod = e.modalidade || (e.titulo.toLowerCase().includes("ead") || e.resumo.toLowerCase().includes("ead") || e.titulo.toLowerCase().includes("distancia") ? "EaD" : "Presencial");
+          if (filtroLatoModalidadeAtivo !== 'Todos' && mod !== filtroLatoModalidadeAtivo) {
+            return false;
+          }
+
+          // 2. Foco / EPT
+          const isEpt = e.is_ept || (e.titulo.toLowerCase().includes("ept") || e.resumo.toLowerCase().includes("ept"));
+          if (filtroLatoFocoAtivo === 'EPT') {
+            if (!isEpt) return false;
+          } else if (filtroLatoFocoAtivo === 'OutrasEaD') {
+            if (isEpt || mod !== 'EaD') return false;
+          }
+
+          // 3. Gratuidade (Gratuita vs Paga)
+          const grat = e.gratuidade || "Gratuita";
+          if (filtroLatoGratuidadeAtivo !== 'Todos' && grat !== filtroLatoGratuidadeAtivo) {
+            return false;
+          }
+        }
+
         // Modalidade: Aluno Regular vs Aluno Especial
         const nivel = e.nivel.toLowerCase();
         const titulo = e.titulo.toLowerCase();
         const ehEspecial = nivel.includes("especial") || titulo.includes("especial");
 
         let matchesModalidade = false;
-        if (checkRegular && !ehEspecial) matchesModalidade = true;
-        if (checkEspecial && ehEspecial) matchesModalidade = true;
+        if (activeTab === 'lato') {
+          matchesModalidade = true; // Especializações são consideradas de ingresso regular
+        } else {
+          if (checkRegular && !ehEspecial) matchesModalidade = true;
+          if (checkEspecial && ehEspecial) matchesModalidade = true;
+        }
 
         const sem = detectarSemestre(e);
         const matchesSemestre = filtroSemestreAtivo === 'Todos' || sem === filtroSemestreAtivo;
@@ -2175,7 +2465,7 @@
     }
 
     function renderizarCardsList(lista) {
-      const container = document.getElementById(`cards-${activeTab === 'aluno-especial' ? 'especial' : activeTab}`);
+      const container = document.getElementById(`cards-${activeTab}`);
       if (!container) return;
 
       if (lista.length === 0) {
@@ -2195,6 +2485,8 @@
         else if (e.nivel === 'Mestrado Profissional') classNivel = 'badge-mest-prof';
         else if (e.nivel === 'Doutorado Acadêmico') classNivel = 'badge-dout-acad';
         else if (e.nivel === 'Doutorado Profissional') classNivel = 'badge-dout-prof';
+        else if (e.nivel === 'Especialização') classNivel = 'badge-especializacao';
+        else if (e.nivel === 'Pós-Doc') classNivel = 'badge-posdoc';
 
         let classStatus = 'status-encerrado';
         if (e.status === 'Aberto') classStatus = 'status-aberto';
@@ -2224,6 +2516,10 @@
           }
         }
 
+        const tagModalidade = e.modalidade ? `<span class="edital-badge-modalidade ${e.modalidade === 'EaD' ? 'badge-ead' : 'badge-presencial'}">${e.modalidade === 'EaD' ? '🖥️ EaD' : '🏫 Presencial'}</span>` : '';
+        const tagGratuidade = e.gratuidade ? `<span class="edital-badge-gratuidade ${e.gratuidade === 'Gratuita' ? 'badge-gratuita' : 'badge-paga'}">${e.gratuidade === 'Gratuita' ? '✅ Gratuita' : '🪙 Paga'}</span>` : '';
+        const tagEpt = e.is_ept ? `<span class="edital-badge-ept">🛠️ EPT</span>` : '';
+
         return `
           <div class="edital-card">
             <div class="edital-card-header">
@@ -2231,6 +2527,9 @@
                 <span class="edital-badge-nivel ${classNivel}">${e.nivel}</span>
                 <span class="edital-badge-semestre ${classSem}">Ingresso ${sem}</span>
                 <span class="edital-badge-area">${e.area}</span>
+                ${tagModalidade}
+                ${tagGratuidade}
+                ${tagEpt}
               </div>
               <span class="edital-badge-status ${classStatus}">${textoStatus}</span>
             </div>
@@ -2306,7 +2605,7 @@
       const contadoresSemestre = {};
 
       if (editaisRecentes) {
-        const listaGeralRecentes = [...(editaisRecentes.mestrado || []), ...(editaisRecentes.doutorado || []), ...(editaisRecentes['aluno-especial'] || [])];
+        const listaGeralRecentes = [...(editaisRecentes.stricto || []), ...(editaisRecentes.lato || [])];
         listaGeralRecentes.forEach(e => {
           const isOpen = new Date(e.inscricoesFim) >= agora;
           if (isOpen) {
@@ -2412,31 +2711,27 @@
       activeTab = tab;
       
       // Ajusta botões das abas
-      ['mestrado', 'doutorado', 'especial', 'fechados', 'stats', 'unis'].forEach(t => {
+      ['stricto', 'lato', 'fechados', 'stats', 'unis'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
         if (btn) {
-          btn.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados', 'active-stats', 'active-unis');
+          btn.className = 'tab-item';
           btn.setAttribute('aria-selected', 'false');
         }
         
-        const panel = document.getElementById(`panel-${t === 'especial' ? 'especial' : t}`);
+        const panel = document.getElementById(`panel-${t}`);
         if (panel) panel.classList.remove('active');
       });
 
       // Ativa aba correspondente
-      const activeBtn = document.getElementById(`tab-${tab === 'aluno-especial' ? 'especial' : tab}`);
-      const cActive = tab === 'mestrado' ? 'active-mestrado' : 
-                      tab === 'doutorado' ? 'active-doutorado' : 
-                      tab === 'aluno-especial' || tab === 'especial' ? 'active-especial' : 
-                      tab === 'fechados' ? 'active-fechados' : 
-                      tab === 'stats' ? 'active-stats' : 'active-unis';
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      const cActive = `active-${tab}`;
       
       if (activeBtn) {
         activeBtn.classList.add(cActive);
         activeBtn.setAttribute('aria-selected', 'true');
       }
       
-      const activePanel = document.getElementById(`panel-${tab === 'aluno-especial' ? 'especial' : tab}`);
+      const activePanel = document.getElementById(`panel-${tab}`);
       if (activePanel) activePanel.classList.add('active');
 
       if (tab === 'stats') {
@@ -2452,20 +2747,18 @@
 
     // Cria chips rápidos de filtros de eixos/áreas para cada aba
     function montarFiltrosDeArea() {
-      ['mestrado', 'doutorado', 'especial', 'fechados'].forEach(tabKey => {
+      ['stricto', 'lato', 'fechados'].forEach(tabKey => {
         const divId = `filtros-areas-${tabKey}`;
         const container = document.getElementById(divId);
         if (!container) return;
 
-        const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
-                            tabKey === 'doutorado' ? 'active-doutorado' : 
-                            tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
-        const tabKeyFiltro = tabKey === 'especial' ? 'aluno-especial' : tabKey;
+        const classActive = tabKey === 'stricto' ? 'active-stricto' : 
+                            tabKey === 'lato' ? 'active-lato' : 'active-fechados';
 
         container.innerHTML = `
-          <button class="chip-btn ${classActive}" id="chip-${tabKeyFiltro}-Todas" onclick="filtrarArea('${tabKeyFiltro}', 'Todas')">🌎 Todas as Áreas</button>
+          <button class="chip-btn ${classActive}" id="chip-${tabKey}-Todas" onclick="filtrarArea('${tabKey}', 'Todas')">🌎 Todas as Áreas</button>
         ` + AREAS_INTERESSE.map(a => `
-          <button class="chip-btn" id="chip-${tabKeyFiltro}-${a.replace(/ /g, '_')}" onclick="filtrarArea('${tabKeyFiltro}', '${a}')">${a}</button>
+          <button class="chip-btn" id="chip-${tabKey}-${a.replace(/ /g, '_')}" onclick="filtrarArea('${tabKey}', '${a}')">${a}</button>
         `).join('');
       });
     }
@@ -2474,20 +2767,69 @@
       filtroAreaAtiva[tabKey] = area;
       
       // Reseta classes nos chips daquela aba
-      const container = document.getElementById(`filtros-areas-${tabKey === 'aluno-especial' ? 'especial' : tabKey}`);
+      const container = document.getElementById(`filtros-areas-${tabKey}`);
       if (container) {
         const btns = container.querySelectorAll('.chip-btn');
-        btns.forEach(b => b.classList.remove('active-mestrado', 'active-doutorado', 'active-especial', 'active-fechados'));
+        btns.forEach(b => b.classList.remove('active-stricto', 'active-lato', 'active-fechados'));
       }
 
-      const classActive = tabKey === 'mestrado' ? 'active-mestrado' : 
-                          tabKey === 'doutorado' ? 'active-doutorado' : 
-                          tabKey === 'fechados' ? 'active-fechados' : 'active-especial';
+      const classActive = tabKey === 'stricto' ? 'active-stricto' : 
+                          tabKey === 'lato' ? 'active-lato' : 'active-fechados';
       const areaChaveId = area === 'Todas' ? 'Todas' : area.replace(/ /g, '_');
       
       const targetBtn = document.getElementById(`chip-${tabKey}-${areaChaveId}`);
       if (targetBtn) targetBtn.classList.add(classActive);
       
+      executarFiltros();
+    }
+
+    // Funções de filtros específicos do Stricto Sensu
+    function filtrarSubtipoStricto(subtipo) {
+      filtroSubtipoStrictoAtivo = subtipo;
+      ['all', 'mestrado', 'doutorado', 'posdoc'].forEach(s => {
+        const btn = document.getElementById(`subtab-stricto-${s}`);
+        if (btn) btn.classList.remove('active-stricto');
+      });
+      const slug = subtipo === 'Todos' ? 'all' : subtipo === 'Pós-Doc' ? 'posdoc' : subtipo.toLowerCase();
+      const targetBtn = document.getElementById(`subtab-stricto-${slug}`);
+      if (targetBtn) targetBtn.classList.add('active-stricto');
+      executarFiltros();
+    }
+
+    // Funções de filtros específicos do Lato Sensu
+    function filtrarLatoModalidade(modalidade) {
+      filtroLatoModalidadeAtivo = modalidade;
+      ['all', 'ead', 'presencial'].forEach(m => {
+        const btn = document.getElementById(`filter-lato-mod-${m}`);
+        if (btn) btn.classList.remove('active-lato');
+      });
+      const slug = modalidade === 'Todos' ? 'all' : modalidade.toLowerCase();
+      const targetBtn = document.getElementById(`filter-lato-mod-${slug}`);
+      if (targetBtn) targetBtn.classList.add('active-lato');
+      executarFiltros();
+    }
+
+    function filtrarLatoFoco(foco) {
+      filtroLatoFocoAtivo = foco;
+      ['all', 'ept', 'outrasead'].forEach(f => {
+        const btn = document.getElementById(`filter-lato-foco-${f}`);
+        if (btn) btn.classList.remove('active-lato');
+      });
+      const slug = foco === 'Todos' ? 'all' : foco.toLowerCase();
+      const targetBtn = document.getElementById(`filter-lato-foco-${slug}`);
+      if (targetBtn) targetBtn.classList.add('active-lato');
+      executarFiltros();
+    }
+
+    function filtrarLatoGratuidade(gratuidade) {
+      filtroLatoGratuidadeAtivo = gratuidade;
+      ['all', 'gratuita', 'paga'].forEach(g => {
+        const btn = document.getElementById(`filter-lato-grat-${g}`);
+        if (btn) btn.classList.remove('active-lato');
+      });
+      const slug = gratuidade === 'Todos' ? 'all' : gratuidade.toLowerCase();
+      const targetBtn = document.getElementById(`filter-lato-grat-${slug}`);
+      if (targetBtn) targetBtn.classList.add('active-lato');
       executarFiltros();
     }
 
@@ -2497,7 +2839,7 @@
         return;
       }
       if (status === 'Aberto' && activeTab === 'fechados') {
-        switchTab('mestrado');
+        switchTab('stricto');
         return;
       }
 
@@ -2603,9 +2945,8 @@
     // Loaders e erros
     function mostrarLoaders() {
       const html = '<div class="loading" role="alert" aria-busy="true"><div class="spinner"></div><div class="loading-text">Buscando no histórico...</div></div>';
-      document.getElementById('cards-mestrado').innerHTML = html;
-      document.getElementById('cards-doutorado').innerHTML = html;
-      document.getElementById('cards-especial').innerHTML = html;
+      document.getElementById('cards-stricto').innerHTML = html;
+      document.getElementById('cards-lato').innerHTML = html;
     }
 
     function mostrarEmptyState(ano, mes) {
@@ -2616,9 +2957,8 @@
           <div class="empty-desc">Não encontramos processos seletivos arquivados para o período de ${mes}/${ano}. Selecione outra data.</div>
         </div>
       `;
-      document.getElementById('cards-mestrado').innerHTML = html;
-      document.getElementById('cards-doutorado').innerHTML = html;
-      document.getElementById('cards-especial').innerHTML = html;
+      document.getElementById('cards-stricto').innerHTML = html;
+      document.getElementById('cards-lato').innerHTML = html;
     }
 
     function mostrarErroCarregamento() {
@@ -2629,9 +2969,8 @@
           <div class="empty-desc">Erro ao ler os dados consolidados dos editais recentes. Verifique se o compilador concluiu a primeira execução com sucesso.</div>
         </div>
       `;
-      document.getElementById('cards-mestrado').innerHTML = html;
-      document.getElementById('cards-doutorado').innerHTML = html;
-      document.getElementById('cards-especial').innerHTML = html;
+      document.getElementById('cards-stricto').innerHTML = html;
+      document.getElementById('cards-lato').innerHTML = html;
     }
 
     function atualizarTudo() {
@@ -2643,5 +2982,23 @@
       inicializarDados();
     });
   </script>
+
+<!-- A11Y TOOLBAR & SCRIPT -->
+<div class="a11y-floating-bar">
+  <button class="a11y-btn" onclick="ajustarFonteGlobal(5)" title="Aumentar Fonte" aria-label="Aumentar Fonte">A+</button>
+  <button class="a11y-btn" onclick="ajustarFonteGlobal(-5)" title="Diminuir Fonte" aria-label="Diminuir Fonte">A-</button>
+  <button class="a11y-btn" onclick="toggleContrasteGlobal()" title="Alto Contraste" aria-label="Alto Contraste">☯ Contraste</button>
+</div>
+<script>
+  let __fontScale = 100;
+  function ajustarFonteGlobal(delta) {
+    __fontScale = Math.min(135, Math.max(90, __fontScale + delta));
+    document.documentElement.style.fontSize = __fontScale + '%';
+  }
+  function toggleContrasteGlobal() {
+    document.body.classList.toggle('high-contrast');
+  }
+</script>
+
 </body>
 </html>

@@ -6,12 +6,16 @@ import csv
 import urllib.request
 import urllib.parse
 import ssl
+import unicodedata
 from datetime import datetime, timedelta
 
 # Helper para realizar requisições HTTP
-def http_request(url, method='GET', headers=None, data=None):
+def http_request(url, method='GET', headers=None, data=None, use_fallback=True):
     if headers is None:
         headers = {}
+    
+    # Identifica se já é um serviço de API para evitar loops recursivos
+    is_api_service = "api.scraperapi.com" in url or "google.serper.dev" in url
     
     req_data = None
     if data is not None:
@@ -60,8 +64,18 @@ def http_request(url, method='GET', headers=None, data=None):
                 'data': response_data
             }
     except Exception as e:
-        print(f"Erro na requisição HTTP para {url}: {e}")
-        raise e
+        scraper_key = os.environ.get('SCRAPER_API_KEY')
+        if use_fallback and scraper_key and not is_api_service:
+            print(f"[Fallback Proxy] Requisição direta falhou para {url} (Erro: {e}). Tentando via ScraperAPI...")
+            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}&render=true"
+            try:
+                return http_request(scraper_url, method='GET', use_fallback=False)
+            except Exception as e_fallback:
+                print(f"[Fallback Proxy] Falha também através do proxy ScraperAPI para {url}: {e_fallback}")
+                raise e_fallback
+        else:
+            print(f"Erro na requisição HTTP para {url}: {e}")
+            raise e
 
 # Configurações e Feeds RSS
 FEEDS_MONITORADOS = [
@@ -414,13 +428,88 @@ NOMES_MESES = [
 def criar_diretorio_robustamente(dir_path):
     os.makedirs(dir_path, exist_ok=True)
 
+def remover_acentos_py(txt):
+    if not txt:
+        return ""
+    return "".join(c for c in unicodedata.normalize('NFD', txt) if unicodedata.category(c) != 'Mn')
+
 def corrigir_campos_edital(e):
-    """Corrige codificação em todos os campos de texto de um objeto edital."""
+    """Corrige codificação em todos os campos de texto de um objeto edital e enriquece com metadados de classificação."""
     e['titulo'] = normalizar_titulo(corrigir_utf8_corrompido(e.get('titulo', '')))
     e['resumo'] = corrigir_utf8_corrompido(e.get('resumo', ''))
     e['instituicao'] = corrigir_utf8_corrompido(e.get('instituicao', ''))
     e['area'] = corrigir_utf8_corrompido(e.get('area', ''))
     e['nivel'] = corrigir_utf8_corrompido(e.get('nivel', ''))
+
+    # Enriquecimento com classificações (Stricto/Lato, Modalidade, EPT e Gratuidade)
+    titulo_lower = remover_acentos_py(e['titulo'].lower())
+    resumo_lower = remover_acentos_py(e['resumo'].lower())
+    nivel_lower = remover_acentos_py(e['nivel'].lower())
+    texto_completo = f"{titulo_lower} {resumo_lower} {nivel_lower}"
+
+    # 1. Tipo e Subtipo de Pós
+    if any(x in texto_completo for x in ['especializacao', 'lato sensu', 'lato-sensu', 'mba', 'especialista']):
+        tipo_pos = 'Lato'
+        subtipo_pos = 'Especialização'
+    elif any(x in texto_completo for x in ['pos-doc', 'pos doc', 'pos-doutorado', 'pos doutorado', 'recem-doutor']):
+        tipo_pos = 'Stricto'
+        subtipo_pos = 'Pós-Doc'
+    elif 'doutorado' in texto_completo or 'doutor' in texto_completo:
+        tipo_pos = 'Stricto'
+        subtipo_pos = 'Doutorado'
+    elif 'mestrado' in texto_completo or 'mestre' in texto_completo:
+        tipo_pos = 'Stricto'
+        subtipo_pos = 'Mestrado'
+    else:
+        # Fallback baseado no nível original
+        if 'especializ' in nivel_lower:
+            tipo_pos = 'Lato'
+            subtipo_pos = 'Especialização'
+        elif 'doutor' in nivel_lower:
+            tipo_pos = 'Stricto'
+            subtipo_pos = 'Doutorado'
+        elif 'pos-doc' in nivel_lower or 'pos doc' in nivel_lower:
+            tipo_pos = 'Stricto'
+            subtipo_pos = 'Pós-Doc'
+        else:
+            tipo_pos = 'Stricto'
+            subtipo_pos = 'Mestrado'
+
+    # 2. Modalidade (EaD vs Presencial)
+    if any(x in texto_completo for x in ['ead', 'a distancia', 'a distância', 'virtual', 'online', 'semi-presencial', 'semipresencial']):
+        modalidade = 'EaD'
+    elif any(x in texto_completo for x in ['uab', 'universidade aberta']):
+        modalidade = 'EaD'
+    else:
+        modalidade = 'Presencial'
+
+    # 3. Pós na EPT (is_ept)
+    if any(x in texto_completo for x in ['ept', 'educacao profissional e tecnologica', 'educacao profissional', 'profept', 'gestao na ept', 'docencia na ept', 'docencia para ept', 'gestao em ept', 'docencia em ept']):
+        is_ept = True
+    else:
+        is_ept = False
+
+    # 4. Gratuidade (Gratuita vs Paga)
+    if tipo_pos == 'Stricto':
+        gratuidade = 'Gratuita'
+    else:
+        termos_pagos = ['mensalidade', 'mensais', 'parcelas', 'taxa de matricula', 'investimento', 'curso pago', 'valor do curso', 'pago', 'pagas']
+        if any(x in texto_completo for x in termos_pagos) and not any(x in texto_completo for x in ['isencao', 'gratuito', 'gratuita', 'sem custo']):
+            gratuidade = 'Paga'
+        else:
+            if any(x in e.get('instituicao', '').lower() for x in ['if baiano', 'ifbaiano', 'ifba']) or 'uab' in texto_completo or 'gratuito' in texto_completo or 'gratuita' in texto_completo:
+                gratuidade = 'Gratuita'
+            else:
+                if any(x in e.get('instituicao', '').lower() for x in ['ufba', 'uneb']):
+                    gratuidade = 'Paga'
+                else:
+                    gratuidade = 'Gratuita'
+
+    e['tipo_pos'] = tipo_pos
+    e['subtipo_pos'] = subtipo_pos
+    e['modalidade'] = modalidade
+    e['is_ept'] = is_ept
+    e['gratuidade'] = gratuidade
     return e
 
 
@@ -542,7 +631,7 @@ def consolidar_ano(ano):
 
     meses = [m for m in os.listdir(ano_dir) if re.match(r'^\d{2}$', m) and os.path.isdir(os.path.join(ano_dir, m))]
 
-    for tema in ['mestrado', 'doutorado', 'aluno-especial']:
+    for tema in ['mestrado', 'doutorado', 'aluno-especial', 'especializacao']:
         todos_tema = []
         for mes in meses:
             nome_mes = NOMES_MESES[int(mes) - 1]
@@ -642,7 +731,9 @@ def gerar_metricas():
         'Mestrado Profissional': 0,
         'Doutorado Acadêmico': 0,
         'Doutorado Profissional': 0,
-        'Aluno Especial': 0
+        'Aluno Especial': 0,
+        'Especialização': 0,
+        'Pós-Doc': 0
     }
 
     totais_areas = {a: 0 for a in TEMAS_INTERESSE.keys()}
@@ -1127,23 +1218,190 @@ def raspar_uneb_ssppg():
     return editais_encontrados
 
 
-# Busca novos editais nos portais SIGAA e SSPPG (raspagem direta de fontes oficiais)
+# Busca novos editais nos portais SIGAA, SSPPG e Google Serper
 def buscar_novos_editais():
-    print("Iniciando busca direta nos portais SIGAA e SSPPG (UFBA, UFRB, UFSB, UFOB, UNILAB, UNEB)...")
+    print("Iniciando busca nos portais SIGAA, SSPPG e Google Serper...")
     
     resultados = {
         'mestrado': [],
         'doutorado': [],
-        'aluno-especial': []
+        'aluno-especial': [],
+        'especializacao': []
     }
 
-    # 1. Raspagem dos Portais SIGAA
+    # 1. Busca dinâmica no Google via Serper.dev se as chaves de API estiverem presentes
+    serper_key = os.environ.get('SERPER_API_KEY')
+    scraper_key = os.environ.get('SCRAPER_API_KEY')
+    
+    if serper_key and scraper_key:
+        print("Chaves de API encontradas. Iniciando busca adicional no Google via Serper.dev...")
+        ano_corrente = datetime.now().year
+        queries = [
+            f'site:ufba.br OR site:ufrb.edu.br OR site:ufsb.edu.br OR site:ufob.edu.br OR site:univasf.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}',
+            f'site:uneb.br OR site:uefs.br OR site:uesc.br OR site:uesb.br OR site:ifba.edu.br OR site:ifbaiano.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}',
+            f'site:unifacs.br OR site:ucsal.br OR site:unijorge.edu.br OR site:uniftc.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}'
+        ]
+        
+        links_processados = set()
+        hoje = datetime.now()
+        
+        for query in queries:
+            try:
+                print(f"Buscando no Google: \"{query}\"")
+                search_res = http_request(
+                    'https://google.serper.dev/search',
+                    method='POST',
+                    headers={
+                        'X-API-KEY': serper_key,
+                        'Content-Type': 'application/json'
+                    },
+                    data={
+                        'q': query,
+                        'gl': 'br',
+                        'hl': 'pt-br'
+                    },
+                    use_fallback=False
+                )
+                
+                if search_res['statusCode'] == 200:
+                    search_data = json.loads(search_res['data'])
+                    items = search_data.get('organic', [])
+                    
+                    for item in items[:5]:
+                        url = item.get('link')
+                        if not url or url in links_processados:
+                            continue
+                        links_processados.add(url)
+                        
+                        instituicao = 'UFBA'
+                        encontrada = False
+                        for inst, site in SITES_INSTITUICOES.items():
+                            clean_site = site.replace('https://', '').replace('http://', '').replace('www.', '').lower().strip('/')
+                            if clean_site in url.lower():
+                                instituicao = inst
+                                encontrada = True
+                                break
+                                
+                        if not encontrada and '.edu.br' not in url.lower() and '.uneb.br' not in url.lower():
+                            continue
+                            
+                        print(f"[Serper] Encontrada URL relevante: {url} ({instituicao})")
+                        
+                        try:
+                            scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}&render=true"
+                            scrape_res = http_request(scraper_url, method='GET', use_fallback=False)
+                            
+                            if scrape_res['statusCode'] == 200:
+                                html_data = scrape_res['data']
+                                
+                                titulo = item.get('title', 'Processo Seletivo')
+                                title_match = re.search(r'<title>(.*?)<\/title>', html_data, re.IGNORECASE)
+                                if title_match:
+                                    titulo = title_match.group(1).strip()
+                                    
+                                text_content = re.sub(r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', '', html_data, flags=re.IGNORECASE)
+                                text_content = re.sub(r'<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>', '', text_content, flags=re.IGNORECASE)
+                                text_content = re.sub(r'<[^>]*>', ' ', text_content)
+                                text_content = re.sub(r'\s+', ' ', text_content).strip()
+                                text_lower = text_content.lower()
+                                
+                                nivel = "Mestrado Acadêmico"
+                                if any(x in text_lower for x in ["aluno especial", "matricula especial", "estudante especial", "disciplina isolada"]):
+                                    nivel = "Mestrado - Aluno Especial"
+                                elif "doutorado" in text_lower:
+                                    nivel = "Doutorado Profissional" if "doutorado profissional" in text_lower else "Doutorado Acadêmico"
+                                elif "especialização" in text_lower or "especializacao" in text_lower or "lato sensu" in text_lower:
+                                    nivel = "Especialização"
+                                elif "mestrado" in text_lower:
+                                    nivel = "Mestrado Profissional" if "mestrado profissional" in text_lower else "Mestrado Acadêmico"
+                                    
+                                area = "Saúde e Biológicas"
+                                max_contagem = 0
+                                for tema_nome, keywords in TEMAS_INTERESSE.items():
+                                    contagem = sum(len(re.findall(r'\b' + re.escape(kw) + r'\b', text_lower)) for kw in keywords)
+                                    if contagem > max_contagem:
+                                        max_contagem = contagem
+                                        area = tema_nome
+                                        
+                                date_regex = re.compile(r'\b(\d{2})/(\d{2})/(\d{4})\b')
+                                dates = []
+                                for m in date_regex.finditer(text_content):
+                                    day = int(m.group(1))
+                                    month = int(m.group(2))
+                                    year = int(m.group(3))
+                                    try:
+                                        parsed_date = datetime(year, month, day)
+                                        if year >= ano_corrente:
+                                            dates.append(parsed_date)
+                                    except Exception:
+                                        pass
+                                        
+                                if len(dates) < 2:
+                                    print(f"[Serper] Ignorando {url} - Datas insuficientes para o ano {ano_corrente}.")
+                                    continue
+                                    
+                                dates.sort()
+                                start_dt = dates[0]
+                                end_dt = dates[-1]
+                                
+                                limite_historico = hoje - timedelta(days=30)
+                                if end_dt < limite_historico:
+                                    continue
+                                    
+                                status = "Aberto" if end_dt >= hoje else "Encerrado"
+                                resumo = item.get('snippet', f"Processo seletivo aberto para ingresso no programa de pós-graduação. Confira o edital oficial da instituição {instituicao} para mais detalhes.").strip()
+                                
+                                edital_dados = {
+                                    'titulo': normalizar_titulo(titulo[:150]),
+                                    'resumo': resumo[:350],
+                                    'instituicao': instituicao,
+                                    'nivel': nivel,
+                                    'area': area,
+                                    'vagas': 10,
+                                    'inscricoesInicio': start_dt.isoformat() + 'Z',
+                                    'inscricoesFim': end_dt.isoformat() + 'Z',
+                                    'url': url,
+                                    'status': status,
+                                    'dataPublicacao': start_dt.isoformat() + 'Z',
+                                    'fonte': f"Google Search ({instituicao})"
+                                }
+                                
+                                edital_dados = corrigir_campos_edital(edital_dados)
+                                
+                                if edital_dados.get('tipo_pos') == 'Lato' or edital_dados['nivel'] == 'Especialização':
+                                    pasta = "especializacao"
+                                elif "Aluno Especial" in edital_dados['nivel']:
+                                    pasta = "aluno-especial"
+                                elif edital_dados['nivel'].startswith("Doutorado"):
+                                    pasta = "doutorado"
+                                else:
+                                    pasta = "mestrado"
+                                    
+                                ja_existe = any(x['titulo'] == edital_dados['titulo'] for x in resultados[pasta])
+                                if not ja_existe:
+                                    resultados[pasta].append(edital_dados)
+                                    print(f"[Serper] Novo edital adicionado em '{pasta}': {edital_dados['titulo']}")
+                        except Exception as e_scrape:
+                            print(f"[Serper] Erro ao processar a URL {url}: {e_scrape}")
+            except Exception as e_search:
+                print(f"[Serper] Erro na busca do Google: {e_search}")
+    else:
+        print("Chaves SERPER_API_KEY ou SCRAPER_API_KEY ausentes. A busca Google adicional foi desativada.")
+
+    # 2. Raspagem dos Portais SIGAA
     sigaa_portais = [
+        # Stricto Sensu
         { 'sigla': 'UFBA', 'url': 'https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
         { 'sigla': 'UFRB', 'url': 'https://sistemas.ufrb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
         { 'sigla': 'UFSB', 'url': 'https://sig.ufsb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
         { 'sigla': 'UFOB', 'url': 'https://sig.ufob.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
-        { 'sigla': 'UNILAB', 'url': 'https://sigaa.unilab.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' }
+        { 'sigla': 'UNILAB', 'url': 'https://sigaa.unilab.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S' },
+        # Lato Sensu
+        { 'sigla': 'UFBA', 'url': 'https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=L' },
+        { 'sigla': 'UFRB', 'url': 'https://sistemas.ufrb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=L' },
+        { 'sigla': 'UFSB', 'url': 'https://sig.ufsb.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=L' },
+        { 'sigla': 'UFOB', 'url': 'https://sig.ufob.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=L' },
+        { 'sigla': 'UNILAB', 'url': 'https://sigaa.unilab.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=L' }
     ]
     
     for portal in sigaa_portais:
@@ -1151,11 +1409,16 @@ def buscar_novos_editais():
             portal_editais = raspar_sigaa_portal_direct(portal['sigla'], portal['url'])
             print(f"[{portal['sigla']} SIGAA] Encontrados {len(portal_editais)} editais reais.")
             for ed in portal_editais:
-                pasta = "mestrado"
-                if "Aluno Especial" in ed['nivel']:
+                ed = corrigir_campos_edital(ed)
+                # Classifica para a pasta correta
+                if ed.get('tipo_pos') == 'Lato' or ed['nivel'] == 'Especialização':
+                    pasta = "especializacao"
+                elif "Aluno Especial" in ed['nivel']:
                     pasta = "aluno-especial"
                 elif ed['nivel'].startswith("Doutorado"):
                     pasta = "doutorado"
+                else:
+                    pasta = "mestrado"
                 
                 ja_existe = any(x['titulo'] == ed['titulo'] for x in resultados[pasta])
                 if not ja_existe:
@@ -1168,11 +1431,15 @@ def buscar_novos_editais():
         uneb_editais = raspar_uneb_ssppg()
         print(f"[UNEB SSPPG] Encontrados {len(uneb_editais)} editais reais.")
         for ed in uneb_editais:
-            pasta = "mestrado"
-            if "Aluno Especial" in ed['nivel']:
+            ed = corrigir_campos_edital(ed)
+            if ed.get('tipo_pos') == 'Lato' or ed['nivel'] == 'Especialização':
+                pasta = "especializacao"
+            elif "Aluno Especial" in ed['nivel']:
                 pasta = "aluno-especial"
             elif ed['nivel'].startswith("Doutorado"):
                 pasta = "doutorado"
+            else:
+                pasta = "mestrado"
             
             ja_existe = any(x['titulo'] == ed['titulo'] for x in resultados[pasta])
             if not ja_existe:
@@ -1190,7 +1457,8 @@ def buscar_novos_editais_simulados():
     return {
         'mestrado': [],
         'doutorado': [],
-        'aluno-especial': []
+        'aluno-especial': [],
+        'especializacao': []
     }
 
 
@@ -1203,7 +1471,7 @@ def executar_compilador():
     editais_novos = buscar_novos_editais()
 
     # 2. Salva no histórico do mês atual
-    for tema in ['mestrado', 'doutorado', 'aluno-especial']:
+    for tema in ['mestrado', 'doutorado', 'aluno-especial', 'especializacao']:
         print(f"Salvando editais recentes no histórico: {tema} ({len(editais_novos[tema])} editais)")
         try:
             salvar_historico_edital(tema, editais_novos[tema])
@@ -1214,7 +1482,7 @@ def executar_compilador():
     consolidar_todos_anos()
 
     # 4. Gera a compilação geral dos editais abertos
-    gerar_ultimos_editais()
+    gerar_editais_consolidados = gerar_ultimos_editais()
 
     # 5. Atualiza métricas estatísticas de toda a base histórica
     gerar_metricas()
