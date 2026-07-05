@@ -7,6 +7,8 @@ import urllib.request
 import urllib.parse
 import ssl
 import unicodedata
+import hashlib
+import time
 from datetime import datetime, timedelta
 
 # Carrega arquivo .env se existir localmente (sem dependências)
@@ -30,6 +32,30 @@ def http_request(url, method='GET', headers=None, data=None, use_fallback=True):
     # Identifica se já é um serviço de API para evitar loops recursivos
     is_api_service = "api.scraperapi.com" in url or "google.serper.dev" in url
     
+    # Caching local com hash MD5 das propriedades da requisição para evitar desperdício de créditos de API
+    req_key = f"{url}_{method}_{str(data)}"
+    req_hash = hashlib.md5(req_key.encode('utf-8')).hexdigest()
+    cache_dir = os.path.join(os.path.dirname(__file__), '.cache')
+    try:
+        os.makedirs(cache_dir, exist_ok=True)
+    except Exception:
+        pass
+    cache_file = os.path.join(cache_dir, f"{req_hash}.json")
+    
+    # TTL de 12 horas (43200 segundos)
+    ttl = 43200
+    
+    if os.path.exists(cache_file):
+        try:
+            file_mtime = os.path.getmtime(cache_file)
+            if time.time() - file_mtime < ttl:
+                with open(cache_file, 'r', encoding='utf-8') as f:
+                    cached_res = json.load(f)
+                if isinstance(cached_res, dict) and 'statusCode' in cached_res:
+                    return cached_res
+        except Exception:
+            pass
+
     req_data = None
     if data is not None:
         if isinstance(data, (dict, list)):
@@ -71,11 +97,20 @@ def http_request(url, method='GET', headers=None, data=None, use_fallback=True):
                 except Exception:
                     response_data = raw_bytes.decode('latin-1', errors='ignore')
                 
-            return {
+            res_dict = {
                 'statusCode': status_code,
                 'headers': response_headers,
                 'data': response_data
             }
+            
+            # Salva no cache antes de retornar
+            try:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(res_dict, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+                
+            return res_dict
     except Exception as e:
         scraper_key = os.environ.get('SCRAPER_API_KEY')
         if use_fallback and scraper_key and not is_api_service:
@@ -604,9 +639,9 @@ def salvar_historico_edital(tema, editais, data_especifica=None):
         index = next((i for i, h in enumerate(historico_dia) if h['url'] == e['url'] and normalizar_chave_dedup(h['titulo']) == normalizar_chave_dedup(e['titulo'])), -1)
         if index != -1:
             existente = historico_dia[index]
-            # Prorrogação detectada
-            if e['inscricoesFim'] > existente['inscricoesFim']:
-                print(f"[Prorrogação] Atualizando prazo do edital: \"{e['titulo']}\" de {existente['inscricoesFim']} para {e['inscricoesFim']}")
+            # Atualização ou retificação de datas detectada
+            if e['inscricoesFim'] != existente['inscricoesFim'] or e['inscricoesInicio'] != existente['inscricoesInicio']:
+                print(f"[Atualização] Atualizando prazo do edital: \"{e['titulo']}\" (Início: {e['inscricoesInicio']}, Fim: {e['inscricoesFim']})")
                 historico_dia[index] = {
                     **existente,
                     'resumo': e['resumo'],
@@ -1390,7 +1425,6 @@ def buscar_novos_editais():
                                     nivel = "Mestrado Profissional" if "mestrado profissional" in search_text else "Mestrado Acadêmico"
                                 else:
                                     nivel = "Mestrado Acadêmico"
-                                    
                                 is_lato = (nivel == "Especialização")
                                 
                                 # REGRA DE LOCALIDADE: Se for edital Stricto Sensu (Mestrado/Doutorado/Aluno Especial) e não pertencer a uma instituição da Bahia, nós o descartamos!
@@ -1405,9 +1439,10 @@ def buscar_novos_editais():
                                     if contagem > max_contagem:
                                         max_contagem = contagem
                                         area = tema_nome
-                                        
+
+                                # Extrai todas as datas válidas do texto com suas posições
                                 date_regex = re.compile(r'\b(\d{2})/(\d{2})/(\d{4})\b')
-                                dates = []
+                                dates_found = []
                                 for m in date_regex.finditer(text_content):
                                     day = int(m.group(1))
                                     month = int(m.group(2))
@@ -1415,17 +1450,85 @@ def buscar_novos_editais():
                                     try:
                                         parsed_date = datetime(year, month, day)
                                         if year >= ano_corrente:
-                                            dates.append(parsed_date)
+                                            dates_found.append((parsed_date, m.start()))
                                     except Exception:
                                         pass
                                         
-                                if len(dates) < 2:
-                                    print(f"[Serper] Ignorando {url} - Datas insuficientes para o ano {ano_corrente}.")
+                                if not dates_found:
+                                    print(f"[Serper] Ignorando {url} - Nenhuma data encontrada para o ano {ano_corrente}.")
                                     continue
                                     
-                                dates.sort()
-                                start_dt = dates[0]
-                                end_dt = dates[-1]
+                                # Heurística 1: Procurar faixas explícitas "DD/MM/AAAA a/até DD/MM/AAAA" próximas a termos de inscrição
+                                range_regex = re.compile(
+                                    r'\b(\d{2})/(\d{2})/(\d{4})\b\s+(?:a|ate|ate\s+dia|ate\s+o\s+dia|atã©)\s+\b(\d{2})/(\d{2})/(\d{4})\b',
+                                    re.IGNORECASE
+                                )
+                                faixas = []
+                                for m in range_regex.finditer(text_content):
+                                    try:
+                                        d1 = datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+                                        d2 = datetime(int(m.group(6)), int(m.group(5)), int(m.group(4)))
+                                        if d1 >= datetime(ano_corrente, 1, 1) and d2 >= d1:
+                                            context = text_content[max(0, m.start() - 100):min(len(text_content), m.end() + 100)].lower()
+                                            score = 0
+                                            if "inscri" in context or "cadastro" in context or "candidat" in context:
+                                                score += 10
+                                            if "periodo" in context or "prazo" in context:
+                                                score += 5
+                                            faixas.append((d1, d2, score))
+                                    except Exception:
+                                        pass
+                                        
+                                start_dt = None
+                                end_dt = None
+                                
+                                if faixas:
+                                    faixas.sort(key=lambda x: x[2], reverse=True)
+                                    start_dt, end_dt, _ = faixas[0]
+                                    print(f"[Serper] Faixa de inscrição detectada por proximidade: {start_dt.strftime('%d/%m/%Y')} a {end_dt.strftime('%d/%m/%Y')}")
+                                else:
+                                    # Heurística 2: Procurar datas individuais pontuando pelo contexto antes/depois da data
+                                    candidates_start = []
+                                    candidates_end = []
+                                    for dt, pos in dates_found:
+                                        context_before = text_content[max(0, pos - 60):pos].lower()
+                                        context_after = text_content[pos:min(len(text_content), pos + 60)].lower()
+                                        context = context_before + " " + context_after
+                                        
+                                        start_score = 0
+                                        if any(w in context_before for w in ["inicio", "comeco", "a partir de", "abertura"]):
+                                            start_score += 5
+                                        if "inscri" in context:
+                                            start_score += 2
+                                            
+                                        end_score = 0
+                                        if any(w in context_before for w in ["ate", "fim", "limite", "prazo", "encerramento", "termino", "final"]):
+                                            end_score += 5
+                                        if any(w in context_before for w in ["aula", "curso", "letivo"]):
+                                            end_score -= 10
+                                        if "inscri" in context:
+                                            end_score += 2
+                                            
+                                        candidates_start.append((dt, start_score))
+                                        candidates_end.append((dt, end_score))
+                                        
+                                    candidates_start.sort(key=lambda x: x[1], reverse=True)
+                                    candidates_end.sort(key=lambda x: x[1], reverse=True)
+                                    
+                                    start_dt = candidates_start[0][0]
+                                    end_candidates = [c for c in candidates_end if c[0] >= start_dt]
+                                    if end_candidates:
+                                        if len(end_candidates) > 1 and end_candidates[0][0] == start_dt and end_candidates[1][1] > -5:
+                                            end_dt = end_candidates[1][0]
+                                        else:
+                                            end_dt = end_candidates[0][0]
+                                    else:
+                                        end_dt = start_dt
+                                        
+                                if not start_dt or not end_dt:
+                                    raw_dates = sorted([x[0] for x in dates_found])
+                                    start_dt = raw_dates[0]
+                                    end_dt = raw_dates[-1]
                                 
                                 limite_historico = hoje - timedelta(days=30)
                                 if end_dt < limite_historico:

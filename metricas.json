@@ -1,50 +1,42 @@
 {
-  "geradoEm": "2026-07-05T22:24:14.949957Z",
-  "totalGeral": 70,
+  "geradoEm": "2026-07-05T19:35:52.862434Z",
+  "totalGeral": 74,
   "totaisNiveis": {
-    "Mestrado Acadêmico": 13,
-    "Mestrado Profissional": 6,
+    "Mestrado Acadêmico": 14,
+    "Mestrado Profissional": 7,
     "Doutorado Acadêmico": 12,
     "Doutorado Profissional": 2,
-    "Aluno Especial": 6,
-    "Especialização": 5,
+    "Aluno Especial": 2,
+    "Especialização": 6,
     "Pós-Doc": 0
   },
   "totaisAreas": {
     "Educação": 22,
-    "Tecnologia e Informática": 3,
-    "Gestão e Negócios": 1,
-    "Saúde e Biológicas": 16,
+    "Tecnologia e Informática": 4,
+    "Gestão e Negócios": 3,
+    "Saúde e Biológicas": 17,
     "Humanas e Sociais": 4,
     "Comunicação e Artes": 4,
     "Engenharias e Exatas": 18,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 62,
-    "Encerrado": 8,
+    "Aberto": 53,
+    "Encerrado": 21,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
       "nome": "UFBA",
-      "total": 40
+      "total": 41
     },
     {
       "nome": "UNEB",
-      "total": 23
+      "total": 24
     },
     {
       "nome": "IFRS",
       "total": 2
-    },
-    {
-      "nome": "IFSP",
-      "total": 1
-    },
-    {
-      "nome": "ESTUDE",
-      "total": 1
     },
     {
       "nome": "UFSB",
@@ -56,6 +48,22 @@
     },
     {
       "nome": "UCSal",
+      "total": 1
+    },
+    {
+      "nome": "CAMPINAGRANDE",
+      "total": 1
+    },
+    {
+      "nome": "IFSP",
+      "total": 1
+    },
+    {
+      "nome": "UFCA",
+      "total": 1
+    },
+    {
+      "nome": "ESTUDE",
       "total": 1
     }
   ]
