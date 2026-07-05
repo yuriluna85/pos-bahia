@@ -490,20 +490,43 @@ def corrigir_campos_edital(e):
         is_ept = False
 
     # 4. Gratuidade (Gratuita vs Paga)
+    # REGRA: Nas instituições públicas federais e estaduais, o CURSO é gratuito.
+    # A taxa de inscrição (quando existe) é cobrada apenas para participar do processo
+    # seletivo — não representa custo para cursar. Logo, o campo gratuidade reflete
+    # o custo do CURSO, não da inscrição no edital.
+    INSTITUICOES_PUBLICAS = [
+        # Federais (IFs e Universidades)
+        'ifba', 'if baiano', 'ifbaiano', 'instituto federal',
+        'ufba', 'ufrb', 'ufsb', 'ufob', 'univasf', 'ufpe', 'ufrn',
+        'ufal', 'ufs', 'ufma', 'ufpi', 'ufpb', 'ufce',
+        'cefet', 'unilab', 'ufrpe',
+        # Estaduais (BA)
+        'uneb', 'uefs', 'uesc', 'uesb', 'uaba', 'unirb',
+        # Genéricos
+        'universidade federal', 'universidade estadual',
+        'instituto federal', 'faculdade federal', 'escola federal'
+    ]
+    instituicao_lower = remover_acentos_py(e.get('instituicao', '').lower())
+    fonte_lower = remover_acentos_py(e.get('fonte', '').lower())
+    eh_publica = any(x in instituicao_lower or x in fonte_lower for x in INSTITUICOES_PUBLICAS)
+
     if tipo_pos == 'Stricto':
+        # Stricto Sensu em pública é sempre gratuito
+        gratuidade = 'Gratuita'
+    elif eh_publica:
+        # Lato Sensu em instituição pública: o curso é gratuito.
+        # (A taxa de inscrição no processo seletivo não conta como custo do curso.)
         gratuidade = 'Gratuita'
     else:
-        termos_pagos = ['mensalidade', 'mensais', 'parcelas', 'taxa de matricula', 'investimento', 'curso pago', 'valor do curso', 'pago', 'pagas']
-        if any(x in texto_completo for x in termos_pagos) and not any(x in texto_completo for x in ['isencao', 'gratuito', 'gratuita', 'sem custo']):
+        # Instituição privada ou não identificada: analisa o texto
+        termos_gratuitos = ['gratuito', 'gratuita', 'sem custo', 'isencao', 'bolsa integral', 'uab', 'universidade aberta']
+        termos_pagos = ['mensalidade', 'mensais', 'parcelas', 'taxa de matricula', 'investimento', 'curso pago', 'valor do curso']
+        if any(x in texto_completo for x in termos_gratuitos):
+            gratuidade = 'Gratuita'
+        elif any(x in texto_completo for x in termos_pagos):
             gratuidade = 'Paga'
         else:
-            if any(x in e.get('instituicao', '').lower() for x in ['if baiano', 'ifbaiano', 'ifba']) or 'uab' in texto_completo or 'gratuito' in texto_completo or 'gratuita' in texto_completo:
-                gratuidade = 'Gratuita'
-            else:
-                if any(x in e.get('instituicao', '').lower() for x in ['ufba', 'uneb']):
-                    gratuidade = 'Paga'
-                else:
-                    gratuidade = 'Gratuita'
+            gratuidade = 'Paga'  # Privada sem informação explícita → presume paga
 
     e['tipo_pos'] = tipo_pos
     e['subtipo_pos'] = subtipo_pos
