@@ -17,7 +17,7 @@
     "subtipo_pos": "Especialização",
     "modalidade": "EaD",
     "is_ept": false,
-    "gratuidade": "Paga"
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-05T14:47:58.732262Z",
@@ -37,7 +37,27 @@
     "subtipo_pos": "Especialização",
     "modalidade": "Presencial",
     "is_ept": false,
-    "gratuidade": "Paga"
+    "gratuidade": "Gratuita"
+  },
+  {
+    "dataColeta": "2026-07-05T21:41:17.268586Z",
+    "titulo": "Cursos de especialização a distância do IFRS recebem inscrições - Instituto Federal do Rio Grande do Sul",
+    "resumo": "... inscrições abertas para a seleção de estudantes, com ingresso no segundo semestre de 2026. Os cursos são gratuitos, a distância (modalidade EaD) ...",
+    "instituicao": "IFRS",
+    "nivel": "Especialização",
+    "area": "Educação",
+    "vagas": 10,
+    "inscricoesInicio": "2026-06-17T00:00:00Z",
+    "inscricoesFim": "2026-07-03T00:00:00Z",
+    "url": "https://ifrs.edu.br/cursos-de-especializacoes-a-distancia-do-ifrs-recebem-inscricoes/",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-06-17T00:00:00Z",
+    "fonte": "Google Search (IFRS)",
+    "tipo_pos": "Lato",
+    "subtipo_pos": "Especialização",
+    "modalidade": "EaD",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-05T15:12:38.282019Z",
@@ -57,6 +77,6 @@
     "subtipo_pos": "Especialização",
     "modalidade": "EaD",
     "is_ept": false,
-    "gratuidade": "Gratuita"
+    "gratuidade": "Paga"
   }
 ]
