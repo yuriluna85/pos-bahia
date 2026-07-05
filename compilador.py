@@ -1309,12 +1309,25 @@ def buscar_novos_editais():
                                 title_match = re.search(r'<title>(.*?)<\/title>', html_data, re.IGNORECASE)
                                 if title_match:
                                     titulo = title_match.group(1).strip()
-                                    
-                                text_content = re.sub(r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', '', html_data, flags=re.IGNORECASE)
-                                text_content = re.sub(r'<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>', '', text_content, flags=re.IGNORECASE)
+                                
+                                # Remove <script>, <style> e seus conteúdos antes de processar o texto
+                                text_content = re.sub(r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', ' ', html_data, flags=re.IGNORECASE | re.DOTALL)
+                                text_content = re.sub(r'<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>', ' ', text_content, flags=re.IGNORECASE | re.DOTALL)
                                 text_content = re.sub(r'<[^>]*>', ' ', text_content)
                                 text_content = re.sub(r'\s+', ' ', text_content).strip()
                                 text_lower = text_content.lower()
+                                
+                                # Sanitiza o título: elimina qualquer resíduos de JS (ex: "function dpf(f){...}")
+                                titulo = html.unescape(titulo)
+                                titulo = re.sub(r'function\s+\w+\s*\([^)]*\)\s*\{[^}]*\}', '', titulo, flags=re.IGNORECASE)
+                                titulo = re.sub(r'var\s+\w+\s*=\s*[^;]+;', '', titulo)
+                                titulo = re.sub(r'\b(?:if|for|while|return|var|let|const|function)\b.*', '', titulo)
+                                titulo = re.sub(r'[{};]', '', titulo)
+                                titulo = re.sub(r'\s+', ' ', titulo).strip()
+                                # Se o título resultante estiver vazio ou parecer código, usa snippet do Serper
+                                if not titulo or len(titulo) < 10 or '{' in titulo or 'function' in titulo.lower():
+                                    titulo = item.get('snippet', item.get('title', 'Processo Seletivo'))[:120]
+                                titulo = corrigir_utf8_corrompido(titulo)
                                 
                                 nivel = "Mestrado Acadêmico"
                                 if any(x in text_lower for x in ["aluno especial", "matricula especial", "estudante especial", "disciplina isolada"]):

@@ -1,42 +1,38 @@
 {
-  "geradoEm": "2026-07-05T15:12:38.312499Z",
-  "totalGeral": 64,
+  "geradoEm": "2026-07-05T11:55:28.514206Z",
+  "totalGeral": 65,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
-    "Mestrado Profissional": 6,
+    "Mestrado Profissional": 7,
     "Doutorado Acadêmico": 12,
     "Doutorado Profissional": 2,
-    "Aluno Especial": 6,
-    "Especialização": 1,
+    "Aluno Especial": 2,
+    "Especialização": 0,
     "Pós-Doc": 0
   },
   "totaisAreas": {
-    "Educação": 18,
-    "Tecnologia e Informática": 3,
+    "Educação": 17,
+    "Tecnologia e Informática": 4,
     "Gestão e Negócios": 1,
-    "Saúde e Biológicas": 15,
+    "Saúde e Biológicas": 16,
     "Humanas e Sociais": 4,
     "Comunicação e Artes": 3,
     "Engenharias e Exatas": 18,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 59,
-    "Encerrado": 5,
+    "Aberto": 51,
+    "Encerrado": 14,
     "Em andamento": 0
   },
   "porInstituicao": [
     {
       "nome": "UFBA",
-      "total": 39
+      "total": 40
     },
     {
       "nome": "UNEB",
-      "total": 23
-    },
-    {
-      "nome": "IFRS",
-      "total": 1
+      "total": 24
     },
     {
       "nome": "UNILAB",
