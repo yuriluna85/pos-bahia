@@ -1,6 +1,6 @@
 {
-  "geradoEm": "2026-07-04T02:44:17.860247Z",
-  "totalGeral": 59,
+  "geradoEm": "2026-07-05T02:53:50.209906Z",
+  "totalGeral": 63,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
     "Mestrado Profissional": 6,
@@ -9,17 +9,17 @@
     "Aluno Especial": 6
   },
   "totaisAreas": {
-    "Educação": 15,
+    "Educação": 17,
     "Tecnologia e Informática": 3,
-    "Gestão e Negócios": 0,
+    "Gestão e Negócios": 1,
     "Saúde e Biológicas": 15,
-    "Humanas e Sociais": 3,
+    "Humanas e Sociais": 4,
     "Comunicação e Artes": 3,
     "Engenharias e Exatas": 18,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 55,
+    "Aberto": 59,
     "Encerrado": 4,
     "Em andamento": 0
   },
@@ -30,7 +30,7 @@
     },
     {
       "nome": "UNEB",
-      "total": 19
+      "total": 23
     },
     {
       "nome": "UNILAB",
