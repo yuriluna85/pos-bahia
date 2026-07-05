@@ -1237,9 +1237,13 @@ def buscar_novos_editais():
         print("Chaves de API encontradas. Iniciando busca adicional no Google via Serper.dev...")
         ano_corrente = datetime.now().year
         queries = [
-            f'site:ufba.br OR site:ufrb.edu.br OR site:ufsb.edu.br OR site:ufob.edu.br OR site:univasf.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}',
-            f'site:uneb.br OR site:uefs.br OR site:uesc.br OR site:uesb.br OR site:ifba.edu.br OR site:ifbaiano.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}',
-            f'site:unifacs.br OR site:ucsal.br OR site:unijorge.edu.br OR site:uniftc.edu.br "mestrado" OR "doutorado" OR "aluno especial" OR "especializacao" {ano_corrente}'
+            # Stricto Sensu (Foco na Bahia)
+            f'site:ufba.br OR site:ufrb.edu.br OR site:ufsb.edu.br OR site:ufob.edu.br OR site:univasf.edu.br "mestrado" OR "doutorado" OR "aluno especial" {ano_corrente}',
+            f'site:uneb.br OR site:uefs.br OR site:uesc.br OR site:uesb.br OR site:ifba.edu.br OR site:ifbaiano.edu.br "mestrado" OR "doutorado" OR "aluno especial" {ano_corrente}',
+            f'site:unifacs.br OR site:ucsal.br OR site:unijorge.edu.br OR site:uniftc.edu.br "mestrado" OR "doutorado" OR "aluno especial" {ano_corrente}',
+            # Lato Sensu (Especializações - Qualquer localidade do Brasil, de preferência EaD)
+            f'site:.edu.br "edital" "especialização" "inscrições abertas" "ead" OR "a distância" {ano_corrente}',
+            f'site:.gov.br OR site:.org.br "processo seletivo" "lato sensu" "especialização" "ead" {ano_corrente}'
         ]
         
         links_processados = set()
@@ -1282,10 +1286,17 @@ def buscar_novos_editais():
                                 encontrada = True
                                 break
                                 
-                        if not encontrada and '.edu.br' not in url.lower() and '.uneb.br' not in url.lower():
-                            continue
+                        if not encontrada:
+                            # Deduz a sigla a partir da URL da instituição nacional
+                            try:
+                                parsed_url = urllib.parse.urlparse(url)
+                                domain_parts = parsed_url.netloc.lower().split('.')
+                                sigla_extraida = domain_parts[1].upper() if domain_parts[0] == 'www' and len(domain_parts) > 1 else domain_parts[0].upper()
+                                instituicao = sigla_extraida
+                            except Exception:
+                                instituicao = 'Nacional'
                             
-                        print(f"[Serper] Encontrada URL relevante: {url} ({instituicao})")
+                        print(f"[Serper] Processando URL: {url} (Sigla: {instituicao})")
                         
                         try:
                             scraper_url = f"https://api.scraperapi.com/?api_key={scraper_key}&url={urllib.parse.quote(url)}&render=true"
@@ -1314,6 +1325,13 @@ def buscar_novos_editais():
                                     nivel = "Especialização"
                                 elif "mestrado" in text_lower:
                                     nivel = "Mestrado Profissional" if "mestrado profissional" in text_lower else "Mestrado Acadêmico"
+                                    
+                                is_lato = (nivel == "Especialização")
+                                
+                                # REGRA DE LOCALIDADE: Se for edital Stricto Sensu (Mestrado/Doutorado/Aluno Especial) e não pertencer a uma instituição da Bahia, nós o descartamos!
+                                if not is_lato and not encontrada:
+                                    print(f"[Serper] Ignorando edital Stricto Sensu fora da Bahia: {url}")
+                                    continue
                                     
                                 area = "Saúde e Biológicas"
                                 max_contagem = 0

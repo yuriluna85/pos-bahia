@@ -20,7 +20,11 @@ Plataforma desenvolvida para centralizar a busca de seleções acadêmicas e cur
 
 ## 📜 Log de Atualizações (Changelog)
 
-### 📅 05/07/2026 - Restruturação do Portal & Integração de APIs (Serper & ScraperAPI)
+### 📅 05/07/2026 - Restruturação do Portal, Regra de Escopo & Identidade YLuna85 LABs
+- 🎨 **Identidade YLuna85 LABs**: Reestruturação de design da aplicação aplicando a paleta oficial da marca (**Azul Royal**, **Roxo Violeta**, **Teal/Ciano**), inclusão do logotipo de laboratório (🔬) e definição do `favicon.jpg` oficial.
+- 🛠️ **Filtros EPT Avançados**: Implementação de seletores interativos rápidos em ambas as abas (**Stricto Sensu** e **Lato Sensu**) para isolar editais de cursos na área de **Educação Profissional e Tecnológica (EPT)**.
+- 📅 **Agendamento do Workflow**: Ajuste da expressão cron do GitHub Actions para rodar diariamente às 03:00 UTC (meia-noite do fuso oficial de Brasília/Bahia) para controle preciso de prazos.
+- 🗺️ **Regra de Localidade**: Filtro geográfico rígido limitando editais Stricto Sensu (Mestrado/Doutorado) apenas ao estado da Bahia (públicas e privadas), liberando editais de Especialização (Lato Sensu) de **qualquer localidade do Brasil** (foco em EaD nacional).
 - 🎓 **Filtro Stricto e Lato Sensu**: Reestruturação das abas principais de Mestrado e Doutorado para "Stricto Sensu" (Mestrado, Doutorado e Pós-Doc) e "Lato Sensu" (Especializações).
 - 🔑 **Integração de APIs de Busca e Proxy**: Implementação de busca programática no Google via **Serper.dev** para detecção de editais externos de forma dinâmica e integração com a **ScraperAPI** como proxy de fallback para contornar bloqueios e instabilidades de rede.
 - ⚙️ **Automação no Compilador**: Mapeamento das rotinas de coleta do SIGAA para incluir o nível Lato Sensu (`nivel=L`) e enriquecimento dinâmico de campos nos metadados (`tipo_pos`, `modalidade`, `gratuidade`, `is_ept`).

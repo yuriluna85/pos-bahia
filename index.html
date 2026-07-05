@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Editais de Pós-Graduação da Bahia</title>
+  <title>Bahia Pós | YLuna85 LABs</title>
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
   
   <!-- Fontes do Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,27 +12,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;850&display=swap" rel="stylesheet">
 
   <style>
-    /* ══ VARIÁVEIS DO SISTEMA DE DESIGN (TEMA CLARO E CLEAN) ══ */
+    /* ══ VARIÁVEIS DO SISTEMA DE DESIGN (PALETA OFICIAL YLUNA85 LABS) ══ */
     :root {
-      --bg-main: #f8fafc; /* Cinza claro e clean */
+      --bg-main: #FAFAFA; /* Fundo Claro YLuna85 LABs */
       --bg-card: #ffffff; /* Fundo de cartões branco */
       --bg-header: #ffffff; /* Header branco */
       --border-glow: #e2e8f0; /* Borda cinza suave */
       --border-glow-hover: #cbd5e1; /* Borda cinza média no hover */
-      --primary: #0284c7; /* Azul Acadêmico mais escuro */
-      --primary-rgb: 2, 132, 199;
-      --accent: #9a7407; /* Dourado escuro */
-      --accent-orange: #c2410c;
-      --text-main: #000000; /* Texto principal em preto automático */
-      --text-muted: #475569; /* Texto de apoio em cinza escuro */
+      --primary: #0D6EFD; /* Azul Royal (Primário YLuna85 LABs) */
+      --primary-rgb: 13, 110, 253;
+      --accent: #7952B3; /* Roxo Violeta (Secundário YLuna85 LABs) */
+      --accent-orange: #ea580c;
+      --text-main: #262626; /* Cinza Escuro YLuna85 LABs */
+      --text-muted: #475569;
       --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
       --transition-org: cubic-bezier(0.4, 0, 0.2, 1);
       
-      /* Cores por Nível adaptadas para fundo claro */
-      --color-mestrado: #16a34a; /* Verde escuro nítido */
-      --color-doutorado: #9a7407; /* Dourado escuro nítido */
-      --color-especial: #ea580c; /* Laranja escuro nítido */
-      --color-fechados: #64748b; /* Cinza ardósia para fechados */
+      /* Cores por Nível adaptadas para a marca */
+      --color-mestrado: #16a34a; /* Verde */
+      --color-doutorado: #7952B3; /* Roxo Violeta */
+      --color-especial: #ea580c; /* Laranja */
+      --color-fechados: #64748b; /* Cinza */
     }
 
     /* ══ MODO ALTO CONTRASTE (WCAG) ══ */
@@ -1491,10 +1492,10 @@ body.high-contrast button, body.high-contrast input, body.high-contrast select {
   <header role="banner">
     <div class="header-inner">
       <a href="#" class="logo" aria-label="Ir para a página inicial do Portal de Editais">
-        <span class="logo-ball" aria-hidden="true">🎓</span>
+        <span class="logo-ball" aria-hidden="true" style="background: var(--primary);">🔬</span>
         <div class="logo-text-wrap">
           <span class="logo-main">Bahia<span>Pós</span></span>
-          <span class="logo-sub">Editais de Pós-Graduação</span>
+          <span class="logo-sub">YLuna85 LABs APPs</span>
         </div>
       </a>
       <div class="header-info">
@@ -1568,14 +1569,22 @@ body.high-contrast button, body.high-contrast input, body.high-contrast select {
       
       <!-- ABA STRICTO SENSU -->
       <section class="tab-panel active" id="panel-stricto" role="tabpanel" aria-labelledby="tab-stricto">
-        <!-- Sub-filtros para stricto: Todos, Mestrado, Doutorado, Pós-Doc -->
+        <!-- Sub-filtros para stricto: Todos, Mestrado, Doutorado, Pós-Doc e Filtro EPT -->
         <div style="background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-soft);">
-          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-right: 8px;">Filtrar Nível:</span>
-            <button class="chip-btn active-stricto" id="subtab-stricto-all" onclick="filtrarSubtipoStricto('Todos')">🎓 Todos Stricto</button>
-            <button class="chip-btn" id="subtab-stricto-mestrado" onclick="filtrarSubtipoStricto('Mestrado')">Mestrado</button>
-            <button class="chip-btn" id="subtab-stricto-doutorado" onclick="filtrarSubtipoStricto('Doutorado')">Doutorado</button>
-            <button class="chip-btn" id="subtab-stricto-posdoc" onclick="filtrarSubtipoStricto('Pós-Doc')">Pós-Doc</button>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-right: 8px;">Filtrar Nível:</span>
+              <button class="chip-btn active-stricto" id="subtab-stricto-all" onclick="filtrarSubtipoStricto('Todos')">🎓 Todos Stricto</button>
+              <button class="chip-btn" id="subtab-stricto-mestrado" onclick="filtrarSubtipoStricto('Mestrado')">Mestrado</button>
+              <button class="chip-btn" id="subtab-stricto-doutorado" onclick="filtrarSubtipoStricto('Doutorado')">Doutorado</button>
+              <button class="chip-btn" id="subtab-stricto-posdoc" onclick="filtrarSubtipoStricto('Pós-Doc')">Pós-Doc</button>
+            </div>
+            <!-- Destaque EPT para Stricto Sensu -->
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Foco / EPT:</span>
+              <button class="chip-btn active-stricto" id="filter-stricto-ept-all" onclick="filtrarStrictoEPT('Todos')">Todos</button>
+              <button class="chip-btn" id="filter-stricto-ept-only" onclick="filtrarStrictoEPT('EPT')">Apenas EPT 🛠️</button>
+            </div>
           </div>
         </div>
         <div class="chips-container" id="filtros-areas-stricto" aria-label="Filtro rápido de eixos no stricto sensu"></div>
@@ -2011,6 +2020,7 @@ body.high-contrast button, body.high-contrast input, body.high-contrast select {
 
     // Filtros específicos de Stricto Sensu
     let filtroSubtipoStrictoAtivo = 'Todos';
+    let filtroStrictoEPTAtivo = 'Todos';
 
     // Inicializa ano
     const agora = new Date();
@@ -2271,6 +2281,12 @@ body.high-contrast button, body.high-contrast input, body.high-contrast select {
         if (activeTab === 'stricto') {
           const sub = e.subtipo_pos || (e.nivel.toLowerCase().includes("doutor") ? "Doutorado" : e.nivel.toLowerCase().includes("doc") ? "Pós-Doc" : "Mestrado");
           if (filtroSubtipoStrictoAtivo !== 'Todos' && sub !== filtroSubtipoStrictoAtivo) {
+            return false;
+          }
+
+          // Filtro especial para EPT no Stricto Sensu
+          const isEpt = e.is_ept || (e.titulo.toLowerCase().includes("ept") || e.resumo.toLowerCase().includes("ept"));
+          if (filtroStrictoEPTAtivo === 'EPT' && !isEpt) {
             return false;
           }
         }
@@ -2792,6 +2808,18 @@ body.high-contrast button, body.high-contrast input, body.high-contrast select {
       });
       const slug = subtipo === 'Todos' ? 'all' : subtipo === 'Pós-Doc' ? 'posdoc' : subtipo.toLowerCase();
       const targetBtn = document.getElementById(`subtab-stricto-${slug}`);
+      if (targetBtn) targetBtn.classList.add('active-stricto');
+      executarFiltros();
+    }
+
+    function filtrarStrictoEPT(foco) {
+      filtroStrictoEPTAtivo = foco;
+      ['all', 'only'].forEach(f => {
+        const btn = document.getElementById(`filter-stricto-ept-${f}`);
+        if (btn) btn.classList.remove('active-stricto');
+      });
+      const slug = foco === 'Todos' ? 'all' : 'only';
+      const targetBtn = document.getElementById(`filter-stricto-ept-${slug}`);
       if (targetBtn) targetBtn.classList.add('active-stricto');
       executarFiltros();
     }
