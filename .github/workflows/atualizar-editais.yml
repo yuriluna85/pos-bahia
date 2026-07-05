@@ -2,8 +2,8 @@ name: Atualizar Editais de Pos-Graduacao Bahia
 
 on:
   schedule:
-    # Agenda a execucao diaria a meia-noite (00:00 UTC)
-    - cron: '0 0 * * *'
+    # Agenda a execucao diaria a meia-noite do fuso oficial de Brasilia (03:00 UTC)
+    - cron: '0 3 * * *'
   workflow_dispatch: # Permite execucao manual pelo botao do GitHub Actions
 
 permissions:
