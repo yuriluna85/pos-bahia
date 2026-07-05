@@ -12,7 +12,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Aberto",
     "dataPublicacao": "2026-06-30T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.943889Z",
@@ -27,7 +32,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.943889Z",
@@ -42,7 +52,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-11T03:49:06.952780Z",
@@ -57,7 +72,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-10T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -72,7 +92,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-04T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-01T03:38:54.319833Z",
@@ -87,7 +112,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-03T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -102,7 +132,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-21T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -117,7 +152,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-19T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -132,7 +172,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-18T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -147,7 +192,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-15T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -162,7 +212,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-11T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -177,7 +232,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-05-04T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -192,7 +252,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-04-27T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.820247Z",
@@ -207,6 +272,11 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-04-16T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   }
 ]

@@ -12,7 +12,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1576?selecao=1576",
     "status": "Aberto",
     "dataPublicacao": "2026-07-03T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-05T02:53:50.193098Z",
@@ -27,7 +32,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1568?selecao=1568",
     "status": "Aberto",
     "dataPublicacao": "2026-07-03T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-05T02:53:50.193098Z",
@@ -42,7 +52,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1558?selecao=1558",
     "status": "Aberto",
     "dataPublicacao": "2026-07-03T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-05T02:53:50.193098Z",
@@ -57,7 +72,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1569?selecao=1569",
     "status": "Aberto",
     "dataPublicacao": "2026-07-03T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-01T03:38:54.330491Z",
@@ -72,7 +92,12 @@
     "url": "https://sigaa.unilab.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Aberto",
     "dataPublicacao": "2026-07-01T12:00:00Z",
-    "fonte": "UNILAB SIGAA"
+    "fonte": "UNILAB SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-01T03:38:54.330491Z",
@@ -87,7 +112,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1563?selecao=1563",
     "status": "Aberto",
     "dataPublicacao": "2026-06-29T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-01T03:38:54.330491Z",
@@ -102,7 +132,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1570?selecao=1570",
     "status": "Aberto",
     "dataPublicacao": "2026-06-29T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-07-01T03:38:54.330491Z",
@@ -117,7 +152,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1562?selecao=1562",
     "status": "Aberto",
     "dataPublicacao": "2026-06-29T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-27T02:55:02.415475Z",
@@ -132,7 +172,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1564?selecao=1564",
     "status": "Aberto",
     "dataPublicacao": "2026-06-26T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-27T02:55:02.415475Z",
@@ -147,7 +192,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1560?selecao=1560",
     "status": "Aberto",
     "dataPublicacao": "2026-06-25T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-27T02:55:02.415475Z",
@@ -162,7 +212,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1557?selecao=1557",
     "status": "Aberto",
     "dataPublicacao": "2026-06-25T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -177,7 +232,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1567?selecao=1567",
     "status": "Aberto",
     "dataPublicacao": "2026-06-23T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-24T03:25:53.912700Z",
@@ -192,7 +252,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1565?selecao=1565",
     "status": "Aberto",
     "dataPublicacao": "2026-06-23T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -207,7 +272,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -222,7 +292,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -237,7 +312,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1554?selecao=1554",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -252,7 +332,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1559?selecao=1559",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-17T03:57:08.945936Z",
@@ -267,7 +352,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1561?selecao=1561",
     "status": "Aberto",
     "dataPublicacao": "2026-06-15T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -282,7 +372,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-12T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -297,7 +392,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-12T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-13T03:33:26.719781Z",
@@ -312,7 +412,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-12T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-13T03:33:26.719781Z",
@@ -327,7 +432,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-12T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -342,7 +452,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-09T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Doutorado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -357,7 +472,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-09T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-11T03:49:06.954331Z",
@@ -372,7 +492,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-09T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -387,7 +512,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1555?selecao=1555",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-08T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -402,7 +532,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-05T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -417,7 +552,12 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1551?selecao=1551",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-05T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T18:23:35.467242Z",
@@ -432,7 +572,12 @@
     "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-05T12:00:00Z",
-    "fonte": "UFBA SIGAA"
+    "fonte": "UFBA SIGAA",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   },
   {
     "dataColeta": "2026-06-08T17:42:56.821340Z",
@@ -447,6 +592,11 @@
     "url": "https://ssppg.uneb.br/inicio/editalExterno/1553?selecao=1553",
     "status": "Encerrado",
     "dataPublicacao": "2026-06-01T12:00:00Z",
-    "fonte": "UNEB SSPPG"
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Stricto",
+    "subtipo_pos": "Mestrado",
+    "modalidade": "Presencial",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
   }
 ]
