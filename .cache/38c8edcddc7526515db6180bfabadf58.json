@@ -1,0 +1,23 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Date": "Sun, 05 Jul 2026 23:42:27 GMT",
+    "Content-Type": "text/html; charset=utf-8",
+    "Content-Length": "1522",
+    "Connection": "close",
+    "X-Powered-By": "Express",
+    "Access-Control-Allow-Origin": "undefined",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+    "Access-Control-Allow-Methods": "HEAD,GET,POST,DELETE,OPTIONS,PUT",
+    "Access-Control-Allow-Credentials": "true",
+    "X-Robots-Tag": "none",
+    "sa-final-url": "https://editais.uneb.br/edital_050_2026",
+    "sa-statusCode": "200",
+    "sa-credit-cost": "1",
+    "sa-proxy-hash": "undefined",
+    "ETag": "W/\"5f2-Wy8OTuWRj43uimdqGOY/kpCPyFQ\"",
+    "Vary": "Accept-Encoding",
+    "Strict-Transport-Security": "max-age=15724800; includeSubDomains"
+  },
+  "data": "<!DOCTYPE html>\n<html lang=\"pt-BR\" translate=\"no\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"description\" content=\"Seleção\" />\n  <link rel=\"icon\" href=\"/favicon.ico\">\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700\">\n  <link rel=\"stylesheet\" href=\"/splash-screen.css\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Seleção</title>\n  <script type=\"module\" crossorigin src=\"/assets/index-DhxbzDS7.js\"></script>\n  <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CnxuSwNb.css\">\n</head>\n\n<body class=\"page-loading\">\n    <!--begin::Theme mode setup on page load-->\n    <script>\n        let themeMode = \"system\";\n\n        if (localStorage.getItem(\"kt_theme_mode_value\")) {\n            themeMode = localStorage.getItem(\"kt_theme_mode_value\");\n        }\n\n        if (themeMode === \"system\") {\n            themeMode = window.matchMedia(\"(prefers-color-scheme: dark)\").matches ? \"dark\" : \"light\";\n        }\n\n        document.documentElement.setAttribute(\"data-bs-theme\", themeMode);\n    </script>\n    <!--end::Theme mode setup on page load-->\n\n    <div id=\"app\"></div>\n\n    <!--begin::Loading markup-->\n    <div id=\"splash-screen\" class=\"splash-screen\">\n        <!-- <img src=\"/media/UNEB/logo.svg\" class=\"dark-logo\" alt=\"Template dark logo\" />\n        <img src=\"/media/UNEB/logo.svg\" class=\"light-logo\" alt=\"Template light logo\" /> -->\n        <span>Carregando ...</span>\n    </div>\n    <!--end::Loading markup-->\n\n</body>\n\n</html>"
+}

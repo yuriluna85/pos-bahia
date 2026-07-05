@@ -1,0 +1,19 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "access-control-allow-origin": "*",
+    "x-ratelimit-limit": "25",
+    "x-ratelimit-remaining": "24",
+    "x-ratelimit-reset": "1783295055",
+    "content-type": "application/json; charset=utf-8",
+    "x-cloud-trace-context": "2ebf1f050be078a4005ae25566571f99",
+    "set-cookie": "GAESA=CrQBMDAyZjhmZmQ0N2Q3MmQwYjI4MWViYzJjZTMxMWIwNWMxOTdhNWUyYjJiNGFiYjJjN2I2ZmNkYzk5NTNiNjdjYzRjMzg2MWVjNzAxZTUxZTIyOWZlYmY1MTgxNjlkMTA0YmY0M2Y5NWJjZmI2MmQ1MjNjMjBhNjdmZjM1M2ZkMTRjMzU3YTY3ZThkYzAzMDAwZDVjOTM1MDZiNjQyZDAyZDdmNTg3Y2FmZWIyYTRlYzQwNzQ3EJqSrKXzMw; expires=Tue, 04-Aug-2026 23:44:12 GMT; path=/",
+    "date": "Sun, 05 Jul 2026 23:44:12 GMT",
+    "server": "Google Frontend",
+    "Content-Length": "642",
+    "via": "1.1 google",
+    "Alt-Svc": "h3=\":443\"; ma=2592000",
+    "Connection": "close"
+  },
+  "data": "{\"searchParameters\":{\"q\":\"site:.gov.br OR site:.org.br \\\"processo seletivo\\\" \\\"lato sensu\\\" \\\"especialização\\\" \\\"ead\\\" 2026\",\"gl\":\"br\",\"hl\":\"pt-br\",\"type\":\"search\",\"engine\":\"google\"},\"organic\":[{\"title\":\"Inscrições abertas para especialização gratuita em Gestão Escolar ...\",\"link\":\"https://campinagrande.pb.gov.br/inscricoes-abertas-para-especializacao-gratuita-em-gestao-escolar-com-50-vagas-em-parceria-com-a-seduc/\",\"snippet\":\"... processo seletivo do Curso de Especialização Lato Sensu em Gestão Escolar, na modalidade de Educação a Distância (EaD). Ao todo, são ...\",\"date\":\"11 de jul. de 2025\",\"position\":1}],\"credits\":1}"
+}
