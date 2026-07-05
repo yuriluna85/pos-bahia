@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-07-05T11:55:28.430494Z",
+  "ultimaAtualizacao": "2026-07-05T18:28:05.102100Z",
   "editais": [
     {
       "dataColeta": "2026-07-05T11:14:35.524537Z",
@@ -19,7 +19,7 @@
       "subtipo_pos": "Especialização",
       "modalidade": "EaD",
       "is_ept": false,
-      "gratuidade": "Paga"
+      "gratuidade": "Gratuita"
     },
     {
       "dataColeta": "2026-07-05T11:14:35.606126Z",
@@ -259,7 +259,7 @@
       "subtipo_pos": "Especialização",
       "modalidade": "Presencial",
       "is_ept": false,
-      "gratuidade": "Paga"
+      "gratuidade": "Gratuita"
     },
     {
       "dataColeta": "2026-07-05T11:14:35.606126Z",

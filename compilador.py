@@ -508,7 +508,8 @@ def corrigir_campos_edital(e):
     ]
     instituicao_lower = remover_acentos_py(e.get('instituicao', '').lower())
     fonte_lower = remover_acentos_py(e.get('fonte', '').lower())
-    eh_publica = any(x in instituicao_lower or x in fonte_lower for x in INSTITUICOES_PUBLICAS)
+    titulo_lower = remover_acentos_py(e.get('titulo', '').lower())
+    eh_publica = any(x in instituicao_lower or x in fonte_lower or x in titulo_lower for x in INSTITUICOES_PUBLICAS)
 
     if tipo_pos == 'Stricto':
         # Stricto Sensu em pública é sempre gratuito
