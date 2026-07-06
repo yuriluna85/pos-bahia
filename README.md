@@ -20,6 +20,11 @@ Plataforma desenvolvida para centralizar a busca de seleções acadêmicas e cur
 
 ## 📜 Log de Atualizações (Changelog)
 
+### 📅 05/07/2026 (Extra) - [BUGFIX] Correção de Nível para Editais Lato Sensu e Higienização do Histórico
+- ⚙️ **[BUGFIX] Classificação de Lato Sensu (`compilador.py`)**: Corrigido o bug nos raspadores e funções de enriquecimento que classificavam editais contendo "lato sensu" ou "especialização" (como no portal SSPPG UNEB ou no SIGAA `nivel=L`) sob o nível `"Mestrado Profissional"` ou `"Mestrado Acadêmico"`. Agora, as especializações são corretamente identificadas como `"Especialização"` ou `"Especialização - Aluno Especial"`.
+- 🧹 **[HISTÓRICO] Higienização de Metadados**: Correção retroativa dos metadados das bases históricas do projeto (JSONs mensais) para sanitizar as especializações que haviam sido salvas anteriormente com níveis de Stricto Sensu.
+- 🔄 **Re-compilação**: Executada a re-sincronização total para atualizar `ultimos-editais.json` e `metricas.json` com os dados sanitizados.
+
 ### 📅 05/07/2026 - Restruturação do Portal, Regra de Escopo & Identidade YLuna85 LABs
 - 🎨 **Identidade YLuna85 LABs**: Reestruturação de design da aplicação aplicando a paleta oficial da marca (**Azul Royal**, **Roxo Violeta**, **Teal/Ciano**), inclusão do logotipo de laboratório (🔬) e definição do `favicon.jpg` oficial.
 - 🛠️ **Filtros EPT Avançados**: Implementação de seletores interativos rápidos em ambas as abas (**Stricto Sensu** e **Lato Sensu**) para isolar editais de cursos na área de **Educação Profissional e Tecnológica (EPT)**.

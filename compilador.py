@@ -499,6 +499,10 @@ def corrigir_campos_edital(e):
     if any(x in texto_completo for x in ['especializacao', 'lato sensu', 'lato-sensu', 'mba', 'especialista']):
         tipo_pos = 'Lato'
         subtipo_pos = 'Especialização'
+        if "aluno especial" in nivel_lower or "aluno especial" in titulo_lower or "especial" in nivel_lower or "ae" in nivel_lower or re.search(r'\bAE\b', e['titulo']):
+            e['nivel'] = 'Especialização - Aluno Especial'
+        else:
+            e['nivel'] = 'Especialização'
     elif any(x in texto_completo for x in ['pos-doc', 'pos doc', 'pos-doutorado', 'pos doutorado', 'recem-doutor']):
         tipo_pos = 'Stricto'
         subtipo_pos = 'Pós-Doc'
@@ -1025,20 +1029,26 @@ def raspar_sigaa_portal_direct(sigla, url):
                     combined_lower = f"{edital_nome} {course}".lower()
                     eh_especial = any(x in combined_lower for x in aluno_especial_terms)
                     
-                    nivel_base = "Mestrado"
-                    if "doutorado" in combined_lower:
-                        nivel_base = "Doutorado"
+                    is_lato = "nivel=L" in url or "nivel=l" in url or any(x in combined_lower for x in ["lato sensu", "especialização", "especializacao", "mba", "especialista"])
                     
-                    tipo = "Acadêmico"
-                    if "profissional" in combined_lower:
-                        tipo = "Profissional"
-                    
-                    if eh_especial:
-                        nivel = f"{nivel_base} - Aluno Especial"
-                        pasta_tema = "aluno-especial" # Mantém compatibilidade de pasta por enquanto
+                    if is_lato:
+                        if eh_especial:
+                            nivel = "Especialização - Aluno Especial"
+                        else:
+                            nivel = "Especialização"
                     else:
-                        nivel = f"{nivel_base} {tipo}"
-                        pasta_tema = nivel_base.lower()
+                        nivel_base = "Mestrado"
+                        if "doutorado" in combined_lower:
+                            nivel_base = "Doutorado"
+                        
+                        tipo = "Acadêmico"
+                        if "profissional" in combined_lower:
+                            tipo = "Profissional"
+                        
+                        if eh_especial:
+                            nivel = f"{nivel_base} - Aluno Especial"
+                        else:
+                            nivel = f"{nivel_base} {tipo}"
                     
                     area = "Saúde e Biológicas"
                     max_contagem = 0
@@ -1244,20 +1254,26 @@ def raspar_uneb_ssppg():
                 combined_lower = full_title.lower()
                 eh_especial = any(x in combined_lower for x in aluno_especial_terms) or re.search(r'\bAE\b', full_title) or "2026ae" in combined_lower
                 
-                nivel_base = "Mestrado"
-                if "doutorado" in combined_lower:
-                    nivel_base = "Doutorado"
+                is_lato = any(x in combined_lower for x in ["lato sensu", "especialização", "especializacao", "mba", "especialista"])
                 
-                tipo = "Acadêmico"
-                if any(x in combined_lower for x in ["profissional", "gestec", "mpeja", "profept"]):
-                    tipo = "Profissional"
-                
-                if eh_especial:
-                    nivel = f"{nivel_base} - Aluno Especial"
-                elif "lato sensu" in combined_lower or "especialização" in combined_lower or "especializacao" in combined_lower:
-                    nivel = f"{nivel_base} Profissional"
+                if is_lato:
+                    if eh_especial:
+                        nivel = "Especialização - Aluno Especial"
+                    else:
+                        nivel = "Especialização"
                 else:
-                    nivel = f"{nivel_base} {tipo}"
+                    nivel_base = "Mestrado"
+                    if "doutorado" in combined_lower:
+                        nivel_base = "Doutorado"
+                    
+                    tipo = "Acadêmico"
+                    if any(x in combined_lower for x in ["profissional", "gestec", "mpeja", "profept"]):
+                        tipo = "Profissional"
+                    
+                    if eh_especial:
+                        nivel = f"{nivel_base} - Aluno Especial"
+                    else:
+                        nivel = f"{nivel_base} {tipo}"
                 
                 area = "Educação"
                 max_contagem = 0
