@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-07-08T05:41:34.216194Z",
+  "ultimaAtualizacao": "2026-07-09T06:34:42.627058Z",
   "editais": [
     {
       "dataColeta": "2026-07-05T22:24:14.909371Z",
@@ -254,26 +254,6 @@
       "url": "https://ssppg.uneb.br/inicio/editalExterno/1564?selecao=1564",
       "status": "Aberto",
       "dataPublicacao": "2026-06-26T12:00:00Z",
-      "fonte": "UNEB SSPPG",
-      "tipo_pos": "Stricto",
-      "subtipo_pos": "Mestrado",
-      "modalidade": "Presencial",
-      "is_ept": false,
-      "gratuidade": "Gratuita"
-    },
-    {
-      "dataColeta": "2026-06-27T02:55:02.415475Z",
-      "titulo": "055/2026AE - Educação e Diversidade - Stricto Sensu Mestrado - Aluno Especial",
-      "resumo": "Inscrições para o processo seletivo da UNEB: 055/2026AE - Educação e Diversidade - Stricto Sensu Mestrado - Aluno Especial. Período de inscrições de 25/06/2026 a 08/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
-      "instituicao": "UNEB",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Educação",
-      "vagas": 15,
-      "inscricoesInicio": "2026-06-25T12:00:00Z",
-      "inscricoesFim": "2026-07-08T23:59:59Z",
-      "url": "https://ssppg.uneb.br/inicio/editalExterno/1560?selecao=1560",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-25T12:00:00Z",
       "fonte": "UNEB SSPPG",
       "tipo_pos": "Stricto",
       "subtipo_pos": "Mestrado",
