@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-07-09T06:34:42.627058Z",
+  "ultimaAtualizacao": "2026-07-10T06:32:52.606711Z",
   "editais": [
     {
       "dataColeta": "2026-07-05T22:24:14.909371Z",
@@ -234,26 +234,6 @@
       "url": "https://ssppg.uneb.br/inicio/editalExterno/1562?selecao=1562",
       "status": "Aberto",
       "dataPublicacao": "2026-06-29T12:00:00Z",
-      "fonte": "UNEB SSPPG",
-      "tipo_pos": "Stricto",
-      "subtipo_pos": "Mestrado",
-      "modalidade": "Presencial",
-      "is_ept": false,
-      "gratuidade": "Gratuita"
-    },
-    {
-      "dataColeta": "2026-06-27T02:55:02.415475Z",
-      "titulo": "056/2026AE - ENSINO, LINGUAGEM E SOCIEDADE - Stricto Sensu Mestrado - Aluno Especial",
-      "resumo": "Inscrições para o processo seletivo da UNEB: 056/2026AE - ENSINO, LINGUAGEM E SOCIEDADE - Stricto Sensu Mestrado - Aluno Especial. Período de inscrições de 26/06/2026 a 09/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
-      "instituicao": "UNEB",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Educação",
-      "vagas": 15,
-      "inscricoesInicio": "2026-06-26T12:00:00Z",
-      "inscricoesFim": "2026-07-09T23:59:59Z",
-      "url": "https://ssppg.uneb.br/inicio/editalExterno/1564?selecao=1564",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-26T12:00:00Z",
       "fonte": "UNEB SSPPG",
       "tipo_pos": "Stricto",
       "subtipo_pos": "Mestrado",
