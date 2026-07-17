@@ -1,5 +1,25 @@
 [
   {
+    "dataColeta": "2026-07-05T02:53:50.187714Z",
+    "titulo": "060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular",
+    "resumo": "Inscrições para o processo seletivo da UNEB: 060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular. Período de inscrições de 03/07/2026 a 13/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
+    "instituicao": "UNEB",
+    "nivel": "Especialização",
+    "area": "Educação",
+    "vagas": 15,
+    "inscricoesInicio": "2026-07-03T12:00:00Z",
+    "inscricoesFim": "2026-07-13T23:59:59Z",
+    "url": "https://ssppg.uneb.br/inicio/editalExterno/1571?selecao=1571",
+    "status": "Encerrado",
+    "dataPublicacao": "2026-07-03T12:00:00Z",
+    "fonte": "UNEB SSPPG",
+    "tipo_pos": "Lato",
+    "subtipo_pos": "Especialização",
+    "modalidade": "EaD",
+    "is_ept": false,
+    "gratuidade": "Gratuita"
+  },
+  {
     "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "051/2026AR - Programa de Pós-Graduação em Letras - Stricto Sensu Mestrado - Aluno Regular",
     "resumo": "Inscrições para o processo seletivo da UNEB: 051/2026AR - Programa de Pós-Graduação em Letras - Stricto Sensu Mestrado - Aluno Regular. Período de inscrições de 29/06/2026 a 29/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
@@ -20,7 +40,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-27T02:55:02.410365Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "057/2026AR - Educação e Linguagens - Lato Sensu - Aluno Regular",
     "resumo": "Inscrições para o processo seletivo da UNEB: 057/2026AR - Educação e Linguagens - Lato Sensu - Aluno Regular. Período de inscrições de 25/06/2026 a 10/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
     "instituicao": "UNEB",
@@ -40,7 +60,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-17T03:57:08.940948Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "PROCESSO SELETIVO DO MESTRADO ACADÊMICO TURMA 2027.1 - MESTRADO EM ARQUITETURA E URBANISMO",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ARQUITETURA E URBANISMO. Vagas ofertadas: 25. Período de inscrições de 15/06/2026 a 31/07/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -60,7 +80,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-17T03:57:08.940948Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "PPGEEC - Edital de Seleção para Alunos Especiais de Mestrado 2026.2 - MESTRADO EM ENGENHARIA ELÉTRICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENGENHARIA ELÉTRICA. Vagas ofertadas: 40. Período de inscrições de 15/06/2026 a 26/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -80,7 +100,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-11T03:49:06.950198Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "Processo Seletivo em Ciência de Alimentos (2026.2) - NÍVEL MESTRADO - MESTRADO EM CIÊNCIA DE ALIMENTOS",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM CIÊNCIA DE ALIMENTOS. Vagas ofertadas: 12. Período de inscrições de 10/06/2026 a 28/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -100,7 +120,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-11T03:49:06.950198Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "SELEÇÃO DE ALUNO(A) ESPECIAL - PPGMUS - 2026.2 - MESTRADO EM MÚSICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MÚSICA. Vagas ofertadas: 25. Período de inscrições de 08/06/2026 a 12/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -120,7 +140,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "EDITAL 01/2026 PROCESSO DE SELEÇÃO PARA O MP-CECRE (MINTER CEFOR) - MESTRADO PROFISSIONAL EM CONSERVAÇÃO E RESTAURAÇÃO DE MONUMENTOS E NÚCLEOS HISTÓRI",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO PROFISSIONAL EM CONSERVAÇÃO E RESTAURAÇÃO DE MONUMENTOS E NÚCLEOS HISTÓRICOS. Vagas ofertadas: 13. Período de inscrições de 05/06/2026 a 06/07/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -160,7 +180,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "EDITAL N.º003/2026 MESTRADO - MESTRADO EM FARMÁCIA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM FARMÁCIA. Vagas ofertadas: 12. Período de inscrições de 04/06/2026 a 30/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -220,26 +240,6 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-20T03:31:00.280149Z",
-    "titulo": "060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular",
-    "resumo": "Inscrições para o processo seletivo da UNEB: 060/2026 - Gênero, Raça/Etnia e Sexualidade na Formação de Educadoras/es - EAD - Lato Sensu - Aluno Regular. Período de inscrições de 03/06/2026 a 13/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
-    "instituicao": "UNEB",
-    "nivel": "Especialização",
-    "area": "Educação",
-    "vagas": 15,
-    "inscricoesInicio": "2026-06-03T12:00:00Z",
-    "inscricoesFim": "2026-07-13T23:59:59Z",
-    "url": "https://ssppg.uneb.br/inicio/editalExterno/1571?selecao=1571",
-    "status": "Encerrado",
-    "dataPublicacao": "2026-06-03T12:00:00Z",
-    "fonte": "UNEB SSPPG",
-    "tipo_pos": "Lato",
-    "subtipo_pos": "Especialização",
-    "modalidade": "EaD",
-    "is_ept": false,
-    "gratuidade": "Gratuita"
-  },
-  {
     "dataColeta": "2026-06-08T17:42:56.818278Z",
     "titulo": "042/2026 - Docência na Educação Básica - Lato Sensu - Aluno Regular",
     "resumo": "Inscrições para o processo seletivo da UNEB: 042/2026 - Docência na Educação Básica - Lato Sensu - Aluno Regular. Período de inscrições de 01/06/2026 a 19/06/2026. Consulte o edital completo no portal SSPPG UNEB.",
@@ -260,7 +260,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "Edital 2026.2 de Seleção para Mestrado do PPGMCF - MESTRADO EM MULTICÊNTRICO EM CIÊNCIAS FISIOLÓGICAS",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MULTICÊNTRICO EM CIÊNCIAS FISIOLÓGICAS. Vagas ofertadas: 6. Período de inscrições de 21/05/2026 a 08/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -280,7 +280,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "PPGEEC - Edital de Seleção para Alunos Regulares de Mestrado 2026.2 - MESTRADO EM ENGENHARIA ELÉTRICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENGENHARIA ELÉTRICA. Vagas ofertadas: 48. Período de inscrições de 19/05/2026 a 15/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -300,7 +300,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "SELEÇÃO PARA INGRESSO NO MESTRADO EM QUÍMICA 2026.2 - MESTRADO EM QUÍMICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM QUÍMICA. Vagas ofertadas: 27. Período de inscrições de 18/05/2026 a 21/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -320,7 +320,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "EDITAL PEI/UFBA 04-2026 - SELEÇÃO PARA O MESTRADO ACADÊMICO 2026.2 - MESTRADO EM ENGENHARIA INDUSTRIAL",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM ENGENHARIA INDUSTRIAL. Vagas ofertadas: 15. Período de inscrições de 15/05/2026 a 10/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -340,7 +340,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "MESTRADO PROFISSIONAL EM MÚSICA. ALUNOS REGULARES 2026.2 - MESTRADO PROFISSIONAL EM MÚSICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO PROFISSIONAL EM MÚSICA. Vagas ofertadas: 30. Período de inscrições de 04/05/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -360,7 +360,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "EDITAL 04/2026 - POSPETRO PROCESSO SELETIVO PARA MESTRADO EM GEOQUÍMICA: PETRÓLE - MESTRADO EM GEOQUÍMICA: PETRÓLEO E MEIO AMBIENTE",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM GEOQUÍMICA: PETRÓLEO E MEIO AMBIENTE. Vagas ofertadas: 8. Período de inscrições de 27/04/2026 a 16/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
@@ -380,7 +380,7 @@
     "gratuidade": "Gratuita"
   },
   {
-    "dataColeta": "2026-06-08T17:42:56.818278Z",
+    "dataColeta": "2026-07-01T03:38:54.317585Z",
     "titulo": "Processo Seletivo 2026.2 Mestrado - Aluno Regular - MESTRADO EM MECATRÔNICA",
     "resumo": "Inscrições abertas para o processo seletivo da UFBA de ingresso no curso: MESTRADO EM MECATRÔNICA. Vagas ofertadas: 30. Período de inscrições de 16/04/2026 a 14/06/2026. Consulte o edital completo no portal oficial da instituição.",
     "instituicao": "UFBA",
