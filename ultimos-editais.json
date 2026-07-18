@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-07-17T05:32:44.959228Z",
+  "ultimaAtualizacao": "2026-07-18T05:15:35.576578Z",
   "editais": [
     {
       "dataColeta": "2026-07-05T22:24:14.909371Z",
@@ -17,26 +17,6 @@
       "fonte": "Google Search (UFSB)",
       "tipo_pos": "Lato",
       "subtipo_pos": "Especialização",
-      "modalidade": "Presencial",
-      "is_ept": false,
-      "gratuidade": "Gratuita"
-    },
-    {
-      "dataColeta": "2026-07-01T03:38:54.330491Z",
-      "titulo": "function dpf(f) {var adp = f.adp;if (adp != null) {for (var i = 0;i EDITAL Nº 01/2026 - SELEÇÃO ALUNO ESPECIAL – SEMESTRE LETIVO 2026.1 - ESTUDOS DE L",
-      "resumo": "Inscrições abertas para o processo seletivo da UNILAB de ingresso no curso: ESTUDOS DE LINGUAGEM: CONTEXTOS LUSÓFONOS BRASIL-ÁFRICA. Vagas ofertadas: 10. Período de inscrições de 01/07/2026 a 17/07/2026. Consulte o edital completo no portal oficial da instituição.",
-      "instituicao": "UNILAB",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 10,
-      "inscricoesInicio": "2026-07-01T12:00:00Z",
-      "inscricoesFim": "2026-07-17T12:00:00Z",
-      "url": "https://sigaa.unilab.edu.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-07-01T12:00:00Z",
-      "fonte": "UNILAB SIGAA",
-      "tipo_pos": "Stricto",
-      "subtipo_pos": "Mestrado",
       "modalidade": "Presencial",
       "is_ept": false,
       "gratuidade": "Gratuita"
