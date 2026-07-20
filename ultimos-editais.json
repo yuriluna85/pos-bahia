@@ -1,5 +1,5 @@
 {
-  "ultimaAtualizacao": "2026-07-19T05:42:07.229090Z",
+  "ultimaAtualizacao": "2026-07-20T05:59:07.974446Z",
   "editais": [
     {
       "dataColeta": "2026-07-05T22:24:14.909371Z",
@@ -35,26 +35,6 @@
       "status": "Aberto",
       "dataPublicacao": "2026-06-30T12:00:00Z",
       "fonte": "UFBA SIGAA",
-      "tipo_pos": "Stricto",
-      "subtipo_pos": "Doutorado",
-      "modalidade": "Presencial",
-      "is_ept": false,
-      "gratuidade": "Gratuita"
-    },
-    {
-      "dataColeta": "2026-07-05T21:41:17.265942Z",
-      "titulo": "SIGAA - Sistema Integrado de Gestão de Atividades Acadêmicas",
-      "resumo": "MESTRADO EM ARQUITETURA E URBANISMO, 50, 12/06/2026 a 18/06/2026 ; PROCESSO SELETIVO IC-PGCOMP DOUTORADO PARA ALUNO ESPECIAL 2026.2.",
-      "instituicao": "UFBA",
-      "nivel": "Mestrado - Aluno Especial",
-      "area": "Saúde e Biológicas",
-      "vagas": 10,
-      "inscricoesInicio": "2026-06-30T00:00:00Z",
-      "inscricoesFim": "2026-07-20T00:00:00Z",
-      "url": "https://sigaa.ufba.br/sigaa/public/processo_seletivo/lista.jsf?aba=p-processo&nivel=S",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-30T00:00:00Z",
-      "fonte": "Google Search (UFBA)",
       "tipo_pos": "Stricto",
       "subtipo_pos": "Doutorado",
       "modalidade": "Presencial",
