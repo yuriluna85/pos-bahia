@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-07-22T05:39:16.630388Z",
+  "geradoEm": "2026-07-23T05:44:22.803310Z",
   "totalGeral": 73,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
@@ -39,6 +39,14 @@
       "total": 3
     },
     {
+      "nome": "UNILAB",
+      "total": 1
+    },
+    {
+      "nome": "UCSal",
+      "total": 1
+    },
+    {
       "nome": "UFSB",
       "total": 1
     },
@@ -56,14 +64,6 @@
     },
     {
       "nome": "ESTUDE",
-      "total": 1
-    },
-    {
-      "nome": "UNILAB",
-      "total": 1
-    },
-    {
-      "nome": "UCSal",
       "total": 1
     }
   ]
