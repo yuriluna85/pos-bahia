@@ -1,26 +1,6 @@
 {
-  "ultimaAtualizacao": "2026-07-29T05:42:10.852052Z",
+  "ultimaAtualizacao": "2026-07-30T05:30:39.846302Z",
   "editais": [
-    {
-      "dataColeta": "2026-07-01T03:38:54.317585Z",
-      "titulo": "051/2026AR - Programa de Pós-Graduação em Letras - Stricto Sensu Mestrado - Aluno Regular",
-      "resumo": "Inscrições para o processo seletivo da UNEB: 051/2026AR - Programa de Pós-Graduação em Letras - Stricto Sensu Mestrado - Aluno Regular. Período de inscrições de 29/06/2026 a 29/07/2026. Consulte o edital completo no portal SSPPG UNEB.",
-      "instituicao": "UNEB",
-      "nivel": "Mestrado Acadêmico",
-      "area": "Humanas e Sociais",
-      "vagas": 15,
-      "inscricoesInicio": "2026-06-29T12:00:00Z",
-      "inscricoesFim": "2026-07-29T23:59:59Z",
-      "url": "https://ssppg.uneb.br/inicio/editalExterno/1556?selecao=1556",
-      "status": "Aberto",
-      "dataPublicacao": "2026-06-29T12:00:00Z",
-      "fonte": "UNEB SSPPG",
-      "tipo_pos": "Stricto",
-      "subtipo_pos": "Mestrado",
-      "modalidade": "Presencial",
-      "is_ept": false,
-      "gratuidade": "Gratuita"
-    },
     {
       "dataColeta": "2026-07-01T03:38:54.319833Z",
       "titulo": "PROCESSO SELETIVO DO DOUTORADO ACADÊMICO TURMA 2027-1 - DOUTORADO EM ARQUITETURA E URBANISMO",
