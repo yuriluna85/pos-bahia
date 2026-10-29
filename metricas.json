@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-10-28T09:07:04.004786Z",
+  "geradoEm": "2026-10-29T09:05:08.015410Z",
   "totalGeral": 73,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
@@ -7,7 +7,7 @@
     "Doutorado Acadêmico": 12,
     "Doutorado Profissional": 2,
     "Aluno Especial": 3,
-    "Especialização": 4,
+    "Especialização": 2,
     "Pós-Doc": 0
   },
   "totaisAreas": {
@@ -21,8 +21,8 @@
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 33,
-    "Encerrado": 40,
+    "Aberto": 8,
+    "Encerrado": 65,
     "Em andamento": 0
   },
   "porInstituicao": [
