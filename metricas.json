@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-11-17T11:19:08.818222Z",
+  "geradoEm": "2026-11-18T10:52:09.767542Z",
   "totalGeral": 73,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
@@ -7,22 +7,22 @@
     "Doutorado Acadêmico": 12,
     "Doutorado Profissional": 2,
     "Aluno Especial": 3,
-    "Especialização": 2,
+    "Especialização": 4,
     "Pós-Doc": 0
   },
   "totaisAreas": {
-    "Educação": 23,
+    "Educação": 24,
     "Tecnologia e Informática": 3,
-    "Gestão e Negócios": 3,
-    "Saúde e Biológicas": 15,
+    "Gestão e Negócios": 2,
+    "Saúde e Biológicas": 16,
     "Humanas e Sociais": 4,
     "Comunicação e Artes": 4,
-    "Engenharias e Exatas": 19,
+    "Engenharias e Exatas": 18,
     "Agrárias e Ambientais": 2
   },
   "status": {
-    "Aberto": 6,
-    "Encerrado": 67,
+    "Aberto": 33,
+    "Encerrado": 40,
     "Em andamento": 0
   },
   "porInstituicao": [
@@ -43,11 +43,11 @@
       "total": 1
     },
     {
-      "nome": "UFSB",
+      "nome": "UCSal",
       "total": 1
     },
     {
-      "nome": "UCSal",
+      "nome": "UFSB",
       "total": 1
     },
     {
