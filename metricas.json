@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-11-20T10:42:52.474843Z",
+  "geradoEm": "2026-11-21T10:25:53.295255Z",
   "totalGeral": 73,
   "totaisNiveis": {
     "Mestrado Acadêmico": 13,
@@ -47,10 +47,6 @@
       "total": 1
     },
     {
-      "nome": "UCSal",
-      "total": 1
-    },
-    {
       "nome": "CAMPINAGRANDE",
       "total": 1
     },
@@ -64,6 +60,10 @@
     },
     {
       "nome": "ESTUDE",
+      "total": 1
+    },
+    {
+      "nome": "UCSal",
       "total": 1
     }
   ]
